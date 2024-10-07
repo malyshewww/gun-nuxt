@@ -1,0 +1,37 @@
+<template lang="pug">
+	section.gallery
+		.heading
+			h2.heading__title Фотогалерея
+		.gallery__body
+			.gallery-item(v-for="item in 3")
+				span.mask
+					span.mask__icon
+				a(:href="`/images/text-page/gallery-${item}.jpg`" data-fancybox="gallery-static").gallery-item__image.ibg
+					img(:src="`/images/text-page/gallery-${item}.jpg`")
+</template>
+
+<script setup>
+import { Fancybox } from "@fancyapps/ui";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
+const fancyboxOptions = {
+   Hash: false,
+};
+Fancybox.bind(`[data-fancybox="gallery-static"]`, fancyboxOptions);
+</script>
+
+<style lang="scss" scoped>
+.gallery {
+   &__body {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: start;
+      gap: 40px;
+   }
+}
+.gallery-item {
+   &__image {
+      display: block;
+      padding-bottom: math.div(398, 594) * 100%;
+   }
+}
+</style>

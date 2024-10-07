@@ -1,0 +1,28 @@
+<svg width="0" height="0" class="hidden">
+  <symbol fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="next-arrow">
+    <g clip-path="url(#clip0_230_171)">
+      <path d="M19.1995 12.0001L11.6041 4.40469L13.6611 2.34766L23.3135 12.0001L13.6609 21.6527L11.6038 19.5957L19.1995 12.0001Z" fill="#2B2F3B"></path>
+      <path d="M21.2567 10.5456C22.0599 10.5453 22.7113 11.1967 22.7111 12C22.7113 12.4015 22.5483 12.7654 22.2852 13.0285C22.022 13.2917 21.6582 13.4546 21.2567 13.4544L2.14068 13.4544L2.14068 10.5456L21.2567 10.5456Z" fill="#2B2F3B"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_230_171">
+        <rect width="16" height="16" fill="white" transform="translate(12 0.686279) rotate(45)"></rect>
+      </clipPath>
+    </defs>
+  </symbol>
+  <symbol fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="prev-arrow">
+    <g clip-path="url(#clip0_230_175)">
+      <path d="M4.80053 12.0001L12.3959 4.40469L10.3389 2.34766L0.686459 12.0001L10.3391 21.6527L12.3962 19.5957L4.80053 12.0001Z" fill="#2B2F3B"></path>
+      <path d="M2.74333 10.5456C1.94005 10.5453 1.28869 11.1967 1.28894 12C1.28869 12.4015 1.45165 12.7654 1.71481 13.0285C1.97797 13.2917 2.34182 13.4546 2.74333 13.4544L21.8593 13.4544L21.8593 10.5456L2.74333 10.5456Z" fill="#2B2F3B"></path>
+    </g>
+    <defs>
+      <clipPath id="clip0_230_175">
+        <rect width="16" height="16" fill="white" transform="matrix(-0.707107 0.707107 0.707107 0.707107 12 0.686279)"></rect>
+      </clipPath>
+    </defs>
+  </symbol>
+  <symbol fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" id="search">
+    <path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z" stroke="#2B2F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M17.5 17.5L13.875 13.875" stroke="#2B2F3B" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"></path>
+  </symbol>
+</svg>
