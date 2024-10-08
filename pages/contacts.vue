@@ -43,9 +43,6 @@ const schedule = [
 
 <style lang="scss">
 .contacts {
-   & .heading-main__title {
-      margin-bottom: 64px;
-   }
    &__body {
       display: grid;
       grid-template-columns: 1fr 496px;

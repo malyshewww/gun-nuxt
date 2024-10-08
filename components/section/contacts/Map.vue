@@ -1,5 +1,5 @@
 <template lang="pug">
-	.contacts__map
+	.contacts__map.map-contacts
 		#mapElem.map
 </template>
 
@@ -135,14 +135,25 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
-.contacts {
-   &__map {
+.map-contacts {
+   width: 100%;
+   height: 100%;
+   & .map {
       width: 100%;
       height: 100%;
-      & .map {
-         width: 100%;
-         height: 100%;
-      }
+   }
+   &__point {
+      width: 100%;
+      height: 100%;
+      display: block;
+      transform: translate(-50%, -100%);
+   }
+   [class*="--marker"] {
+      width: 56px;
+      height: 64px;
+   }
+   [class*="--map-copyrights"] {
+      display: none;
    }
 }
 </style>

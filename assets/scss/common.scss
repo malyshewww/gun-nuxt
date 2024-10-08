@@ -215,11 +215,19 @@ h5 {
 	gap: 20px;
 	align-items: center;
 	margin-bottom: 56px;
+	&__content {
+		display: grid;
+		gap: 24px;
+		max-width: 743px;
+	}
 	.gallery & {
 		margin-bottom: 64px;
 	}
 	&__title {
 		margin: 0;
+	}
+	&__description {
+		line-height: 19px;
 	}
 }
 
@@ -235,6 +243,7 @@ h5 {
 	opacity: 0;
 	transition: opacity $time * 2 ease 0s;
 	z-index: 2;
+	pointer-events: none;
 	&__icon {
 		border-radius: 50%;
 		padding: 30px;
@@ -276,4 +285,73 @@ h5 {
 picture {
 	display: flex;
 	align-items: center;
+}
+
+.heading-main {
+	margin-bottom: 64px;
+	&__title {
+		margin: 0;
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 14px;
+	}
+}
+
+.text-transparent {
+	position: relative;
+	&__current {
+		color: var(--bg-white);
+		-webkit-text-stroke: 2px var(--text-midnight-100);
+	}
+	&__label {
+		border-radius: 100px;
+		padding: 3px 10px 3px 10px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 33px;
+		background: var(--text-avocado);
+		transform: rotate(9deg);
+		font-size: 16px;
+		line-height: 19px;
+		font-weight: 400;
+		font-family: var(--font-family);
+		text-transform: initial;
+		color: var(--text-white);
+		position: absolute;
+		top: -14px;
+		right: -69px;
+		width: 198px;
+	}
+}
+.slider-controls {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+.slider-button {
+	flex-shrink: 0;
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	border: 2px solid var(--bg-gray);
+	display: grid;
+	place-items: center;
+	transition: border-color $time, background-color $time, opacity $time;
+	@media (any-hover: hover) {
+		&:hover {
+			border-color: var(--text-midnight-100);
+		}
+	}
+	&.disabled,
+	&.swiper-button-disabled,
+	&:disabled {
+		cursor: default;
+		pointer-events: none;
+		border-color: var(--bg-gray);
+		& .icon {
+			fill: var(--text-gray);
+		}
+	}
 }
