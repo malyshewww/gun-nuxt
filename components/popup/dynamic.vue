@@ -21,13 +21,17 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-defineProps({
+const props = defineProps({
    isOpen: {
       type: Boolean,
       required: true,
    },
    popupData: {
       type: Object,
+      required: true,
+   },
+   initialSlide: {
+      type: Number,
       required: true,
    },
 });
@@ -53,6 +57,8 @@ const initDynamicSlider = () => {
       speed: 1000,
       spaceBetween: 10,
       slidesPerView: 1,
+      observer: true,
+      observeSlideChildren: true,
       navigation: {
          nextEl: buttonNext.value,
          prevEl: buttonPrev.value,
@@ -78,9 +84,10 @@ const destroyDynamicSlider = () => {
 onMounted(() => {
    initDynamicSlider();
 });
-onUnmounted(() => {
-   destroyDynamicSlider();
-});
+// onUnmounted(() => {
+//    destroyDynamicSlider();
+//    console.log("unmounted");
+// });
 </script>
 
 <style lang="scss">

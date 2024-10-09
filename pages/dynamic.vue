@@ -19,11 +19,13 @@
 								.item-dynamic__caption {{ item.caption }}
 					.dynamic__bottom
 						UiButton(text="Показать ещё" class-names="btn-transparent")
-	PopupDynamic(:is-open="storePopupDynamic.isOpenPopupDynamic" @close-popup="closePopupDynamic" :popup-data="initialState")
+	PopupDynamic(:is-open="storePopupDynamic.isOpenPopupDynamic" @close-popup="closePopupDynamic" :popup-data="initialState" :initial-slide="initialSlide")
 </template>
 
 <script setup>
 import { usePopupDynamicStore } from "~/stores/popup/dynamic";
+
+const initialSlide = ref(0);
 
 const storePopupDynamic = usePopupDynamicStore();
 
@@ -42,7 +44,7 @@ const closePopupDynamic = () => {
    setTimeout(() => {
       initialState.caption = null;
       initialState.images = null;
-   }, 500);
+   }, 100);
 };
 
 const crumbs = [
