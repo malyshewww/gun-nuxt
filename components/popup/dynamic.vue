@@ -10,8 +10,8 @@
 				.slider-controls
 					.slider-pagination(ref="sliderPagination")
 					.slider-buttons
-						button(ref="buttonPrev" type="button").slider-button.slider-button-prev
-						button(ref="buttonNext" type="button").slider-button.slider-button-next
+						button(ref="buttonPrev" type="button" class="slider-button slider-button-prev")
+						button(ref="buttonNext" type="button" class="slider-button slider-button-next")
 				.popup-slider__date {{popupData.caption}}
 </template>
 
@@ -43,8 +43,8 @@ const closePopup = () => {
 
 const dynamicSlider = ref("");
 const dynamicSwiper = ref("");
-const buttonNext = ref("");
 const buttonPrev = ref("");
+const buttonNext = ref("");
 const sliderPagination = ref("");
 
 const addZero = (num) => {
@@ -59,6 +59,7 @@ const initDynamicSlider = () => {
       slidesPerView: 1,
       observer: true,
       observeSlideChildren: true,
+      observeParents: true,
       navigation: {
          nextEl: buttonNext.value,
          prevEl: buttonPrev.value,
@@ -81,13 +82,22 @@ const destroyDynamicSlider = () => {
       dynamicSwiper.destroy();
    }
 };
+
+const slideChangeIncrement = () => {
+   if (dynamicSwiper.value != null) {
+      initialSlide.value++;
+      dynamicSwiper.value.slideTo(initialSlide.value);
+   }
+};
+const slideChangeDecrement = () => {
+   if (dynamicSwiper.value != null) {
+      initialSlide.value--;
+      dynamicSwiper.value.slideTo(initialSlide.value);
+   }
+};
 onMounted(() => {
    initDynamicSlider();
 });
-// onUnmounted(() => {
-//    destroyDynamicSlider();
-//    console.log("unmounted");
-// });
 </script>
 
 <style lang="scss">
@@ -160,7 +170,7 @@ onMounted(() => {
       line-height: 18px;
       width: 82px;
    }
-   .slider-button {
+   & .slider-button {
       width: 54px;
       height: 54px;
       background: var(--text-white);
@@ -175,12 +185,12 @@ onMounted(() => {
       }
       &-prev {
          &::before {
-            mask-image: url("../images/icons/arrow-prev.svg");
+            mask-image: url("/images/icons/arrow-prev.svg");
          }
       }
       &-next {
          &::before {
-            mask-image: url("../images/icons/arrow-next.svg");
+            mask-image: url("/images/icons/arrow-next.svg");
          }
       }
       &.swiper-button-disabled {

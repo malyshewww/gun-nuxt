@@ -21,7 +21,7 @@
 				.features-item(v-for="item in info.features") {{item.title}}
 		.info-apartment__bottom
 			.info-apartment__prices(v-if="info.price")
-				.info-apartment__price {{info.price}} ₽
+				.info-apartment__price {{formatNumber(info.price)}}
 				.info-apartment__price-label {{info.priceArea}}
 			.info-apartment__actions
 				UiButton(text="забронировать" class-names="btn-green")

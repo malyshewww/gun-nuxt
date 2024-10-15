@@ -6,50 +6,116 @@
 					img(:src="`/images/footer-logo-top.svg`" alt="логотип")
 				.footer__body
 					.footer__main.main-footer
-						.main-footer__column
+						.main-footer__column.main-footer__column--1
 							.main-footer__label Офис продаж
-							.main-footer__contacts.contacts-footer
-								.contacts-footer__item
-									address.contacts-footer__address г. Нижний Новгород, ул. Ковалихинская, 8Б (ориентир — Центр Международной торговли)
-									.contacts-footer__schedule.schedule-footer
-										ul.schedule-footer__list
-											li.schedule-footer__item ПН-ЧТ: 9:00–19:00
-											li.schedule-footer__item ПТ: 9:00–18:00
-											li.schedule-footer__item СБ: 10:00–16:00
-											li.schedule-footer__item ВС: Выходной
-								.contacts-footer__item
-									.contacts-footer__links
-										a(href="tel:+78312662195").footer__phone +7 831 266-21-95
-										EmailLink(email="kaskad2601500@yandex.ru")
-									.contacts-footer__social.social
-										ul.social__list
-											li.social__item
-											a(href="#" target="_blank").social__link
-												svg(width="28", height="28", viewBox="0 0 28 28", fill="none", xmlns="http://www.w3.org/2000/svg")
-													path(d="M14.8938 19.8334C8.45705 19.8334 4.80954 15.494 4.6665 8.16675H7.88489C7.95641 13.5021 10.3881 15.7785 12.2476 16.2054V8.16675H15.2514V12.7907C17.1109 12.5773 19.042 10.5143 19.6857 8.16675H22.6895C22.1889 11.0123 20.0433 13.1464 18.5413 14.0001C20.0433 14.7115 22.4749 16.5611 23.3332 19.8334H19.9717C19.2565 17.6281 17.4685 15.9208 15.1084 15.6363V19.8334H14.8938Z", fill="#878C9A")
+							AppFooterContacts
+							AppFooterSocial
 						.main-footer__column
-							.main-footer__label Офис продаж
+							.main-footer__label Узнайте больше о проекте
 							.main-footer__form
-								form(action="#").subscribe-form
-									.subscribe-form__body
-										.subscribe-form__title Оставьте свои контактные данные — и наш менеджер свяжется с вами
-										.subscribe-form__items 
-											.form-item
-												.form-item__field
-													input(type="text" name="name" placeholder="Имя")
-											.form-item
-												.form-item__field
-													input(type="text" name="phone" placeholder="Телефон")
-										.subscribe-form__bottom
-											UiButton(text="отправить" class-names="btn-green")
-											.subscribe-form__text Отправляя заявку, вы подтверждаете, что ознакомлены и согласны с условиями политики обработки персональных данных
+								AppFooterSubscribeForm
 							.main-footer__info.info-footer
 								nuxt-link(to="/").info-footer__link Информация о проекте и проектная документация
 								.info-footer__company.company-footer
 									.company-footer__label Создание сайта
 									a(href="#").company-footer__logo
-
-
-
-
+										img(src="/images/company-logo.svg" alt="логотип компании")
+					AppFooterMenu
+					AppFooterBottom
 </template>
+
+<script setup></script>
+
+<style lang="scss" scoped>
+.footer {
+   background-color: var(--text-midnight-100);
+   color: var(--text-white);
+   font-family: var(--font-family);
+   &__wrapper {
+      position: relative;
+   }
+   &__logo-top {
+      height: 81px;
+      position: absolute;
+      top: -80px;
+   }
+   &__body {
+      display: grid;
+      grid-template-columns: 100%;
+      align-items: start;
+      gap: 32px;
+      padding: 80px 0;
+   }
+   &__main {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      align-items: start;
+      gap: 32px;
+      margin-bottom: 48px;
+   }
+   &__phone {
+      font-family: var(--second-family);
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 27px;
+   }
+   &__menu {
+   }
+}
+.main-footer {
+   &__column {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      &--1 {
+         max-width: 605px;
+         justify-self: start;
+         height: 100%;
+      }
+      max-width: 820px;
+      justify-self: end;
+   }
+   &__label {
+      font-family: var(--second-family);
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 34px;
+   }
+   &__contacts {
+   }
+   &__form {
+   }
+   &__info {
+   }
+}
+.info-footer {
+   margin-top: 32px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   flex-wrap: wrap;
+   gap: 10px;
+   padding: 18px 0;
+   font-size: 14px;
+   line-height: 18px;
+   min-height: 60px;
+   color: var(--text-gray);
+   &__link {
+      border-bottom: 1px solid currentColor;
+   }
+}
+.company-footer {
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   &__label {
+   }
+   &__logo {
+      flex-shrink: 0;
+      width: 72px;
+      display: flex;
+      align-items: center;
+   }
+}
+</style>

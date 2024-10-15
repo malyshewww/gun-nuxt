@@ -7,7 +7,7 @@
 					h1.heading-main__title
 						| Динамика
 						span.text-transparent 
-							span.text-transparent__current строительства
+							span.text-transparent-current строительства
 							span.text-transparent__label 
 								span Сдаём проект в 2027
 				.dynamic__wrapper

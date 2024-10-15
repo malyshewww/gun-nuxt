@@ -52,7 +52,7 @@ const apartmentData = reactive({
    floor: "17",
    rooms: "студия",
    number: "№ 12",
-   price: "4 500 000",
+   price: "4500000",
    priceArea: "450 000 ₽/м²",
    features: [
       {
