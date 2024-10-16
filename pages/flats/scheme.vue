@@ -3,10 +3,7 @@
 		BreadCrumbs(:list="crumbs")
 		main.main.flats.flats-scheme
 			.container
-				.main__heading.heading-main
-					h1.heading-main__title 
-						| Выбрать
-						span.text-transparent-current апартаменты
+				FlatHeading
 				FlatFilter
 				.flats-scheme__wrapper
 					FlatSchemeLegend
@@ -89,18 +86,17 @@ const closeTooltip = () => {
       position: relative;
       &::before {
          content: "";
-         display: block;
          position: absolute;
-         left: 50%;
-         transform: translateX(-50%);
+         width: 0;
+         height: 0;
          top: calc(100% + 2px);
-         width: 0px;
-         height: 0px;
-         border-style: solid;
-         border-width: 10px 5px 0 5px;
-         border-color: #fff transparent transparent transparent;
-         filter: drop-shadow(0 0 5px 0 rgba(43, 47, 59, 0.1));
-         transform: rotate(0deg);
+         left: 50%;
+         box-sizing: border-box;
+         border: 5px solid black;
+         border-color: transparent transparent #fff #fff;
+         transform-origin: 0 0;
+         transform: rotate(-45deg);
+         box-shadow: -5px 5px 5px 0 rgba(43, 47, 59, 0.1);
       }
    }
    &__content {

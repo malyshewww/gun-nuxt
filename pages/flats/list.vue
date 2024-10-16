@@ -3,10 +3,7 @@
 		BreadCrumbs(:list="crumbs")
 		main.main.flats.flats-list
 			.container
-				.main__heading.heading-main
-					h1.heading-main__title 
-						| Выбрать
-						span.text-transparent-current апартаменты
+				FlatHeading
 				FlatFilter
 				.flats__wrapper
 					.flats__body

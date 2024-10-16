@@ -30,6 +30,12 @@ const menu = inject("menu");
       font-weight: 600;
       font-size: 16px;
       line-height: 22px;
+      transition: color $time ease 0s;
+      @media (any-hover: hover) {
+         &:hover {
+            color: var(--text-avocado);
+         }
+      }
    }
 }
 </style>
