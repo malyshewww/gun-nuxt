@@ -1,6 +1,8 @@
 <template lang="pug">
 	.wrapper
-		AppHeader
+		main.main
 		slot
 		AppFooter
 </template>
+
+<script setup></script>

@@ -1,11 +1,18 @@
 <template lang="pug">
-	h1 Главная страница
+   SectionMainHero
+   .main-content
+      AppHeader
+      SectionMainAbout
+      SectionMainLocation
 </template>
 
 <script setup>
+definePageMeta({
+  layout: "main",
+});
 useHead({
-   bodyAttrs: {
-      class: "page--home",
-   },
+  bodyAttrs: {
+    class: "page--home",
+  },
 });
 </script>
