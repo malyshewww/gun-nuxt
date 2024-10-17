@@ -11,24 +11,38 @@
 </template>
 
 <style lang="scss" scoped>
+.footer {
+  &__phone {
+    font-family: var(--second-family);
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 27px;
+    transition: color $time ease 0s;
+    @media (any-hover: hover) {
+      &:hover {
+        color: var(--text-avocado);
+      }
+    }
+  }
+}
 .contacts-footer {
-   display: grid;
-   gap: 36px;
-   &__items {
-      display: grid;
-      gap: 26px;
-   }
-   &__item {
-      display: grid;
-      gap: 24px;
-   }
-   &__address {
-      line-height: 19px;
-   }
-   &__links {
-      display: grid;
-      gap: 12px;
-      justify-items: start;
-   }
+  display: grid;
+  gap: 36px;
+  &__items {
+    display: grid;
+    gap: 26px;
+  }
+  &__item {
+    display: grid;
+    gap: 24px;
+  }
+  &__address {
+    line-height: 19px;
+  }
+  &__links {
+    display: grid;
+    gap: 12px;
+    justify-items: start;
+  }
 }
 </style>
