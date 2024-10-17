@@ -1,6 +1,6 @@
 <template lang="pug">
 	.wrapper
-		AppHeader(:menu="menu")
+		AppHeader
 		.page
 			slot
 		AppFooter
@@ -8,34 +8,34 @@
 
 <script setup>
 const menu = [
-   {
-      title: "О проекте",
-      path: "/",
-   },
-   {
-      title: "Апартаменты в продаже",
-      path: "/",
-   },
-   {
-      title: "Динамика строительства",
-      path: "/",
-   },
-   {
-      title: "Новости и акции",
-      path: "/",
-   },
-   {
-      title: "Паркинг",
-      path: "/",
-   },
-   {
-      title: "Ипотека",
-      path: "/",
-   },
-   {
-      title: "Контакты",
-      path: "/",
-   },
+  {
+    title: "О проекте",
+    path: "/",
+  },
+  {
+    title: "Апартаменты в продаже",
+    path: "/",
+  },
+  {
+    title: "Динамика строительства",
+    path: "/",
+  },
+  {
+    title: "Новости и акции",
+    path: "/",
+  },
+  {
+    title: "Паркинг",
+    path: "/",
+  },
+  {
+    title: "Ипотека",
+    path: "/",
+  },
+  {
+    title: "Контакты",
+    path: "/",
+  },
 ];
 
 provide("menu", menu);
@@ -43,6 +43,6 @@ provide("menu", menu);
 
 <style lang="scss">
 .page {
-   padding: 84px 0 200px;
+  padding: 84px 0 200px;
 }
 </style>
