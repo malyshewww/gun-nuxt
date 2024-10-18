@@ -13,6 +13,68 @@ export default defineNuxtConfig({
          apiKey: process.env.NUXT_PUBLIC_API_KEY,
       },
    },
+   app: {
+      head: {
+         htmlAttrs: {
+            lang: "ru",
+         },
+         link: [
+            {
+               rel: "preload",
+               href: "/fonts/Manrope-Regular.woff2",
+               as: "font",
+               type: "font/woff2",
+               crossorigin: "anonymous",
+            },
+            { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+         ],
+         meta: [
+            { charset: "utf-8" },
+            {
+               "http-equiv": "X-UA-Compatible",
+               content: "IE=edge",
+            },
+            {
+               name: "viewport",
+               content: "width=device-width, initial-scale=1, user-scalable=no",
+            },
+            {
+               hid: "apple-mobile-web-app-title",
+               name: "apple-mobile-web-app-title",
+               content: "Название",
+            },
+            {
+               hid: "mobile-web-app-capable",
+               name: "mobile-web-app-capable",
+               content: "yes",
+            },
+            {
+               hid: "format-detection",
+               name: "format-detection",
+               content: "telephone=no",
+            },
+            {
+               hid: "format-detection",
+               name: "format-detection",
+               content: "address=no",
+            },
+            {
+               hid: "format-detection",
+               name: "format-detection",
+               content: "email=no",
+            },
+            {
+               hid: "format-detection",
+               name: "format-detection",
+               content: "date=no",
+            },
+            {
+               name: "robots",
+               content: "noindex,follow",
+            },
+         ],
+      },
+   },
    vite: {
       server: {
          port: 3001,

@@ -1,23 +1,17 @@
 <template lang="pug">
-	.main-location__header.header-location
+	.main-location__header.section-top
 		SectionHeading(title="Локация")
-		h2.main-location__title.custom-title
-			| Всё #[span.text-transparent-current нужное] рядом
-		.header-location__description Развитая в районе застройки транспортная система позволит комфортно и оперативно добраться в любую точку города
+		.section-top__content
+			h2.section-top__title.custom-title
+				| Всё #[span.text-transparent-current нужное] рядом
+			.section-top__description Развитая в районе застройки транспортная система позволит комфортно и оперативно добраться в любую точку города
 </template>
 
 <style lang="scss" scoped>
-.header-location {
-  display: grid;
-  justify-items: start;
-  gap: 32px;
-  max-width: 1000px;
-  &__description {
-    margin-top: 8px;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 32px;
-    font-family: var(--font-family);
-  }
+.section-top {
+   max-width: 1020px;
+   &__description {
+      max-width: 100%;
+   }
 }
 </style>

@@ -4,15 +4,20 @@
       AppHeader
       SectionMainAbout
       SectionMainLocation
+      SectionMainAdvantages
+      SectionMainHouse
+      SectionMainScenariors
+      SectionMainNews
+      SectionMainProgress
 </template>
 
 <script setup>
 definePageMeta({
-  layout: "main",
+   layout: "main",
 });
 useHead({
-  bodyAttrs: {
-    class: "page--home",
-  },
+   bodyAttrs: {
+      class: "page--home",
+   },
 });
 </script>
