@@ -13,8 +13,8 @@
 								.slider-location__description {{item.description}}
 								.slider-location__distance {{item.distance}}
 				.slider-controls
-					button(ref="buttonPrev" type="button").slider-button.slider-button--prev
-					button(ref="buttonNext" type="button").slider-button.slider-button--next
+					button(ref="buttonPrev" type="button").slider-button.slider-button-prev
+					button(ref="buttonNext" type="button").slider-button.slider-button-next
 </template>
 
 <script setup>
@@ -56,6 +56,12 @@ const locationSwiper = ref(null);
 const buttonPrev = ref("");
 const buttonNext = ref("");
 
+const emit = defineEmits(["updateLocationId"]);
+
+const updateLocationId = (id) => {
+   emit("updateLocationId", id);
+};
+
 const initSlider = () => {
    if (locationSlider.value) {
       locationSwiper.value = new Swiper(locationSlider.value, {
@@ -75,6 +81,9 @@ const initSlider = () => {
             slideChange: function (swiper) {
                const activeIndex = swiper.activeIndex;
                currentSlideIndex.value = activeIndex;
+               updateLocationId(currentSlideIndex.value + 1);
+               // newLocation.value = currentSlideIndex.value;
+               // console.log(newLocation.value);
             },
          },
       });
@@ -198,14 +207,9 @@ onMounted(() => {
       mask-position: center;
       background-color: var(--bg-white);
    }
-   &--prev {
+   &.swiper-button-disabled {
       &::before {
-         mask-image: url("/images/icons/arrow-prev.svg");
-      }
-   }
-   &--next {
-      &::before {
-         mask-image: url("/images/icons/arrow-next.svg");
+         background-color: var(--text-gray);
       }
    }
 }

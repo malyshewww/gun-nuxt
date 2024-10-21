@@ -41,7 +41,7 @@ const schedule = [
 ];
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .contacts {
    &__body {
       display: grid;

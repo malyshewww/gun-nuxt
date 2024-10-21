@@ -356,12 +356,38 @@ picture {
       border-color: var(--text-midnight-100);
     }
   }
+  &::before {
+    content: "";
+    display: block;
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: 28px 28px;
+    background-color: var(--main-color);
+    transition: background-color $time;
+  }
+  &-prev {
+    &::before {
+      mask-image: url('/images/icons/arrow-prev.svg');
+    }
+  }
+  &-next {
+    &::before {
+      mask-image: url('/images/icons/arrow-next.svg');
+    }
+  }
   &.disabled,
   &.swiper-button-disabled,
   &:disabled {
     cursor: default;
     pointer-events: none;
     border-color: var(--bg-gray);
+    &::before {
+      background-color: var(--text-gray);
+    }
     & .icon {
       fill: var(--text-gray);
     }

@@ -2,10 +2,11 @@
 	.main-news__slider.news-slider
 		.news-slider__body(ref="sliderNews")
 			.news-slider__wrapper.swiper-wrapper
-				SectionMainNewsItem(v-for="(item, index) in newsList" :key="index" :item="item")
+				SectionMainNewsItem(v-for="(item, index) in newsList" :key="index" :item="item" @openPopupNews="openPopupNews(item)")
 		.slider-controls
 			button(ref="buttonPrev" type="button").slider-button.slider-button-prev
 			button(ref="buttonNext" type="button").slider-button.slider-button-next
+		PopupNews(:is-open="storePopupNews.isOpenPopupNews" @close-popup="closePopupNews" @buttonClick="closePopupNews" :popup-data="popupNewsData")
 </template>
 
 <script setup>
@@ -14,10 +15,33 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
+import { usePopupNewsStore } from "~/stores/popup/news";
+
+const storePopupNews = usePopupNewsStore();
+
+const popupNewsData = reactive({
+   title: "",
+   date: "",
+   text: "",
+});
+
+const closePopupNews = () => {
+   storePopupNews.closePopupNews();
+};
+
+const openPopupNews = (item) => {
+   storePopupNews.openPopupNews();
+   popupNewsData.title = item.title;
+   popupNewsData.date = item.date;
+   popupNewsData.text = item.text;
+   console.log("open news");
+};
+
 const sliderNews = ref("");
 const swiperNews = ref(null);
 const buttonPrev = ref("");
 const buttonNext = ref("");
+
 const initSlider = () => {
    if (sliderNews.value) {
       swiperNews.value = new Swiper(sliderNews.value, {

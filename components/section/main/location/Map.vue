@@ -1,37 +1,29 @@
 <template lang="pug">
-	section.main-location
-		.container
-			.main-location__wrapper
-				SectionMainLocationHeader
-				.main-location__body
-					.main-location__map.map
-						.map#mapElem(ref="mapElem")
-					//- SectionMainLocationMap(:location-id="locationId")
-					button(type="button").main-location__button развернуть карту
-					SectionMainLocationSlider(@updateLocationId="updateLocationId")
+	.main-location__map.map
+		.map#mapElem
 </template>
 
 <script setup>
-import { reactive } from "vue";
 import json from "~/static/map-theme.json";
 
-const locationId = ref(1);
+const coords = [44.011457, 56.323333];
 
-const updateLocationId = (id) => {
-   locationId.value = id;
-};
+const props = defineProps({
+   locationId: {
+      type: Number,
+      required: true,
+   },
+});
 
-const mapElem = ref("");
-
-const map = ref(null);
+const newVal = ref(props.locationId);
 
 const placemarks = reactive([
    // парк пушкина
    {
       id: 1,
+      isActive: true,
       coords: [43.997183, 56.308685],
       transform: "translate(-50%, -50%)",
-      isActive: true,
    },
    // площадь Горького
    {
@@ -56,44 +48,10 @@ const placemarks = reactive([
    },
 ]);
 
-// Обновление маркеров
-const updateMarkers = () => {
-   placemarks.map((marker, index) => {
-      return {
-         ...marker,
-         isActive: locationId.value === marker.id ? true : false,
-      };
-      if (locationId.value === marker.id) {
-         marker.isActive = true;
-         console.log("active");
-      } else {
-         marker.isActive = false;
-         console.log("not active");
-      }
-   });
-   return {
-      pm: placemarks,
-   };
-};
-
-// watch(
-//    () => locationId.value,
-//    (val) => {
-//       locationId.value = val;
-//    },
-//    { deep: true }
-// );
-
-const coords = [44.011457, 56.323333];
-
 const runtimeConfig = useRuntimeConfig();
-
-watch(() => locationId.value, updateMarkers);
-
-const { pm } = updateMarkers();
-
 onMounted(() => {
    let isLoaded = false;
+   const mapElem = document.getElementById("mapElem");
    function loadMap() {
       const script = document.createElement("script");
       script.src = `https://api-maps.yandex.ru/v3/?apikey=${runtimeConfig.public.apiKey}&lang=ru_RU`;
@@ -103,6 +61,7 @@ onMounted(() => {
          initMap();
       };
    }
+
    async function initMap() {
       await ymaps3.ready;
       const {
@@ -115,7 +74,7 @@ onMounted(() => {
       const { YMapHint, YMapHintContext } = await ymaps3.import(
          "@yandex/ymaps3-hint@0.0.1"
       );
-      map.value = new YMap(mapElem.value, {
+      const map = new YMap(document.getElementById("mapElem"), {
          location: {
             center: coords,
             zoom: 14,
@@ -131,42 +90,43 @@ onMounted(() => {
          ],
       });
       // Добавьте слой с дорогами и зданиями
-      map.value.addChild(
+      map.addChild(
          new YMapDefaultSchemeLayer({
             theme: "monochrome",
             customization: json,
          })
       );
       // Добавьте слой для маркеров
-      const defaultFeaturesLayer = new YMapDefaultFeaturesLayer();
-      map.value.addChild(defaultFeaturesLayer);
-      pm.forEach((placemark, index) => {
+      const defaultFeatures = new YMapDefaultFeaturesLayer();
+      map.addChild(defaultFeatures);
+      placemarks.forEach((placemark, index) => {
          const markerElement = document.createElement("div");
          markerElement.className = "map-marker";
          markerElement.setAttribute("data-market-id", `${index + 1}`);
-         if (placemark.isActive) {
-            markerElement.classList.add("active");
-         }
+         placemark.id === newVal.value
+            ? markerElement.classList.add("active")
+            : markerElement.classList.remove("active");
          const markerElementImg = document.createElement("div");
          markerElementImg.className = "map-marker__image";
          markerElementImg.innerHTML = `
-      		<svg width="36" height="46" viewBox="0 0 36 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-      			<path d="M5.7085 30.4791L18 45.7134L30.2915 30.4786C30.3193 30.4443 30.3489 30.4113 30.3801 30.3801C37.2066 23.5537 37.2066 12.4462 30.3801 5.61969C27.0941 2.3412 22.6418 0.5 18 0.5C13.3582 0.5 8.9059 2.3412 5.61987 5.61969C-1.20662 12.4462 -1.20662 23.5537 5.61987 30.3801C5.65112 30.4115 5.68071 30.4445 5.7085 30.4791Z" fill="#FCFBF7"/>
-      			<path d="M18.1235 27.1719C23.3154 27.1719 27.5242 22.9631 27.5242 17.7712C27.5242 12.5794 23.3154 8.37061 18.1235 8.37061C12.9317 8.37061 8.7229 12.5794 8.7229 17.7712C8.7229 22.9631 12.9317 27.1719 18.1235 27.1719Z" fill="#878C9A"/>
-      			<path d="M5.7085 30.4791L18 45.7134L30.2915 30.4786C30.3193 30.4443 30.3489 30.4113 30.3801 30.3801C37.2066 23.5537 37.2066 12.4462 30.3801 5.61969C27.0941 2.3412 22.6418 0.5 18 0.5C13.3582 0.5 8.9059 2.3412 5.61987 5.61969C-1.20662 12.4462 -1.20662 23.5537 5.61987 30.3801C5.65112 30.4115 5.68071 30.4445 5.7085 30.4791ZM18 5.87955C20.3519 5.87955 22.6509 6.57696 24.6064 7.88358C26.562 9.1902 28.0861 11.0474 28.9861 13.2202C29.8862 15.393 30.1217 17.784 29.6629 20.0907C29.2041 22.3973 28.0716 24.5162 26.4086 26.1792C24.7455 27.8423 22.6267 28.9748 20.3201 29.4337C18.0134 29.8926 15.6225 29.6571 13.4496 28.7571C11.2767 27.8572 9.41954 26.3331 8.11287 24.3776C6.8062 22.4221 6.10873 20.1231 6.10867 17.7712C6.11216 14.6185 7.3661 11.5958 9.59539 9.36649C11.8247 7.13714 14.8473 5.88312 18 5.87955Z" fill="#878C9A"/>
-      		</svg>
-      	 `;
+			<svg width="36" height="46" viewBox="0 0 36 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M5.7085 30.4791L18 45.7134L30.2915 30.4786C30.3193 30.4443 30.3489 30.4113 30.3801 30.3801C37.2066 23.5537 37.2066 12.4462 30.3801 5.61969C27.0941 2.3412 22.6418 0.5 18 0.5C13.3582 0.5 8.9059 2.3412 5.61987 5.61969C-1.20662 12.4462 -1.20662 23.5537 5.61987 30.3801C5.65112 30.4115 5.68071 30.4445 5.7085 30.4791Z" fill="#FCFBF7"/>
+				<path d="M18.1235 27.1719C23.3154 27.1719 27.5242 22.9631 27.5242 17.7712C27.5242 12.5794 23.3154 8.37061 18.1235 8.37061C12.9317 8.37061 8.7229 12.5794 8.7229 17.7712C8.7229 22.9631 12.9317 27.1719 18.1235 27.1719Z" fill="#878C9A"/>
+				<path d="M5.7085 30.4791L18 45.7134L30.2915 30.4786C30.3193 30.4443 30.3489 30.4113 30.3801 30.3801C37.2066 23.5537 37.2066 12.4462 30.3801 5.61969C27.0941 2.3412 22.6418 0.5 18 0.5C13.3582 0.5 8.9059 2.3412 5.61987 5.61969C-1.20662 12.4462 -1.20662 23.5537 5.61987 30.3801C5.65112 30.4115 5.68071 30.4445 5.7085 30.4791ZM18 5.87955C20.3519 5.87955 22.6509 6.57696 24.6064 7.88358C26.562 9.1902 28.0861 11.0474 28.9861 13.2202C29.8862 15.393 30.1217 17.784 29.6629 20.0907C29.2041 22.3973 28.0716 24.5162 26.4086 26.1792C24.7455 27.8423 22.6267 28.9748 20.3201 29.4337C18.0134 29.8926 15.6225 29.6571 13.4496 28.7571C11.2767 27.8572 9.41954 26.3331 8.11287 24.3776C6.8062 22.4221 6.10873 20.1231 6.10867 17.7712C6.11216 14.6185 7.3661 11.5958 9.59539 9.36649C11.8247 7.13714 14.8473 5.88312 18 5.87955Z" fill="#878C9A"/>
+			</svg>
+		 `;
          markerElement.appendChild(markerElementImg);
          markerElementImg.src = placemark.image;
-         const placemarks = new YMapMarker(
-            {
-               coordinates: placemark.coords,
-               mapFollowsOnDrag: true,
-               // properties: { hint: placemark.hint, offset: [-1000, -1000] },
-            },
-            markerElement
+         map.addChild(
+            new YMapMarker(
+               {
+                  coordinates: placemark.coords,
+                  mapFollowsOnDrag: true,
+                  properties: { hint: placemark.hint, offset: [-1000, -1000] },
+               },
+               markerElement
+            )
          );
-         map.value.addChild(placemarks);
       });
       const content = document.createElement("div");
       content.className = "map-pin";
@@ -181,7 +141,7 @@ onMounted(() => {
          },
          content
       );
-      map.value.addChild(marker);
+      map.addChild(marker);
       //   if (window.innerWidth < 1024) {
       //      map.setBehaviors([
       //         "multiTouch",
@@ -250,67 +210,12 @@ onMounted(() => {
          observer.unobserve(entry.target);
       }
    }, {});
-   observer.observe(mapElem.value);
+   observer.observe(mapElem);
 });
 </script>
 
 <style lang="scss">
 .main-location {
-   padding: 110px 0;
-   &__wrapper {
-      display: grid;
-      grid-template-columns: 100%;
-      gap: 80px;
-   }
-   &__body {
-      position: relative;
-      padding: 0 0 60px;
-      &::before {
-         content: "";
-         display: block;
-         position: absolute;
-         top: 0;
-         left: 0;
-         width: 70.36%;
-         height: 61px;
-         z-index: 2;
-         background-color: var(--text-white);
-         pointer-events: none;
-      }
-   }
-   &__button {
-      position: absolute;
-      z-index: 5;
-      padding: 28px;
-      width: 216px;
-      height: 220px;
-      background: var(--text-avocado);
-      left: 40px;
-      top: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: flex-start;
-      text-align: left;
-      font-weight: 700;
-      font-size: 22px;
-      line-height: 27px;
-      text-transform: uppercase;
-      color: var(--bg-white);
-      &::after {
-         content: "";
-         display: block;
-         width: 40px;
-         height: 40px;
-         flex-shrink: 0;
-         mask-image: url("/images/icons/arrow-rotate.svg");
-         mask-repeat: no-repeat;
-         mask-position: center;
-         mask-size: 40px 40px;
-         background-color: currentColor;
-         align-self: flex-end;
-      }
-   }
    &__map {
       padding-bottom: math.div(760, 1680) * 100%;
       position: relative;
@@ -349,17 +254,6 @@ onMounted(() => {
          display: grid;
          place-items: center;
          transform: translate(-50%, -50%);
-         &__image {
-            pointer-events: none;
-         }
-         &.active {
-            & .map-marker__image {
-               & svg path:nth-child(2),
-               & svg path:nth-child(3) {
-                  fill: var(--main-color);
-               }
-            }
-         }
       }
 
       & .ymaps3x0--marker {
@@ -368,9 +262,5 @@ onMounted(() => {
          }
       }
    }
-}
-.btn-toggle {
-   position: relative;
-   z-index: 20;
 }
 </style>

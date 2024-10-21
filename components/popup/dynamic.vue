@@ -21,6 +21,10 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
+import { usePopupDynamicStore } from "~/stores/popup/dynamic";
+
+const store = usePopupDynamicStore();
+
 const props = defineProps({
    isOpen: {
       type: Boolean,
@@ -39,10 +43,11 @@ const emit = defineEmits(["closePopup"]);
 // eslint-disable-next-line
 const closePopup = () => {
    emit("closePopup");
+   // destroyDynamicSlider();
 };
 
 const dynamicSlider = ref("");
-const dynamicSwiper = ref("");
+const dynamicSwiper = ref(null);
 const buttonPrev = ref("");
 const buttonNext = ref("");
 const sliderPagination = ref("");
@@ -51,53 +56,49 @@ const addZero = (num) => {
    return num > 9 ? num : "0" + num;
 };
 
+function destroyDynamicSlider() {
+   if (dynamicSwiper.value != null) {
+      dynamicSwiper.value.destroy();
+   }
+}
+
 const initDynamicSlider = () => {
-   dynamicSwiper.value = new Swiper(dynamicSlider.value, {
-      modules: [Navigation, Pagination],
-      speed: 1000,
-      spaceBetween: 10,
-      slidesPerView: 1,
-      observer: true,
-      observeSlideChildren: true,
-      observeParents: true,
-      navigation: {
-         nextEl: buttonNext.value,
-         prevEl: buttonPrev.value,
-      },
-      pagination: {
-         el: sliderPagination.value,
-         type: "custom",
-         renderCustom: function (swiper, current, total) {
-            return `
-					<span class="slider-pagiantion-current">${addZero(current)}</span> 
-					<span>/</span>
-					<span class="slider-pagiantion-total">${addZero(total)}</span>`;
+   if (dynamicSlider.value) {
+      dynamicSwiper.value = new Swiper(dynamicSlider.value, {
+         modules: [Navigation, Pagination],
+         speed: 1000,
+         spaceBetween: 10,
+         slidesPerView: 1,
+         observer: true,
+         observeSlideChildren: true,
+         observeParents: true,
+         navigation: {
+            nextEl: buttonNext.value,
+            prevEl: buttonPrev.value,
          },
-      },
-   });
-};
-const destroyDynamicSlider = () => {
-   if (dynamicSwiper.value) {
-      dynamicSwiper.value = null;
-      dynamicSwiper.destroy();
+         pagination: {
+            el: sliderPagination.value,
+            type: "custom",
+            renderCustom: function (swiper, current, total) {
+               return `
+                  <span class="slider-pagiantion-current">${addZero(
+                     current
+                  )}</span> 
+                  <span>/</span>
+                  <span class="slider-pagiantion-total">${addZero(
+                     total
+                  )}</span>`;
+            },
+         },
+      });
    }
 };
 
-const slideChangeIncrement = () => {
-   if (dynamicSwiper.value != null) {
-      initialSlide.value++;
-      dynamicSwiper.value.slideTo(initialSlide.value);
-   }
-};
-const slideChangeDecrement = () => {
-   if (dynamicSwiper.value != null) {
-      initialSlide.value--;
-      dynamicSwiper.value.slideTo(initialSlide.value);
-   }
-};
 onMounted(() => {
    initDynamicSlider();
 });
+
+onUnmounted(() => {});
 </script>
 
 <style lang="scss">
@@ -120,6 +121,7 @@ onMounted(() => {
    width: 100%;
    height: 100%;
    position: relative;
+   font-family: var(--font-family);
    &__body {
       border-radius: 10px;
    }
@@ -179,6 +181,7 @@ onMounted(() => {
          content: "";
          width: 20px;
          height: 20px;
+         mask-size: 20px 20px;
          mask-repeat: no-repeat;
          mask-position: center;
          background-color: var(--main-color);

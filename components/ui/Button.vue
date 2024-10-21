@@ -1,5 +1,5 @@
 <template lang="pug">
-	button(type="button" :class="[classNames]").btn {{ text }}
+	button(type="button" :class="[classNames]" @click="buttonClick").btn {{ text }}
 </template>
 
 <script setup>
@@ -13,6 +13,12 @@ defineProps({
       required: false,
    },
 });
+
+const emit = defineEmits(["buttonClick"]);
+
+const buttonClick = () => {
+   emit("buttonClick");
+};
 </script>
 
 <style lang="scss">

@@ -12,14 +12,10 @@
 								span Сдаём проект в 2027
 				.dynamic__wrapper
 					.dynamic__body
-						.dynamic__item.item-dynamic(v-for="item, index in dynamic.data" :key="index" @click="openPopupDynamic($event, item)")
-							.item-dynamic__image.ibg
-								img(:src="`/images/dynamic/dynamic-${item.images[0]}@2x.jpg`" :alt="`Динамика строительства ${item.caption}`")
-							.item-dynamic__content
-								.item-dynamic__caption {{ item.caption }}
+						ProgressCard(v-for="(item, index) in dynamic.data" :key="index" @click="openPopupDynamic($event, item)" :card="item")
 					.dynamic__bottom
 						UiButton(text="Показать ещё" class-names="btn-transparent")
-	PopupDynamic(:is-open="storePopupDynamic.isOpenPopupDynamic" @close-popup="closePopupDynamic" :popup-data="initialState" :initial-slide="initialSlide")
+	PopupDynamic(v-if="storePopupDynamic.isOpenPopupDynamic" :is-open.sync="storePopupDynamic.isOpenPopupDynamic" @close-popup="closePopupDynamic" :popup-data="initialState" :initial-slide="initialSlide")
 </template>
 
 <script setup>
@@ -83,7 +79,7 @@ const dynamic = reactive({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .dynamic {
    &__wrapper {
       display: grid;
@@ -104,36 +100,6 @@ const dynamic = reactive({
          max-width: 188px;
          padding: 11px 30px;
       }
-   }
-}
-.item-dynamic {
-   position: relative;
-   @media (any-hover: hover) {
-      &:hover {
-         cursor: pointer;
-      }
-   }
-   &__image {
-      padding-bottom: math.div(480, 390) * 100%;
-   }
-   &__content {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: flex-end;
-      z-index: 2;
-      padding: 32px 36px;
-   }
-   &__caption {
-      font-weight: 700;
-      font-size: 28px;
-      line-height: 34px;
-      text-transform: uppercase;
-      color: var(--text-white);
-      font-family: var(--second-family);
-      flex: 1 1 auto;
    }
 }
 </style>

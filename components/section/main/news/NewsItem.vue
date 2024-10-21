@@ -1,5 +1,5 @@
 <template lang="pug">
-	.news-item
+	.news-item(@click="openPopupNews(item)")
 		.news-item__body
 			.news-item__title {{item.title}}
 			.news-item__content
@@ -17,6 +17,12 @@ defineProps({
       required: true,
    },
 });
+
+const emit = defineEmits(["openPopupNews"]);
+
+const openPopupNews = () => {
+   emit("openPopupNews");
+};
 </script>
 
 <style lang="scss" scoped>

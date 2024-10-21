@@ -68,7 +68,7 @@ const apartmentData = reactive({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .apartment-card {
    &__wrapper {
       display: grid;

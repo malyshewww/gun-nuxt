@@ -27,6 +27,7 @@ const initSlider = () => {
          modules: [Navigation],
          observer: true,
          observeParents: true,
+         observeSlideChildren: true,
          slidesPerView: "auto",
          spaceBetween: 40,
          speed: 800,
@@ -34,8 +35,8 @@ const initSlider = () => {
          loopedSlidesLimit: false,
          loopedSlides: 2,
          loopPreventsSlide: false,
-         watchOverflow: true,
-         // loopAdditionalSlides: 2,
+         // watchOverflow: true,
+         // loopAdditionalSlides: 4,
          preloadImages: false,
          navigation: {
             nextEl: buttonNext.value,
@@ -79,14 +80,43 @@ onMounted(() => {
       overflow: hidden;
       height: 770px;
       transition: width 0.5s, max-width 0.5s;
+      // width: auto !important;
       &.swiper-slide-active .slider-format__image {
          height: 100%;
          transform: scale(1);
       }
+      &.swiper-slide-prev {
+         & .slider-format__image {
+            transform: scale(1);
+            height: 61%;
+         }
+      }
+      &.swiper-slide-next {
+         max-width: 390px;
+         & .slider-format__image {
+            transform: scale(1);
+            height: 61%;
+         }
+      }
+      // &:nth-child(3n) {
+      //    max-width: 390px;
+      //    & .slider-format__image {
+      //       transform: scale(1);
+      //       height: 61%;
+      //    }
+      //    &.swiper-slide-active {
+      //       max-width: 640px;
+      //       & .slider-format__image {
+      //          transform: scale(1);
+      //          height: 100%;
+      //       }
+      //    }
+      // }
    }
    &__image {
       transition: height 0.8s ease 0s, transform 0.8s ease 0s;
       width: 100%;
+      overflow: hidden;
       @media screen and (min-width: $md) {
          height: 100%;
          // height: 61%;

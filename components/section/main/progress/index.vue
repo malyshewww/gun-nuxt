@@ -9,8 +9,10 @@
 							span.text-transparent-current
 								| строительства
 								nuxt-link(to="dynamic").section-top__link
-				.cards cards
+				SectionMainProgressSlider
 </template>
+
+<script setup></script>
 
 <style lang="scss" scoped>
 .main-progress {

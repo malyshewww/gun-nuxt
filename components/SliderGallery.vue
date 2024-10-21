@@ -6,11 +6,11 @@
 				p.heading__description(v-if="isDescr") Дизайнеры ЖК «Пушка» продумали все для вашего комфорта — современная и эстетичная отделка «под ключ» позволит значительно сэкономить на ремонте
 			.slider-controls
 				button(ref="buttonPrev" type="button").slider-button.slider-button-prev
-					svg.icon
-						use(xlink:href="/images/icons/sprite.svg#prev-arrow")
+					//- svg.icon
+					//- 	use(xlink:href="/images/icons/sprite.svg#prev-arrow")
 				button(ref="buttonNext" type="button").slider-button.slider-button-next
-					svg.icon
-						use(:xlink:href="`/images/icons/sprite.svg#next-arrow`")
+					//- svg.icon
+					//- 	use(:xlink:href="`/images/icons/sprite.svg#next-arrow`")
 		.gallery-slider__body.swiper(ref="sliderGallery")
 			.gallery-slider__wrapper.swiper-wrapper 
 				.gallery-item.swiper-slide(v-for="slide, index in slider")

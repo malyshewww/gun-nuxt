@@ -46,7 +46,7 @@
 				StaticGallery
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .galleries {
    display: grid;
    grid-template-columns: 100%;
