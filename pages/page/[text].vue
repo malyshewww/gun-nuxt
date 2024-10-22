@@ -2,11 +2,11 @@
 	.text-page
 		.container
 			.content
-				h1 текстовая страница
-				h2 текстовая страница
-				h3 текстовая страница
-				h4 текстовая страница
-				h5 текстовая страница
+				h1 Заголовок H1
+				h2 Заголовок H2
+				h3 Заголовок H3
+				h4 Заголовок H4
+				h5 Заголовок H5
 				p Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut unde rerum ratione odio magnam pariatur, vel iusto in veritatis possimus autem fugit voluptate, porro reprehenderit consequatur ad provident minima et!
 				ul
 					li Сантехника и электрофурнитура высокого класса

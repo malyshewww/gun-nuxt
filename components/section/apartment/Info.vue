@@ -75,6 +75,7 @@ defineProps({
       flex-wrap: wrap;
       align-items: center;
       gap: 16px;
+      margin-top: 9px;
    }
    &__prices {
       width: 100%;
@@ -105,7 +106,7 @@ defineProps({
    &__list {
       @include reset-list;
       display: grid;
-      gap: 12px;
+      gap: 13px;
    }
    &__item {
       display: flex;
@@ -121,6 +122,8 @@ defineProps({
       & span {
          background-color: var(--bg-white);
          padding-right: 6px;
+         line-height: 19px;
+         display: inline-block;
       }
       &::before {
          content: "";
@@ -134,7 +137,6 @@ defineProps({
       }
    }
    &__value {
-      font-size: 16px;
       line-height: 19px;
       padding-left: 6px;
    }

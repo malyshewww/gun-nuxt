@@ -1,13 +1,17 @@
 <template lang="pug">
-	.scenariors__card.card-scenariors
-		.card-scenariors__caption {{card.title}}
-		.card-scenariors__text(v-html="card.text")
+   .scenariors__card.card-scenariors(:class="`card-scenariors--${index+1}`")
+      .card-scenariors__caption {{card.title}}
+      .card-scenariors__text(v-html="card.text")
 </template>
 
 <script setup>
 defineProps({
    card: {
       type: Object,
+      required: true,
+   },
+   index: {
+      type: Number,
       required: true,
    },
 });
@@ -25,7 +29,7 @@ defineProps({
    color: var(--text-white);
    &:nth-child(1) {
       background-color: var(--text-avocado);
-      transform: translate(120px, 120px) rotate(-10deg);
+      transform: translate(125px, 115px) rotate(-10deg);
    }
    &:nth-child(2) {
       background-color: var(--text-midnight-70);
@@ -33,7 +37,7 @@ defineProps({
    }
    &:nth-child(3) {
       background-color: var(--bg-sand);
-      transform: translate(-120px, 120px) rotate(10deg);
+      transform: translate(-125px, 115px) rotate(10deg);
       z-index: 3;
    }
    &__caption {

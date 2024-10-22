@@ -21,7 +21,42 @@ const sliderFormat = ref("");
 const swiperFormat = ref(null);
 const buttonPrev = ref("");
 const buttonNext = ref("");
+
 const initSlider = () => {
+   function updateSlideClasses({ el, slides, activeIndex }) {
+      // Убираем класс у элемента слайдера на два предыдущих слайда
+      const prevPrevIndex = activeIndex - 2;
+      const prevPrevSlide = slides[prevPrevIndex];
+      const prevPrevSlides = el.querySelectorAll(".swiper-slide-prev-prev");
+      prevPrevSlides.forEach((slide) => {
+         slide.classList.remove("swiper-slide-prev-prev");
+      });
+      if (prevPrevSlide) {
+         prevPrevSlide.classList.add("swiper-slide-prev-prev");
+      }
+      // Убираем класс у элемента слайдера на два следующих слайда
+      const nextNextIndex = activeIndex + 2;
+      // const nextTripleIndex = activeIndex + 3;
+      const nextNextSlide = slides[nextNextIndex];
+      // const nextTripleSlide = slides[nextTripleIndex];
+      const nextNextSlides = el.querySelectorAll(".swiper-slide-next-next");
+      // const nextTripleSlides = el.querySelectorAll(
+      //    ".swiper-slide-next-next-next"
+      // );
+      nextNextSlides.forEach((slide) => {
+         slide.classList.remove("swiper-slide-next-next");
+      });
+      // nextTripleSlides.forEach((slide) => {
+      //    slide.classList.remove("swiper-slide-next-next-next");
+      // });
+
+      if (nextNextSlide) {
+         nextNextSlide.classList.add("swiper-slide-next-next");
+      }
+      // if (nextTripleSlide) {
+      //    nextNextSlide.classList.add("swiper-slide-next-next-next");
+      // }
+   }
    if (sliderFormat.value) {
       swiperFormat.value = new Swiper(sliderFormat.value, {
          modules: [Navigation],
@@ -42,7 +77,14 @@ const initSlider = () => {
             nextEl: buttonNext.value,
             prevEl: buttonPrev.value,
          },
-         on: {},
+         on: {
+            init: function () {
+               updateSlideClasses(this);
+            },
+            slideChange: function () {
+               updateSlideClasses(this);
+            },
+         },
       });
    }
 };
@@ -91,14 +133,18 @@ onMounted(() => {
             height: 61%;
          }
       }
-      &.swiper-slide-next {
+      &.swiper-slide-next,
+      &.swiper-slide-next-next {
          max-width: 390px;
          & .slider-format__image {
             transform: scale(1);
             height: 61%;
          }
       }
-      // &:nth-child(3n) {
+      // &:nth-child(3),
+      // &:nth-child(4),
+      // &:nth-child(5),
+      // &:nth-child(6) {
       //    max-width: 390px;
       //    & .slider-format__image {
       //       transform: scale(1);
@@ -117,6 +163,13 @@ onMounted(() => {
       transition: height 0.8s ease 0s, transform 0.8s ease 0s;
       width: 100%;
       overflow: hidden;
+      & img {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+      }
       @media screen and (min-width: $md) {
          height: 100%;
          // height: 61%;

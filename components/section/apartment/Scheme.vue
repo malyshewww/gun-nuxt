@@ -63,7 +63,7 @@ onMounted(() => {
    &__switch {
    }
    &__body {
-      padding: 0 218px;
+      padding: 0 210px;
       width: 100%;
       position: relative;
    }

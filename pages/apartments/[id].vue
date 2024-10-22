@@ -11,6 +11,11 @@
 </template>
 
 <script setup>
+useHead({
+   bodyAttrs: {
+      class: "page--apartment",
+   },
+});
 const crumbs = [
    {
       title: "Главная",

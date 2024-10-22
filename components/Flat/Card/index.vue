@@ -59,7 +59,7 @@ const initialState = () => {
    &__body {
       display: grid;
       align-items: start;
-      gap: 28px;
+      gap: 25px;
    }
    &__slider {
       display: flex;
@@ -75,6 +75,7 @@ const initialState = () => {
    &__area {
       font-weight: 600;
       line-height: 22px;
+      font-size: 16px;
       color: var(--text-gray);
    }
    &__price {

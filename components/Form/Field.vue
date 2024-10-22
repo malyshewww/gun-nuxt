@@ -40,7 +40,8 @@ defineProps({
       font-size: 16px;
       line-height: 19px;
       font-family: var(--font-family);
-      padding: 16px 4px;
+      color: var(--text-white);
+      padding: 13px 4px;
       min-height: 48px;
       &::placeholder {
          font-size: 16px;

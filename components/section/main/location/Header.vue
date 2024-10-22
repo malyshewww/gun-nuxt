@@ -11,7 +11,7 @@
 .section-top {
    max-width: 1020px;
    &__description {
-      max-width: 100%;
+      max-width: 970px;
    }
 }
 </style>

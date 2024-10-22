@@ -40,5 +40,8 @@
    &__content {
       justify-items: center;
    }
+   &__description {
+      max-width: 810px;
+   }
 }
 </style>

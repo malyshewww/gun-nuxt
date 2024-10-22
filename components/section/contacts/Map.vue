@@ -148,8 +148,8 @@ onMounted(() => {
       transform: translate(-50%, -100%);
    }
    [class*="--marker"] {
-      width: 56px;
-      height: 64px;
+      width: 40px;
+      height: 48px;
    }
    [class*="--map-copyrights"] {
       display: none;

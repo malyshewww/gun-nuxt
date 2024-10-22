@@ -25,6 +25,7 @@ const openPopupDynamic = () => {
 <style lang="scss" scoped>
 .item-dynamic {
    position: relative;
+   flex-shrink: 0;
    @media (any-hover: hover) {
       &:hover {
          cursor: pointer;
@@ -41,7 +42,7 @@ const openPopupDynamic = () => {
       display: flex;
       align-items: flex-end;
       z-index: 2;
-      padding: 32px 36px;
+      padding: 31px 36px;
    }
    &__caption {
       font-weight: 700;

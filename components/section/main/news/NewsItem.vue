@@ -29,9 +29,10 @@ const openPopupNews = () => {
 .news-item {
    min-height: 322px;
    border: 1px solid var(--bg-gray);
-   padding: 32px 36px;
+   padding: 32px 35px 29px;
    transition: border-color $time;
    flex-shrink: 0;
+   max-width: 530px;
    @media (any-hover: hover) {
       &:hover {
          border-color: var(--text-avocado);
@@ -45,7 +46,7 @@ const openPopupNews = () => {
    &__body {
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 26px;
       height: 100%;
    }
    &__title {
@@ -67,7 +68,7 @@ const openPopupNews = () => {
       }
    }
    &__date {
-      line-height: 19px;
+      line-height: 22px;
       font-family: var(--font-family);
    }
    &__read-more {

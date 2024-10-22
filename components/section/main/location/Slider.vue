@@ -29,23 +29,23 @@ const slides = [
       caption: "парк пушкина",
       description:
          "В обновленном парке: детский городок, специальная зона для выгула и дрессировки собак, просторная скейт-площадка",
-      distance: "5 минут пешком",
+      distance: "5 мин пешком",
    },
    {
       caption: "площадь Горького",
-      distance: "5 минут пешком",
+      distance: "5 мин пешком",
    },
    {
       caption: "Средной рынок",
       description:
          "Комфортные и современные торговые ряды с фермерскими продуктами",
-      distance: "5 минут пешком",
+      distance: "5 мин пешком",
    },
    {
       caption: "Улица Белинского",
       description:
          "Многочисленные скверы и исторические уголки Нижнего Новгорода",
-      distance: "5 минут пешком",
+      distance: "5 мин пешком",
    },
 ];
 
@@ -82,8 +82,14 @@ const initSlider = () => {
                const activeIndex = swiper.activeIndex;
                currentSlideIndex.value = activeIndex;
                updateLocationId(currentSlideIndex.value + 1);
-               // newLocation.value = currentSlideIndex.value;
-               // console.log(newLocation.value);
+               const mapMarkers = document.querySelectorAll(".map-marker");
+               mapMarkers.forEach((marker) => {
+                  if (currentSlideIndex.value + 1 == marker.dataset.markerId) {
+                     marker.classList.add("active");
+                  } else {
+                     marker.classList.remove("active");
+                  }
+               });
             },
          },
       });
@@ -183,7 +189,7 @@ onMounted(() => {
       place-items: center;
       margin-top: 8px;
       border-radius: 100px;
-      padding: 5px 16px;
+      padding: 5px 15px;
       background: var(--bg-midnight-50);
       font-family: var(--font-family);
    }

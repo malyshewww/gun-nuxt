@@ -7,7 +7,7 @@
 		.advantages-card__content
 			.advantages-card__description 
 				p(v-for="(p, idx) in card.text" :key="idx") {{p}}
-		.advantages-card__title {{card.title}}
+		.advantages-card__title(v-html="card.title")
 
 </template>
 
@@ -58,13 +58,14 @@ defineProps({
    &__title {
       position: absolute;
       z-index: 2;
-      left: 32px;
-      bottom: 32px;
+      left: 0;
+      bottom: 0;
       font-weight: 700;
       font-size: 22px;
       line-height: 27px;
       text-transform: uppercase;
       color: var(--text-white);
+      padding: 32px;
    }
    &__button {
       position: absolute;
@@ -100,7 +101,7 @@ defineProps({
       }
    }
    &__image {
-      padding-bottom: math.div(480, 380) * 100%;
+      padding-bottom: math.div(480, 390) * 100%;
    }
    &__content {
       position: absolute;

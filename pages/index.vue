@@ -1,7 +1,7 @@
 <template lang="pug">
    SectionMainHero
    .main-content
-      AppHeader
+      AppHeader(:is-white="false")
       SectionMainAbout
       SectionMainLocation
       SectionMainAdvantages

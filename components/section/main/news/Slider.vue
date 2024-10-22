@@ -94,5 +94,11 @@ onMounted(() => {
    display: grid;
    grid-template-columns: 100%;
    gap: 50px;
+   & .slider-controls {
+   }
+   & .slider-button {
+      width: 80px;
+      height: 80px;
+   }
 }
 </style>

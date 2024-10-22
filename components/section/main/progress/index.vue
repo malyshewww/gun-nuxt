@@ -16,6 +16,7 @@
 
 <style lang="scss" scoped>
 .main-progress {
+   padding: 100px 0 0;
    &__wrapper {
       display: grid;
       grid-template-columns: 100%;

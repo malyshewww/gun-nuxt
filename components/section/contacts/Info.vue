@@ -40,7 +40,7 @@ defineProps({
    display: grid;
    gap: 54px;
    margin-top: 6px;
-   min-height: 678px;
+   // min-height: 678px;
    &__header {
       display: grid;
       justify-items: start;
@@ -87,6 +87,7 @@ defineProps({
 .schedule-contacts {
    display: grid;
    gap: 24px;
+   max-width: 350px;
    &__title {
       margin: 0;
    }

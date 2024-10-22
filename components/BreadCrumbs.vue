@@ -25,7 +25,7 @@ defineProps({
       @include reset-list;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 3px;
    }
    &__item {
    }
@@ -34,7 +34,7 @@ defineProps({
       place-items: center;
       text-align: center;
       gap: 12px;
-      padding: 3px 16px;
+      padding: 3px 15px;
       min-height: 27px;
       border: 1px solid var(--bg-gray);
       border-radius: 100px;

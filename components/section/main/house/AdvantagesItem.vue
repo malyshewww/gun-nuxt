@@ -2,7 +2,7 @@
 	.house-advantage
 		.house-advantage__icon
 		.house-advantage__title {{item.title}}
-		.house-advantage__text {{item.text}}
+		.house-advantage__text(v-html="item.text")
 </template>
 
 <script setup>
@@ -20,7 +20,7 @@ defineProps({
    grid-template-columns: 48px 1fr;
    align-items: start;
    justify-items: start;
-   gap: 8px 24px;
+   gap: 9px 24px;
    &__icon {
       width: 48px;
       height: 48px;
@@ -34,7 +34,7 @@ defineProps({
          height: 48px;
          mask-repeat: no-repeat;
          mask-position: center;
-         mask-size: 36px 36px;
+         mask-size: 40px 40px;
          background-color: var(--main-color);
       }
    }

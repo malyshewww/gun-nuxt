@@ -30,7 +30,7 @@ const advantages = [
       ],
    },
    {
-      title: "Апартаменты с отделкой под ключ",
+      title: "Апартаменты с&nbsp;отделкой под ключ",
       text: ["Жилые помещения в комплексе сдаются с отделкой «под ключ»."],
    },
    {
@@ -63,7 +63,7 @@ const advantages = [
    &__body {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 80px;
+      gap: 40px;
       align-items: start;
    }
    &__aside {

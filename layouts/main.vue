@@ -10,6 +10,6 @@
 
 <style lang="scss" scoped>
 .page {
-   padding: 0px 0px 320px;
+   padding: 0px 0px 281px;
 }
 </style>

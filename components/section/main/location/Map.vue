@@ -1,6 +1,6 @@
 <template lang="pug">
 	.main-location__map.map
-		.map#mapElem
+		.map#mapElem(ref="mapElem")
 </template>
 
 <script setup>
@@ -15,15 +15,19 @@ const props = defineProps({
    },
 });
 
+const mapElem = ref("");
+
+const map = ref(null);
+
 const newVal = ref(props.locationId);
 
-const placemarks = reactive([
+const placemarks = [
    // парк пушкина
    {
       id: 1,
-      isActive: true,
       coords: [43.997183, 56.308685],
       transform: "translate(-50%, -50%)",
+      isActive: true,
    },
    // площадь Горького
    {
@@ -46,12 +50,38 @@ const placemarks = reactive([
       id: 4,
       isActive: false,
    },
-]);
+];
+
+// Обновление маркеров
+const updateMarkers = () => {
+   placemarks.map((marker) => {
+      if (props.locationId === marker.id) {
+         marker.isActive = true;
+         console.log("active");
+      } else {
+         marker.isActive = false;
+         console.log("not active");
+      }
+   });
+   return {
+      pm: placemarks,
+   };
+};
+
+watch(
+   () => props.locationId,
+   () => {
+      console.log("update");
+      updateMarkers();
+   }
+);
+
+const { pm } = updateMarkers();
 
 const runtimeConfig = useRuntimeConfig();
+
 onMounted(() => {
    let isLoaded = false;
-   const mapElem = document.getElementById("mapElem");
    function loadMap() {
       const script = document.createElement("script");
       script.src = `https://api-maps.yandex.ru/v3/?apikey=${runtimeConfig.public.apiKey}&lang=ru_RU`;
@@ -61,7 +91,6 @@ onMounted(() => {
          initMap();
       };
    }
-
    async function initMap() {
       await ymaps3.ready;
       const {
@@ -74,7 +103,7 @@ onMounted(() => {
       const { YMapHint, YMapHintContext } = await ymaps3.import(
          "@yandex/ymaps3-hint@0.0.1"
       );
-      const map = new YMap(document.getElementById("mapElem"), {
+      map.value = new YMap(mapElem.value, {
          location: {
             center: coords,
             zoom: 14,
@@ -90,43 +119,44 @@ onMounted(() => {
          ],
       });
       // Добавьте слой с дорогами и зданиями
-      map.addChild(
+      map.value.addChild(
          new YMapDefaultSchemeLayer({
             theme: "monochrome",
             customization: json,
          })
       );
       // Добавьте слой для маркеров
-      const defaultFeatures = new YMapDefaultFeaturesLayer();
-      map.addChild(defaultFeatures);
-      placemarks.forEach((placemark, index) => {
+      const defaultFeaturesLayer = new YMapDefaultFeaturesLayer();
+      map.value.addChild(defaultFeaturesLayer);
+      pm.forEach((placemark, index) => {
          const markerElement = document.createElement("div");
          markerElement.className = "map-marker";
-         markerElement.setAttribute("data-market-id", `${index + 1}`);
-         placemark.id === newVal.value
-            ? markerElement.classList.add("active")
-            : markerElement.classList.remove("active");
+         markerElement.setAttribute("data-marker-id", `${index + 1}`);
+         if (placemark.id == newVal.value) {
+            markerElement.classList.add("active");
+         } else {
+            markerElement.classList.remove("active");
+         }
          const markerElementImg = document.createElement("div");
          markerElementImg.className = "map-marker__image";
          markerElementImg.innerHTML = `
-			<svg width="36" height="46" viewBox="0 0 36 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<path d="M5.7085 30.4791L18 45.7134L30.2915 30.4786C30.3193 30.4443 30.3489 30.4113 30.3801 30.3801C37.2066 23.5537 37.2066 12.4462 30.3801 5.61969C27.0941 2.3412 22.6418 0.5 18 0.5C13.3582 0.5 8.9059 2.3412 5.61987 5.61969C-1.20662 12.4462 -1.20662 23.5537 5.61987 30.3801C5.65112 30.4115 5.68071 30.4445 5.7085 30.4791Z" fill="#FCFBF7"/>
-				<path d="M18.1235 27.1719C23.3154 27.1719 27.5242 22.9631 27.5242 17.7712C27.5242 12.5794 23.3154 8.37061 18.1235 8.37061C12.9317 8.37061 8.7229 12.5794 8.7229 17.7712C8.7229 22.9631 12.9317 27.1719 18.1235 27.1719Z" fill="#878C9A"/>
-				<path d="M5.7085 30.4791L18 45.7134L30.2915 30.4786C30.3193 30.4443 30.3489 30.4113 30.3801 30.3801C37.2066 23.5537 37.2066 12.4462 30.3801 5.61969C27.0941 2.3412 22.6418 0.5 18 0.5C13.3582 0.5 8.9059 2.3412 5.61987 5.61969C-1.20662 12.4462 -1.20662 23.5537 5.61987 30.3801C5.65112 30.4115 5.68071 30.4445 5.7085 30.4791ZM18 5.87955C20.3519 5.87955 22.6509 6.57696 24.6064 7.88358C26.562 9.1902 28.0861 11.0474 28.9861 13.2202C29.8862 15.393 30.1217 17.784 29.6629 20.0907C29.2041 22.3973 28.0716 24.5162 26.4086 26.1792C24.7455 27.8423 22.6267 28.9748 20.3201 29.4337C18.0134 29.8926 15.6225 29.6571 13.4496 28.7571C11.2767 27.8572 9.41954 26.3331 8.11287 24.3776C6.8062 22.4221 6.10873 20.1231 6.10867 17.7712C6.11216 14.6185 7.3661 11.5958 9.59539 9.36649C11.8247 7.13714 14.8473 5.88312 18 5.87955Z" fill="#878C9A"/>
-			</svg>
-		 `;
+      		<svg width="36" height="46" viewBox="0 0 36 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+      			<path d="M5.7085 30.4791L18 45.7134L30.2915 30.4786C30.3193 30.4443 30.3489 30.4113 30.3801 30.3801C37.2066 23.5537 37.2066 12.4462 30.3801 5.61969C27.0941 2.3412 22.6418 0.5 18 0.5C13.3582 0.5 8.9059 2.3412 5.61987 5.61969C-1.20662 12.4462 -1.20662 23.5537 5.61987 30.3801C5.65112 30.4115 5.68071 30.4445 5.7085 30.4791Z" fill="#FCFBF7"/>
+      			<path d="M18.1235 27.1719C23.3154 27.1719 27.5242 22.9631 27.5242 17.7712C27.5242 12.5794 23.3154 8.37061 18.1235 8.37061C12.9317 8.37061 8.7229 12.5794 8.7229 17.7712C8.7229 22.9631 12.9317 27.1719 18.1235 27.1719Z" fill="#878C9A"/>
+      			<path d="M5.7085 30.4791L18 45.7134L30.2915 30.4786C30.3193 30.4443 30.3489 30.4113 30.3801 30.3801C37.2066 23.5537 37.2066 12.4462 30.3801 5.61969C27.0941 2.3412 22.6418 0.5 18 0.5C13.3582 0.5 8.9059 2.3412 5.61987 5.61969C-1.20662 12.4462 -1.20662 23.5537 5.61987 30.3801C5.65112 30.4115 5.68071 30.4445 5.7085 30.4791ZM18 5.87955C20.3519 5.87955 22.6509 6.57696 24.6064 7.88358C26.562 9.1902 28.0861 11.0474 28.9861 13.2202C29.8862 15.393 30.1217 17.784 29.6629 20.0907C29.2041 22.3973 28.0716 24.5162 26.4086 26.1792C24.7455 27.8423 22.6267 28.9748 20.3201 29.4337C18.0134 29.8926 15.6225 29.6571 13.4496 28.7571C11.2767 27.8572 9.41954 26.3331 8.11287 24.3776C6.8062 22.4221 6.10873 20.1231 6.10867 17.7712C6.11216 14.6185 7.3661 11.5958 9.59539 9.36649C11.8247 7.13714 14.8473 5.88312 18 5.87955Z" fill="#878C9A"/>
+      		</svg>
+      	 `;
          markerElement.appendChild(markerElementImg);
          markerElementImg.src = placemark.image;
-         map.addChild(
-            new YMapMarker(
-               {
-                  coordinates: placemark.coords,
-                  mapFollowsOnDrag: true,
-                  properties: { hint: placemark.hint, offset: [-1000, -1000] },
-               },
-               markerElement
-            )
+         const marks = new YMapMarker(
+            {
+               coordinates: placemark.coords,
+               mapFollowsOnDrag: true,
+               // properties: { hint: placemark.hint, offset: [-1000, -1000] },
+            },
+            markerElement
          );
+         map.value.addChild(marks);
       });
       const content = document.createElement("div");
       content.className = "map-pin";
@@ -141,7 +171,7 @@ onMounted(() => {
          },
          content
       );
-      map.addChild(marker);
+      map.value.addChild(marker);
       //   if (window.innerWidth < 1024) {
       //      map.setBehaviors([
       //         "multiTouch",
@@ -210,7 +240,7 @@ onMounted(() => {
          observer.unobserve(entry.target);
       }
    }, {});
-   observer.observe(mapElem);
+   observer.observe(mapElem.value);
 });
 </script>
 
@@ -254,6 +284,20 @@ onMounted(() => {
          display: grid;
          place-items: center;
          transform: translate(-50%, -50%);
+         &__image {
+            pointer-events: none;
+            & svg path {
+               transition: fill $time * 2;
+            }
+         }
+         &.active {
+            & .map-marker__image {
+               & svg path:nth-child(2),
+               & svg path:nth-child(3) {
+                  fill: var(--main-color);
+               }
+            }
+         }
       }
 
       & .ymaps3x0--marker {

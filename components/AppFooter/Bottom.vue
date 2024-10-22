@@ -13,7 +13,7 @@
       color: var(--text-gray);
       display: grid;
       justify-items: center;
-      gap: 12px;
+      gap: 11px;
    }
    &__text {
    }
