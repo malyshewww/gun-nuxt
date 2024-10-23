@@ -116,7 +116,7 @@ defineProps({
       transition-timing-function: cubic-bezier(0.25, 0.74, 0.22, 0.99);
       transition-property: clip-path;
       clip-path: circle(0 at 50% 50%);
-      transition-duration: 0.5s;
+      transition-duration: 0.8s;
       z-index: 1;
    }
    &__description {

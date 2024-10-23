@@ -26,9 +26,30 @@ const openPopupDynamic = () => {
 .item-dynamic {
    position: relative;
    flex-shrink: 0;
+   &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      // left: -1px;
+      // top: -1px;
+      // width: calc(100% + 2px);
+      // height: calc(100% + 2px);
+      background: rgba(43, 47, 59, 0.5);
+      transition-timing-function: cubic-bezier(0.25, 0.74, 0.22, 0.99);
+      transition-property: clip-path;
+      clip-path: circle(0 at 50% 50%);
+      transition-duration: 0.8s;
+      pointer-events: none;
+      z-index: 1;
+   }
    @media (any-hover: hover) {
       &:hover {
          cursor: pointer;
+         &::before {
+            clip-path: circle(70.71068% at 50% 50%);
+         }
       }
    }
    &__image {

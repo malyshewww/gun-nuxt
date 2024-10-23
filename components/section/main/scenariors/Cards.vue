@@ -1,7 +1,6 @@
 <template lang="pug">
-	.main-scenariors__cards-container
-		.main-scenariors__cards
-			SectionMainScenariorsCard(v-for="(item, index) in  scenariorCards" :key="index" :card="item" :index="index")
+   .main-scenariors__cards
+      SectionMainScenariorsCard(v-for="(item, index) in  scenariorCards" :key="index" :card="item" :index="index")
 </template>
 
 <script setup>
@@ -23,17 +22,16 @@ const scenariorCards = [
 
 <style lang="scss" scoped>
 .main-scenariors {
-   &__cards-container {
-      display: grid;
-      place-items: center;
-   }
    &__cards {
       display: flex;
-      // max-width: 1115px;
-      min-height: 628px;
+      margin-top: 80px;
+      max-width: 1115px;
+      height: 628px;
       align-items: flex-start;
       margin: 0 auto;
       counter-reset: num;
+      position: relative;
+      margin-top: 80px;
    }
 }
 </style>

@@ -1,5 +1,6 @@
 <template lang="pug">
 	.wrapper
+		UiTrailer
 		AppHeader(:is-white="false")
 		.page
 			slot

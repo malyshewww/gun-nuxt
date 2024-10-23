@@ -2,7 +2,6 @@
 	.main-hero(ref="mainHero")
 		SectionMainHeroWidget
 		.container
-			AppHeader(:is-white="true")
 			.main-hero__image
 				img(:src="`/images/main-hero/bg.jpg`" alt="фоновое изображение")
 			.main-hero__body
@@ -62,7 +61,7 @@ const animationHero = () => {
       gsap.fromTo(
          card,
          {
-            yPercent: 100, // начальная позиция (низ)
+            yPercent: index == 1 ? 10 : 50, // начальная позиция (низ)
             opacity: 1, // начальная прозрачность
          },
          {
@@ -72,7 +71,7 @@ const animationHero = () => {
                end: () => "top 30%", // заканчивает анимацию, когда верх карточки достигает 30% видимости
                scrub: 1,
             },
-            yPercent: -30 - index * 20, // конечная позиция (выше на 30px + дополнительный сдвиг в зависимости от индекса)
+            yPercent: -50 - index * 20, // конечная позиция (выше на 30px + дополнительный сдвиг в зависимости от индекса)
             opacity: 1, // конечная прозрачность
             duration: 1, // длительность анимации
          }
@@ -85,11 +84,28 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+:root {
+   --index: calc(1vw + 1vh);
+   --transition: transform 0.75s cubic-bezier(0.075, 0.5, 0, 0.9);
+}
+.main-hero-wrapper {
+   height: 100vh;
+   position: sticky;
+   width: 100%;
+   top: 0;
+   left: 0;
+   will-change: transform;
+}
 .main-hero {
    --opacity: 0;
-   height: 100dvh;
-   overflow: hidden;
-   position: relative;
+   height: 100vh;
+   position: absolute;
+   left: 0;
+   overflow: clip;
+   width: 100%;
+   top: 0;
+   left: 0;
+   z-index: 1;
    &::before {
       content: "";
       position: absolute;
@@ -121,6 +137,8 @@ onMounted(() => {
       color: var(--text-white);
       opacity: 0;
       transition: opacity $time * 2 ease-in-out 0.5s;
+      transform: translate3d(0, calc(var(--scrollTopDecrement) * 0.3), 0);
+      will-change: transform;
       &.active {
          opacity: 1;
       }
@@ -130,8 +148,17 @@ onMounted(() => {
       inset: 0;
       width: 100%;
       height: 100%;
+      background-size: cover;
+      background-position: center;
+      will-change: transform;
+      background-color: var(--text-white);
       & img {
-         @extend .main-hero__image;
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         // object-position: 0 calc(var(--scrollTopDecrement) * 0.7);
       }
    }
    & .header {
