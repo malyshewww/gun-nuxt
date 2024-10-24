@@ -2,18 +2,18 @@
 	div.header__logo-container(v-if="router.name === 'index'")
 		nuxt-link(to="/").header__logo.logo-black
 			picture
-				source(:srcset="`/images/logo-black.svg`" media="(min-width: 768px)")
+				source(:srcset="`/images/logo-black.svg`" media="(min-width: 1024px)")
 				source(:srcset="`/images/logo-black-mobile.svg`" media="(min-width: 300px)")
 				img(src="/images/logo-black.svg")
 		nuxt-link(to="/").header__logo.logo-white
 			picture
-				source(:srcset="`/images/logo-white.svg`" media="(min-width: 768px)")
+				source(:srcset="`/images/logo-white.svg`" media="(min-width: 1024px)")
 				source(:srcset="`/images/logo-white-mobile.svg`" media="(min-width: 300px)")
 				img(src="/images/logo-white.svg")
 	.header__logo-wrap(v-else)
 		nuxt-link(to="/").header__logo
 			picture
-				source(:srcset="`/images/logo-black.svg`" media="(min-width: 768px)")
+				source(:srcset="`/images/logo-black.svg`" media="(min-width: 1024px)")
 				source(:srcset="`/images/logo-black-mobile.svg`" media="(min-width: 300px)")
 				img(src="/images/logo-black.svg")
 </template>
@@ -34,6 +34,11 @@ const isWhiteLogo = inject("isWhiteLogo");
       display: grid;
       place-items: center;
       position: relative;
+      z-index: 21;
+      @media screen and (max-width: $xl) {
+         width: 102px;
+         height: 21px;
+      }
    }
 }
 .logo-black,

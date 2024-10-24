@@ -219,6 +219,9 @@ h5 {
   gap: 20px;
   align-items: center;
   margin-bottom: 56px;
+  @media screen and (max-width: $xl) {
+    margin-bottom: 40px;
+  }
   &__content {
     display: grid;
     gap: 24px;
@@ -271,21 +274,6 @@ h5 {
   }
 }
 
-.gallery-item {
-  position: relative;
-  overflow: hidden;
-  @media (any-hover: hover) {
-    &:hover {
-      & .mask {
-        opacity: 1;
-        &__icon {
-          opacity: 1;
-        }
-      }
-    }
-  }
-}
-
 picture {
   display: flex;
   align-items: center;
@@ -293,12 +281,20 @@ picture {
 
 .heading-main {
   margin-bottom: 64px;
+  @media screen and (max-width: $xl) {
+    margin-bottom: 40px;
+  }
   &__title {
     margin: 0;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 14px;
+    @media screen and (max-width: $md) {
+      font-size: 28px;
+      line-height: 31px;
+    }
+
   }
 }
 
@@ -345,6 +341,12 @@ picture {
   display: flex;
   align-items: center;
   gap: 16px;
+  @media screen and (max-width: $xl) {
+    gap: 14px;
+  }
+  @media screen and (max-width: $md) {
+    gap: 8px;
+  }
 }
 .slider-button {
   flex-shrink: 0;
@@ -359,6 +361,10 @@ picture {
     &:hover {
       border-color: var(--text-midnight-100);
     }
+  }
+  @media screen and (max-width: $xl) {
+    width: 48px;
+    height: 48px;
   }
   &::before {
     content: "";

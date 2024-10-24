@@ -1,9 +1,10 @@
 <template lang="pug">
-	header.header(:class="{'header-white': isWhite}")
+	header.header(:class="[{'header-white': isWhite}, {'menu-open': isOpenMenu}]")
 		.header__body
 			AppHeaderLogo
-			AppHeaderMenu
+			AppHeaderMenu(:is-open-menu="isOpenMenu")
 			AppHeaderActions
+			AppHeaderMenuTrigger(@openMenu="openMenu" :is-open-menu="isOpenMenu")
 </template>
 
 <script setup>
@@ -15,6 +16,12 @@ const props = defineProps({
    },
 });
 provide("isWhiteLogo", props.isWhite);
+
+const isOpenMenu = ref(false);
+
+const openMenu = () => {
+   isOpenMenu.value = !isOpenMenu.value;
+};
 </script>
 <style lang="scss">
 .header {
@@ -25,6 +32,35 @@ provide("isWhiteLogo", props.isWhite);
    top: 0;
    width: 100%;
    z-index: 20;
+   &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--text-white);
+      z-index: 21;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity $time;
+   }
+   @media screen and (max-width: $xxxl) {
+      padding: 21px 40px;
+   }
+   @media screen and (max-width: $xl) {
+      padding: 15px 32px;
+      min-height: 61px;
+      &.menu-open {
+         &::before {
+            opacity: 1;
+         }
+      }
+   }
+   @media screen and (max-width: $md) {
+      padding: 10.5px 15px;
+      min-height: 48px;
+   }
    .page--home & {
       position: fixed;
    }
@@ -35,17 +71,12 @@ provide("isWhiteLogo", props.isWhite);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 20px;
+      gap: 10px;
    }
    &.header-white {
-      // position: absolute;
-      // top: 0;
-      // left: 0;
-      // width: 100%;
       isolation: isolate;
       color: var(--text-white);
-      z-index: 10;
-      &::before {
+      &::after {
          content: "";
          position: absolute;
          top: 0;
@@ -64,6 +95,7 @@ provide("isWhiteLogo", props.isWhite);
    &.header-black {
       color: var(--main-color);
       background-color: var(--text-white);
+      box-shadow: 0 0 10px 0 rgba(43, 47, 59, 0.05);
    }
 }
 </style>

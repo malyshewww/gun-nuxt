@@ -52,6 +52,17 @@ const hideDetailRoom = () => {
 
 onMounted(() => {
    Fancybox.bind(`[data-fancybox]`, { Hash: false });
+   // const cursor = document.getElementById("cursor");
+   // let isMovingRight = true;
+   // function animateCursor() {
+   //    if (isMovingRight) {
+   //       cursor.style.transform = "translateX(20px)";
+   //    } else {
+   //       cursor.style.transform = "translateX(0px)";
+   //    }
+   //    isMovingRight = !isMovingRight;
+   // }
+   // setInterval(animateCursor, 500);
 });
 </script>
 

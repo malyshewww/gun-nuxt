@@ -45,6 +45,11 @@ defineProps({
       border-radius: 10px;
       padding: 32px;
       background: var(--bg-white);
+      @media screen and (max-width: $xl) {
+         gap: 20px;
+         padding: 20px;
+         position: static;
+      }
    }
 }
 .info-apartment {
@@ -60,6 +65,10 @@ defineProps({
       line-height: 40px;
       text-transform: uppercase;
       font-family: var(--second-family);
+      @media screen and (max-width: $md) {
+         font-size: 28px;
+         line-height: 120%;
+      }
    }
    &__date {
       font-size: 16px;
@@ -76,12 +85,16 @@ defineProps({
       align-items: center;
       gap: 16px;
       margin-top: 9px;
+      @media screen and (max-width: $md) {
+         margin-top: 0;
+      }
    }
    &__prices {
       width: 100%;
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 7px 14px;
+      flex-wrap: wrap;
    }
    &__price {
       font-weight: 700;
@@ -89,6 +102,10 @@ defineProps({
       line-height: 34px;
       text-transform: uppercase;
       font-family: var(--second-family);
+      @media screen and (max-width: $md) {
+         font-size: 24px;
+         line-height: 120%;
+      }
    }
    &__price-label {
       font-size: 16px;
@@ -100,6 +117,12 @@ defineProps({
       align-items: center;
       gap: 8px;
       width: 100%;
+      flex-wrap: wrap;
+      & .btn {
+         width: auto;
+         flex-grow: 1;
+         min-width: fit-content;
+      }
    }
 }
 .characteristics {
@@ -124,6 +147,8 @@ defineProps({
          padding-right: 6px;
          line-height: 19px;
          display: inline-block;
+         position: relative;
+         z-index: 2;
       }
       &::before {
          content: "";
@@ -133,7 +158,7 @@ defineProps({
          position: absolute;
          width: 100%;
          border-bottom: 1px dashed var(--bg-gray);
-         z-index: -1;
+         z-index: 0;
       }
    }
    &__value {
@@ -161,6 +186,10 @@ defineProps({
    align-items: center;
    gap: 10px;
    color: var(--text-midnight-100);
+   @media screen and (max-width: $md) {
+      flex-grow: 1;
+      min-width: fit-content;
+   }
    &::before {
       content: "";
       display: block;

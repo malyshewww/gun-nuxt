@@ -41,6 +41,11 @@ defineProps({
    gap: 54px;
    margin-top: 6px;
    // min-height: 678px;
+   @media screen and (max-width: $xl) {
+      margin-top: 0;
+      padding: 20px;
+      gap: 24px;
+   }
    &__header {
       display: grid;
       justify-items: start;
@@ -52,6 +57,10 @@ defineProps({
       line-height: 34px;
       text-transform: uppercase;
       margin: 0;
+      @media screen and (max-width: $md) {
+         font-size: 18px;
+         line-height: 120%;
+      }
    }
    &__phone {
       font-weight: 700;
@@ -64,6 +73,10 @@ defineProps({
          &:hover {
             color: var(--text-avocado);
          }
+      }
+      @media screen and (max-width: $md) {
+         font-size: 18px;
+         line-height: 120%;
       }
    }
    &__place {
@@ -88,8 +101,15 @@ defineProps({
    display: grid;
    gap: 24px;
    max-width: 350px;
+   @media screen and (max-width: $xl) {
+      max-width: 100%;
+   }
    &__title {
       margin: 0;
+      @media screen and (max-width: $xl) {
+         font-size: 18px;
+         line-height: 120%;
+      }
    }
    &__list {
       display: grid;

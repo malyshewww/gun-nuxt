@@ -48,6 +48,10 @@ const schedule = [
       grid-template-columns: 1fr 496px;
       gap: 40px;
       align-items: end;
+      @media screen and (max-width: $xl) {
+         grid-template-columns: 100%;
+         gap: 20px;
+      }
    }
 }
 </style>

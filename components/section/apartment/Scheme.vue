@@ -60,15 +60,23 @@ onMounted(() => {
    display: grid;
    gap: 57px;
    justify-items: center;
+   @media screen and (max-width: 1600px) {
+      padding: 20px 20px 44px;
+   }
+   @media screen and (max-width: $xl) {
+      gap: 30px;
+   }
    &__switch {
    }
    &__body {
-      padding: 0 210px;
       width: 100%;
       position: relative;
+      display: flex;
+      justify-content: center;
    }
    &__schemes {
       min-height: 611px;
+      width: 600px;
       position: relative;
       @media (any-hover: hover) {
          &:hover {
@@ -79,6 +87,13 @@ onMounted(() => {
                }
             }
          }
+      }
+      @media screen and (max-width: $xxxl) {
+         width: 100%;
+         min-height: 500px;
+      }
+      @media screen and (max-width: $xl) {
+         min-height: 350px;
       }
       & .mask {
          background-color: transparent;
@@ -105,6 +120,7 @@ onMounted(() => {
       & img {
          height: 100%;
          width: 100%;
+         object-fit: contain;
       }
    }
    &__decor {
@@ -119,6 +135,17 @@ onMounted(() => {
          right: auto;
          left: 0;
          width: 110px;
+         @media screen and (max-width: 1600px) {
+            width: 70px;
+         }
+      }
+      @media screen and (max-width: 1600px) {
+         right: 10px;
+         width: 70px;
+         height: 70px;
+      }
+      @media screen and (max-width: $xxxl) {
+         display: none;
       }
    }
 }

@@ -75,16 +75,31 @@ const apartmentData = reactive({
 
 <style lang="scss" scoped>
 .apartment-card {
+   overflow: clip;
    &__wrapper {
       display: grid;
       grid-template-columns: 100%;
       gap: 156px;
+      @media screen and (max-width: $xl) {
+         gap: 80px;
+      }
+      @media screen and (max-width: $md) {
+         gap: 40px;
+      }
    }
    &__body {
       display: grid;
       grid-template-columns: 1fr 549px;
       gap: 96px;
       align-items: start;
+      @media screen and (max-width: $xxxl) {
+         gap: 40px;
+         grid-template-columns: 1fr 400px;
+      }
+      @media screen and (max-width: $xl) {
+         grid-template-columns: 100%;
+         gap: 20px;
+      }
    }
 }
 </style>

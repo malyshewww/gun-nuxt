@@ -137,6 +137,11 @@ onMounted(() => {
 .map-contacts {
    width: 100%;
    height: 100%;
+   position: relative;
+   @media screen and (max-width: $xl) {
+      height: 500px;
+      order: 1;
+   }
    & .map {
       width: 100%;
       height: 100%;
@@ -146,6 +151,9 @@ onMounted(() => {
       height: 100%;
       display: block;
       transform: translate(-50%, -100%);
+   }
+   [class*="--map"] {
+      width: 100%;
    }
    [class*="--marker"] {
       width: 40px;

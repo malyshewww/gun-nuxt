@@ -99,13 +99,14 @@ onMounted(() => {
 .main-hero {
    --opacity: 0;
    height: 100vh;
-   position: absolute;
+   position: sticky;
    left: 0;
    overflow: clip;
    width: 100%;
    top: 0;
    left: 0;
    z-index: 1;
+   // transform: translate3d(0, calc(var(--scrollTopDecrement) * 0.7), 0);
    &::before {
       content: "";
       position: absolute;
@@ -158,7 +159,6 @@ onMounted(() => {
          left: 0;
          width: 100%;
          height: 100%;
-         // object-position: 0 calc(var(--scrollTopDecrement) * 0.7);
       }
    }
    & .header {

@@ -2,6 +2,7 @@
 	.breadcrumbs 
 		.container
 			nav.breadcrumbs__body
+				nuxt-link(to="/" @click.prevent="goBack").breadcrumbs__back
 				ul.breadcrumbs__list
 					li.breadcrumbs__item(v-for="item, index in list")
 						nuxt-link(:to="item.path" :class="{ disabled: index === list.length - 1 }").breadcrumbs__link {{item.title}}
@@ -14,12 +15,48 @@ defineProps({
       required: true,
    },
 });
+
+const router = useRouter();
+
+const goBack = () => {
+   router.go(-1);
+};
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .breadcrumbs {
    margin-bottom: 36px;
-   &__boby {
+   @media screen and (max-width: $xl) {
+      margin-bottom: 20px;
+   }
+   & nav {
+      @media screen and (max-width: $xl) {
+         display: flex;
+         align-items: center;
+         gap: 3px;
+      }
+   }
+   &__back {
+      width: 27px;
+      height: 27px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      border: 1px solid var(--bg-gray);
+      display: none;
+      place-items: center;
+      @media screen and (max-width: $xl) {
+         display: grid;
+      }
+      &::before {
+         content: "";
+         display: block;
+         width: 3px;
+         height: 3px;
+         border-radius: 50%;
+         background-color: var(--bg-gray);
+         box-shadow: 4.75px 0px 0px var(--bg-gray),
+            -4.75px 0px 0px var(--bg-gray);
+      }
    }
    &__list {
       @include reset-list;
@@ -28,6 +65,11 @@ defineProps({
       gap: 3px;
    }
    &__item {
+      @media screen and (max-width: $xl) {
+         &:not(:last-child) {
+            display: none;
+         }
+      }
    }
    &__link {
       display: grid;
