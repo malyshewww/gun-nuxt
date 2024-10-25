@@ -289,7 +289,7 @@ picture {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 14px;
+    gap: 0px 14px;
     @media screen and (max-width: $md) {
       font-size: 28px;
       line-height: 31px;
@@ -300,6 +300,10 @@ picture {
 
 .text-transparent {
   position: relative;
+  padding-right: 70px;
+  @media screen and (max-width: $md) {
+    padding: 0;
+  }
   &-current {
     color: var(--bg-white);
     -webkit-text-stroke: 2px var(--text-midnight-100);
@@ -321,8 +325,11 @@ picture {
     color: var(--text-white);
     position: absolute;
     top: -16px;
-    right: -69px;
+    right: 0;
     width: 198px;
+    @media screen and (max-width: $md) {
+      display: none;
+    }
   }
 }
 .custom-title {

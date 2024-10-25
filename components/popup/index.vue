@@ -81,14 +81,14 @@ const closePopup = () => {
    }
    &__close {
       position: absolute;
-      top: 20px;
-      right: 20px;
+      top: 12px;
+      right: 12px;
       display: flex;
       justify-content: center;
       align-items: center;
       width: 24px;
       height: 24px;
-      cursor: pointer;
+      background-color: transparent;
       &::before {
          content: "";
          display: block;
@@ -102,6 +102,7 @@ const closePopup = () => {
       }
       @media (any-hover: hover) {
          &:hover {
+            cursor: pointer;
             &::before {
                background-color: var(--main-color);
             }

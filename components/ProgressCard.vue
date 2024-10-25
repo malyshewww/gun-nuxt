@@ -54,6 +54,15 @@ const openPopupDynamic = () => {
    }
    &__image {
       padding-bottom: math.div(480, 390) * 100%;
+      @media screen and (max-width: $xxxl) {
+         padding-bottom: math.div(428, 348) * 100%;
+      }
+      @media screen and (max-width: $xl) {
+         padding-bottom: math.div(314, 256) * 100%;
+      }
+      @media screen and (max-width: $md) {
+         padding-bottom: math.div(290, 253) * 100%;
+      }
    }
    &__content {
       position: absolute;
@@ -64,6 +73,9 @@ const openPopupDynamic = () => {
       align-items: flex-end;
       z-index: 2;
       padding: 31px 36px;
+      @media screen and (max-width: $md) {
+         padding: 20px;
+      }
    }
    &__caption {
       font-weight: 700;
@@ -73,6 +85,10 @@ const openPopupDynamic = () => {
       color: var(--text-white);
       font-family: var(--second-family);
       flex: 1 1 auto;
+      @media screen and (max-width: $md) {
+         font-size: 18px;
+         line-height: 22px;
+      }
    }
 }
 </style>

@@ -3,3 +3,5 @@
 		.form-item__field
 			input(type="text" name="name" placeholder="Имя")
 </template>
+
+<style lang="scss" scoped></style>

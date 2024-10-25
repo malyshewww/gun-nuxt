@@ -124,21 +124,38 @@ const dynamic = reactive({
    &__wrapper {
       display: grid;
       gap: 64px;
+      @media screen and (max-width: $xl) {
+         gap: 32px;
+      }
    }
    &__body {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 40px;
       align-items: start;
-      @media screen and (max-width: $xl) {
+      @media screen and (max-width: $xxxl) {
          grid-template-columns: repeat(3, 1fr);
+      }
+      @media screen and (max-width: $xl) {
+         gap: 20px;
+         grid-template-columns: repeat(2, 1fr);
+      }
+      @media screen and (max-width: $md) {
+         grid-template-columns: 100%;
+         gap: 14px;
       }
    }
    &__bottom {
       justify-self: center;
+      @media screen and (max-width: $xl) {
+         justify-self: stretch;
+      }
       & .btn {
          max-width: 188px;
          padding: 11px 30px;
+         @media screen and (max-width: $xl) {
+            max-width: 100%;
+         }
       }
    }
 }

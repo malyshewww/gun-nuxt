@@ -116,6 +116,10 @@ onUnmounted(() => {});
          background: var(--text-white);
       }
    }
+   &__close {
+      top: 20px;
+      right: 20px;
+   }
 }
 .popup-slider {
    width: 100%;

@@ -24,11 +24,29 @@
 				.info-apartment__price {{formatNumber(info.price)}}
 				.info-apartment__price-label {{info.priceArea}}
 			.info-apartment__actions
-				UiButton(text="забронировать" class-names="btn-green")
-				UiButton(text="консультация" class-names="btn-white")
+				UiButton(text="забронировать" class-names="btn-green" @buttonClick="openPopupBook")
+				UiButton(text="консультация" class-names="btn-white" @buttonClick="openPopupConsultation")
 </template>
 
 <script setup>
+import { usePopupBookStore } from "~/stores/popup/book";
+import { usePopupConsultationStore } from "~/stores/popup/consultation";
+import { usePopupRequestStore } from "~/stores/popup/request";
+
+const storePopupBook = usePopupBookStore();
+const storePopupConsultation = usePopupConsultationStore();
+const storePopupRequest = usePopupRequestStore();
+
+const openPopupBook = () => {
+   storePopupBook.openPopup();
+};
+const openPopupConsultation = () => {
+   storePopupConsultation.openPopup();
+};
+const openPopupRequest = () => {
+   storePopupRequest.openPopup();
+};
+
 defineProps({
    info: {
       type: Object,
