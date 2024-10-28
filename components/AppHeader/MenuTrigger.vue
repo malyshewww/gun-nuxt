@@ -1,5 +1,6 @@
 <template lang="pug">
 	.menu-trigger(:class="{active: isOpenMenu}")
+		button(type="button" @click="openFilter").menu-trigger__filter
 		a(href="tel:88003448888").menu-trigger__phone
 			span.menu-trigger__phone-text 8 800 344-88-88
 			span.menu-trigger__phone-icon 
@@ -14,10 +15,13 @@
 						path(d="M4 7H12" stroke="#FCFBF7" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round")
 						path(d="M4 10.5H12" stroke="#FCFBF7" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round")
 				span.burger__text Меню
-
 </template>
 
 <script setup>
+import { useFilterStore } from "~/stores/filter-actions";
+
+const store = useFilterStore();
+
 const emit = defineEmits(["openMenu"]);
 const props = defineProps({
    isOpenMenu: {
@@ -28,6 +32,10 @@ const props = defineProps({
 
 const openMenu = () => {
    emit("openMenu");
+};
+
+const openFilter = () => {
+   store.openFilter();
 };
 </script>
 
@@ -70,6 +78,32 @@ const openMenu = () => {
             transform: scale(1);
             transition-delay: 0.2s;
          }
+      }
+   }
+   &__filter {
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      background: var(--bg-white);
+      place-items: center;
+      flex-shrink: 0;
+      display: none;
+      @media screen and (max-width: $md) {
+         .page--flats-list &,
+         .page--flats-scheme & {
+            display: grid;
+         }
+      }
+      &::before {
+         content: "";
+         display: block;
+         width: 16px;
+         height: 16px;
+         mask-image: url("/images/icons/filter.svg");
+         mask-repeat: no-repeat;
+         mask-position: center;
+         mask-size: 16px 16px;
+         background-color: var(--main-color);
       }
    }
    &__phone {

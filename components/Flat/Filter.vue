@@ -1,7 +1,7 @@
 <template lang="pug">
-	.flats-filter
+	.flats-filter(:class="{active: store.isOpenFilter}")
 		.flats-filter__top
-			button(type="button").flats-filter__close
+			button(type="button" @click="closeFilter").flats-filter__close
 			.flats-filter__title Фильтры
 		.flats-filter__body
 			.filter-group
@@ -29,7 +29,7 @@
 					.filter-group__slider-wrap
 						.filter-group__slider(ref="sliderFloor")
 			.filter-group.filter-group--apply
-				UiButton(class-names="btn-green" text="применить")
+				UiButton(class-names="btn-green" text="применить" @button-click="closeFilter")
 			.filter-group.filter-group--options
 				.filter-options
 					.filter-group__option.filter-option
@@ -49,12 +49,19 @@
 							button(type="button").filter-option__delete-btn
 			.filter-group.filter-group--last
 				.filter-group__buttons
-					UiButton(class-names="btn-green" text="применить")
-					button(type="button").filter-group__reset-btn Сбросить фильтры
+					//- UiButton(class-names="btn-green" text="применить")
+					button(type="button").filter-group__reset-btn Сбросить #[span фильтры]
 </template>
 
 <script setup>
+import { useFilterStore } from "~/stores/filter-actions";
 import noUiSlider from "nouislider";
+
+const store = useFilterStore();
+
+const closeFilter = () => {
+   store.closeFitler();
+};
 
 const sliderPrice = ref("");
 const sliderArea = ref("");
@@ -147,21 +154,48 @@ onMounted(() => {
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "nouislider/dist/nouislider.min.css";
 .flats-filter {
    border-radius: 10px;
    padding: 36px;
    background: var(--bg-white);
+   @media screen and (max-width: $md) {
+      position: fixed;
+      right: 110%;
+      top: 0;
+      width: 100%;
+      height: 100dvh;
+      background: var(--text-white);
+      z-index: 30;
+      padding: 15px 15px 42px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+      transition: right 0.8s ease-in-out 0s;
+      pointer-events: none;
+      border-radius: 0;
+      &.active {
+         right: 0;
+         pointer-events: all;
+      }
+   }
    .page--flats-scheme & {
       padding: 33px 36px;
+      @media screen and (max-width: $md) {
+         padding: 15px 15px 42px;
+      }
    }
    &__top {
-      display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 20px;
       display: none;
+      @media screen and (max-width: $md) {
+         display: flex;
+      }
    }
    &__close {
       width: 24px;
@@ -190,6 +224,15 @@ onMounted(() => {
       grid-template-columns: repeat(3, 1fr) 162px;
       align-items: end;
       gap: 36px 24px;
+      @media screen and (max-width: $xl) {
+         grid-template-columns: 100%;
+         gap: 20px;
+      }
+      @media screen and (max-width: $md) {
+         display: flex;
+         flex-direction: column;
+         height: 100%;
+      }
    }
 }
 .filter-group {
@@ -197,19 +240,48 @@ onMounted(() => {
    gap: 6px;
    font-size: 14px;
    line-height: 18px;
+   @media screen and (max-width: $md) {
+      width: 100%;
+      font-size: 13px;
+   }
    &--options {
       grid-column: span 2;
+      @media screen and (max-width: $xl) {
+         grid-column: initial;
+      }
+      @media screen and (max-width: $md) {
+         margin-top: 12px;
+      }
    }
    &--last {
       display: grid;
       grid-column: span 2;
       justify-items: end;
       align-self: center;
+      @media screen and (max-width: $xl) {
+         grid-column: initial;
+         order: 2;
+         justify-content: center;
+      }
+      @media screen and (max-width: $md) {
+         margin-top: 4px;
+      }
+   }
+   &--apply {
+      @media screen and (max-width: $xl) {
+         order: 1;
+      }
+      @media screen and (max-width: $md) {
+         margin-top: auto;
+      }
    }
    &__caption {
       font-size: 14px;
       line-height: 18px;
       color: var(--text-gray);
+      @media screen and (max-width: $md) {
+         font-size: 13px;
+      }
    }
    &__wrapper {
       padding: 15px 16px;
@@ -217,6 +289,10 @@ onMounted(() => {
       border-radius: 5px;
       min-height: 52px;
       position: relative;
+      @media screen and (max-width: $md) {
+         min-height: 37px;
+         padding: 8px 16px;
+      }
    }
    &__values {
       display: flex;
@@ -237,6 +313,9 @@ onMounted(() => {
       justify-content: center;
       position: relative;
       top: 16px;
+      @media screen and (max-width: $md) {
+         top: 9px;
+      }
    }
    &__option {
       position: relative;
@@ -256,6 +335,16 @@ onMounted(() => {
       &::after {
          background-color: currentColor;
          @extend .filter-option__delete-btn;
+         mask-size: 12px 12px;
+         background: var(--text-gray);
+      }
+      @media screen and (max-width: $md) {
+         & span {
+            display: none;
+         }
+         font-weight: 400;
+         font-size: 14px;
+         line-height: 20px;
       }
    }
 }
@@ -305,11 +394,11 @@ onMounted(() => {
       }
    }
    & label {
-      padding: 9px 15px;
+      padding: 7px 15px;
       border: 1px solid var(--bg-gray);
       border-radius: 100px;
       min-height: 38px;
-      background: var(--bg-white);
+      background-color: transparent;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -328,6 +417,9 @@ onMounted(() => {
          mask-repeat: no-repeat;
          mask-position: center;
          background-color: var(--main-color);
+      }
+      @media screen and (max-width: $md) {
+         min-height: 34px;
       }
    }
    &:nth-child(1) {

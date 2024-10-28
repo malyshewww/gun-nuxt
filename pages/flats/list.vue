@@ -11,9 +11,9 @@
                      v-for="(item, index) in apartments" 
                      :key="index" :flat="item" 
                      :flat-index="index" 
-                     :active-tooltip.sync="activeTooltip"
-                     @open-tooltip-params="openTooltip" 
-                     @close-tooltip-params="closeTooltip") 
+                     :active-card.sync="activeCard"
+                     @open-dropdown="openDropdown" 
+                     @close-dropdown="closeDropdown")
 					.flats__bottom
 						UiButton(text="показать ещё" class-names="btn-transparent")
 </template>
@@ -34,7 +34,7 @@ const crumbs = [
       path: "/",
    },
 ];
-const apartments = [
+const apartments = reactive([
    {
       images: ["1", "2", "4"],
       area: " 31,2",
@@ -53,105 +53,113 @@ const apartments = [
       features: ["№ 12", "17 этаж из 20", "450 000 ₽/м2"],
       parameters: ["Дизайнерская отделка", "Видовая квартира"],
    },
-   {
-      images: ["1", "2"],
-      area: " 31,2",
-      price: 4500000,
-      features: ["№ 12", "17 этаж из 20", "450 000 ₽/м2"],
-      parameters: ["Дизайнерская отделка"],
-   },
-   {
-      images: ["1", "2", "4"],
-      area: " 31,2",
-      price: 4500000,
-      features: ["№ 12", "17 этаж из 20", "450 000 ₽/м2"],
-      parameters: [
-         "Дизайнерская отделка",
-         "Видовая квартира",
-         "Выгодное предложение",
-      ],
-   },
-   {
-      images: ["1", "2", "3"],
-      area: " 31,2",
-      price: 4500000,
-      features: ["№ 12", "17 этаж из 20", "450 000 ₽/м2"],
-      parameters: ["Дизайнерская отделка", "Видовая квартира"],
-   },
-   {
-      images: ["1", "2"],
-      area: " 31,2",
-      price: 4500000,
-      features: ["№ 12", "17 этаж из 20", "450 000 ₽/м2"],
-      parameters: ["Дизайнерская отделка"],
-   },
-   {
-      images: ["1", "2", "4"],
-      area: " 31,2",
-      price: 4500000,
-      features: ["№ 12", "17 этаж из 20", "450 000 ₽/м2"],
-      parameters: [
-         "Дизайнерская отделка",
-         "Видовая квартира",
-         "Выгодное предложение",
-      ],
-   },
-   {
-      images: ["1", "2", "3"],
-      area: " 31,2",
-      price: 4500000,
-      features: ["№ 12", "17 этаж из 20", "450 000 ₽/м2"],
-      parameters: ["Дизайнерская отделка", "Видовая квартира"],
-   },
-   {
-      images: ["1", "2"],
-      area: " 31,2",
-      price: 4500000,
-      features: ["№ 12", "17 этаж из 20", "450 000 ₽/м2"],
-      parameters: ["Дизайнерская отделка"],
-   },
-   {
-      images: ["1", "2", "4"],
-      area: " 31,2",
-      price: 4500000,
-      features: ["№ 12", "17 этаж из 20", "450 000 ₽/м2"],
-      parameters: [
-         "Дизайнерская отделка",
-         "Видовая квартира",
-         "Выгодное предложение",
-      ],
-   },
-   {
-      images: ["1", "2", "3"],
-      area: " 31,2",
-      price: 4500000,
-      features: ["№ 12", "17 этаж из 20", "450 000 ₽/м2"],
-      parameters: ["Дизайнерская отделка", "Видовая квартира"],
-   },
-   {
-      images: ["1", "2"],
-      area: " 31,2",
-      price: 4500000,
-      features: ["№ 12", "17 этаж из 20", "450 000 ₽/м2"],
-      parameters: ["Дизайнерская отделка"],
-   },
-];
+   // {
+   //    images: ["1", "2"],
+   //    area: " 31,2",
+   //    price: 4500000,
+   //    features: ["№ 12", "17 этаж из 20", "450 000 ₽/м2"],
+   //    parameters: ["Дизайнерская отделка"],
+   // },
+   // {
+   //    images: ["1", "2", "4"],
+   //    area: " 31,2",
+   //    price: 4500000,
+   //    features: ["№ 12", "17 этаж из 20", "450 000 ₽/м2"],
+   //    parameters: [
+   //       "Дизайнерская отделка",
+   //       "Видовая квартира",
+   //       "Выгодное предложение",
+   //    ],
+   // },
+   // {
+   //    images: ["1", "2", "3"],
+   //    area: " 31,2",
+   //    price: 4500000,
+   //    features: ["№ 12", "17 этаж из 20", "450 000 ₽/м2"],
+   //    parameters: ["Дизайнерская отделка", "Видовая квартира"],
+   // },
+   // {
+   //    images: ["1", "2"],
+   //    area: " 31,2",
+   //    price: 4500000,
+   //    features: ["№ 12", "17 этаж из 20", "450 000 ₽/м2"],
+   //    parameters: ["Дизайнерская отделка"],
+   // },
+   // {
+   //    images: ["1", "2", "4"],
+   //    area: " 31,2",
+   //    price: 4500000,
+   //    features: ["№ 12", "17 этаж из 20", "450 000 ₽/м2"],
+   //    parameters: [
+   //       "Дизайнерская отделка",
+   //       "Видовая квартира",
+   //       "Выгодное предложение",
+   //    ],
+   // },
+   // {
+   //    images: ["1", "2", "3"],
+   //    area: " 31,2",
+   //    price: 4500000,
+   //    features: ["№ 12", "17 этаж из 20", "450 000 ₽/м2"],
+   //    parameters: ["Дизайнерская отделка", "Видовая квартира"],
+   // },
+   // {
+   //    images: ["1", "2"],
+   //    area: " 31,2",
+   //    price: 4500000,
+   //    features: ["№ 12", "17 этаж из 20", "450 000 ₽/м2"],
+   //    parameters: ["Дизайнерская отделка"],
+   // },
+   // {
+   //    images: ["1", "2", "4"],
+   //    area: " 31,2",
+   //    price: 4500000,
+   //    features: ["№ 12", "17 этаж из 20", "450 000 ₽/м2"],
+   //    parameters: [
+   //       "Дизайнерская отделка",
+   //       "Видовая квартира",
+   //       "Выгодное предложение",
+   //    ],
+   // },
+   // {
+   //    images: ["1", "2", "3"],
+   //    area: " 31,2",
+   //    price: 4500000,
+   //    features: ["№ 12", "17 этаж из 20", "450 000 ₽/м2"],
+   //    parameters: ["Дизайнерская отделка", "Видовая квартира"],
+   // },
+   // {
+   //    images: ["1", "2"],
+   //    area: " 31,2",
+   //    price: 4500000,
+   //    features: ["№ 12", "17 этаж из 20", "450 000 ₽/м2"],
+   //    parameters: ["Дизайнерская отделка"],
+   // },
+]);
 
-const activeTooltip = ref(-1);
+const activeCard = ref(-1);
 const isActive = ref(false);
 
-const openTooltip = (idx) => {
-   activeTooltip.value = idx;
+const openDropdown = (idx) => {
+   activeCard.value = idx;
 };
-const closeTooltip = (idx) => {
-   if (activeTooltip.value === idx) {
-      activeTooltip.value = null;
+const closeDropdown = (idx) => {
+   console.log(activeCard.value);
+   console.log("sda");
+   console.log(idx);
+   if (activeCard.value === idx) {
+      activeCard.value = null;
       console.log(idx);
    }
 };
 </script>
 
 <style lang="scss" scoped>
+.flats-list .heading-main {
+   @media screen and (max-width: $md) {
+      gap: 48px 20px;
+   }
+}
 .flats {
    overflow: clip;
    &__wrapper {

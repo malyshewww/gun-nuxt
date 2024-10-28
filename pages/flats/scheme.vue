@@ -6,9 +6,11 @@
 				FlatHeading
 				FlatFilter
 				.flats-scheme__wrapper
-					FlatSchemeLegend
-					.flats-scheme__body(ref="scheme")
-						FlatScheme(:corpus="corpus" @openTooltip="openTooltip" @closeTooltip="closeTooltip")
+					FlatSchemeLegend(:is-scroll-scheme="isScrollScheme")
+					.flats-scheme__places-wrap
+						.flats-scheme__places(ref="scheme" :class="{active: isScrollScheme}")
+							.flats-scheme__body
+								FlatScheme(:corpus="corpus" @openTooltip="openTooltip" @closeTooltip="closeTooltip")
 						.flats-scheme__tooltip.tooltip-scheme(ref="tooltip" :class="{active: data.tooltip.isActive}")
 							.tooltip-scheme__body
 								.tooltip-scheme__image
@@ -19,9 +21,19 @@
 										li.tooltip-scheme__parameter {{data.tooltip.number}}
 									.tooltip-scheme__price {{data.tooltip.price}}
 									.tooltip-scheme__status {{data.tooltip.status}}
+						.flats-scheme__mask.scheme-mask(@touchstart="moveScheme" @touchend="moveScheme" :class="{hidden: !showMaskScheme}")
+							.scheme-mask__content
+								.scheme-mask__icon
+									span.scheme-mask__handle
+								.scheme-mask__text Тяните
 </template>
 <script setup>
 import json from "~/static/data.json";
+
+import SimpleBar from "simplebar";
+
+// You will need a ResizeObserver polyfill for browsers that don't support it! (iOS Safari, Edge, ...)
+import ResizeObserver from "resize-observer-polyfill";
 
 useHead({
    bodyAttrs: {
@@ -60,8 +72,11 @@ const data = reactive({
 });
 
 const tooltip = ref("");
-
 const scheme = ref("");
+
+const isScrollScheme = ref(false);
+
+const showMaskScheme = ref(true);
 
 const openTooltip = (event, room) => {
    console.log("open tooltip");
@@ -85,23 +100,72 @@ const openTooltip = (event, room) => {
    }
    data.tooltip.isActive = !data.tooltip.isActive;
 };
-
 const closeTooltip = () => {
    console.log("close tooltip");
    data.tooltip.isActive = !data.tooltip.isActive;
 };
+
+const moveScheme = () => {
+   showMaskScheme.value = false;
+};
+
+onMounted(() => {
+   const simpleBar = new SimpleBar(scheme.value, { autoHide: false });
+   window.ResizeObserver = ResizeObserver;
+   // const scrollContent = simpleBar.getContentElement();
+   simpleBar.getScrollElement().addEventListener("scroll", function (e) {
+      console.log(e);
+   });
+   const checkScrollingScheme = () => {
+      if (scheme.value.classList.contains("simplebar-scrollable-x")) {
+         isScrollScheme.value = true;
+      } else {
+         isScrollScheme.value = false;
+      }
+   };
+});
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@import "simplebar/dist/simplebar.css";
+.flats {
+   overflow: clip;
+}
+.flats-scheme .heading-main {
+   @media screen and (max-width: $md) {
+      gap: 48px 20px;
+   }
+}
 .flats-scheme {
+   &__places {
+      @media screen and (max-width: $xl) {
+         // pointer-events: none;
+         // &.active {
+         //    pointer-events: all;
+         // }
+      }
+   }
+   &__places-wrap {
+      position: relative;
+   }
    &__wrapper {
       margin-top: 40px;
       border-radius: 10px;
       padding: 36px;
       padding-right: 10px;
+      padding-bottom: 22px;
       background: var(--bg-white);
       display: grid;
       gap: 38px;
+      @media screen and (max-width: $xxl) {
+         padding: 20px 15px;
+      }
+      @media screen and (max-width: $xl) {
+         margin: 0 -15px;
+      }
+      @media screen and (max-width: $md) {
+         gap: 28px;
+      }
    }
    &__body {
       display: grid;
@@ -122,19 +186,20 @@ const closeTooltip = () => {
    transform: translate(-50%, calc(-100% - 10px));
    pointer-events: none;
    @media (max-width: $xl) {
-      position: fixed;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.2);
-      transform: initial;
-      pointer-events: none;
-      visibility: hidden;
-      &.active {
-         pointer-events: initial;
-         visibility: visible;
-      }
+      // position: fixed;
+      // left: 0;
+      // bottom: 0;
+      // width: 100%;
+      // height: 100%;
+      // background-color: rgba(0, 0, 0, 0.2);
+      // transform: initial;
+      // pointer-events: none;
+      // visibility: hidden;
+      // &.active {
+      //    pointer-events: initial;
+      //    visibility: visible;
+      // }
+      display: none;
    }
    &.active {
       opacity: 1;
@@ -214,6 +279,121 @@ const closeTooltip = () => {
             color: var(--text-gray);
          }
       }
+   }
+}
+.flats-scheme__places.simplebar-scrollable-x {
+   & .simplebar-content-wrapper,
+   & .simplebar-mask,
+   & .simplebar-wrapper {
+      overflow: hidden !important;
+   }
+   & .simplebar-content-wrapper {
+      overflow: scroll hidden !important;
+   }
+   & .simplebar-track.simplebar-horizontal {
+      position: sticky;
+   }
+}
+.simplebar-placeholder {
+   width: auto !important;
+}
+
+.simplebar-track.simplebar-horizontal {
+   @media screen and (max-width: $xl) {
+      display: none;
+   }
+}
+.flats-scheme__places {
+   & .simplebar-content-wrapper,
+   & .simplebar-mask,
+   & .simplebar-wrapper {
+      overflow: visible !important;
+   }
+}
+
+.scheme-mask {
+   position: absolute;
+   top: 0;
+   height: 100%;
+   z-index: 20;
+   backdrop-filter: blur(10px);
+   background: rgba(255, 255, 255, 0.8);
+   left: 35px;
+   width: 100%;
+   font-size: 20px;
+   line-height: 32px;
+   padding-bottom: calc(50% - 42px);
+   padding-top: 54px;
+   transition: opacity $time, visibility $time;
+   display: none;
+   @media screen and (max-width: $xl) {
+      display: block;
+   }
+   @media screen and (max-width: $md) {
+      padding-bottom: 298px;
+   }
+   &.hidden {
+      display: none;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+   }
+   &__content {
+      position: sticky;
+      top: calc(50% - 42px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+   }
+   &__icon {
+      width: 54px;
+      height: 42px;
+      position: relative;
+      &::before,
+      &::after {
+         content: "";
+         display: block;
+         position: absolute;
+         top: 2px;
+         width: 8px;
+         height: 8px;
+         background-repeat: no-repeat;
+         background-position: center;
+      }
+      &::before {
+         background-image: url("/images/icons/mask-scheme-arrow-left.svg");
+         left: 7px;
+         transform: translateX(-50%);
+      }
+      &::after {
+         background-image: url("/images/icons/mask-scheme-arrow-right.svg");
+         right: 12px;
+         transform: translateX(50%);
+      }
+   }
+   &__handle {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 42px;
+      width: 38px;
+      background-image: url("/images/icons/handle.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      animation: moveHand 3s infinite ease 0s;
+   }
+}
+@keyframes moveHand {
+   0% {
+      transform: translateX(15px);
+   }
+   50% {
+      transform: translateX(0px);
+   }
+   100% {
+      transform: translateX(15px);
    }
 }
 </style>

@@ -10,10 +10,10 @@
 						li.features-card__item(v-for="(feature, idx) in flat.features" :key="idx") {{feature}}
 			.flat-card__parameters.parameters-card(v-if="flat.parameters")
 				.parameters-card__item {{flat.parameters[0]}}
-				.parameters-card__wrapper(@click="openTooltip(flatIndex)" :class="{active: activeTooltip === flatIndex}")
+				.parameters-card__wrapper(@click="openDropdown(flatIndex)" :class="{active: activeCard === flatIndex}")
 					.parameters-card__button(v-if="parametersLength") 
 						| +{{parametersLength}}
-						span.parameters-card__button-icon(@click="closeTooltip(flatIndex)")
+						span.parameters-card__button-icon(@click="closeDropdown")
 					.parameters-card__tooltip(v-if="parametersLength")
 						ul.parameters-card__list
 							li.parameters-card__item(v-for="(parameter, idx) in newParametersList" :key="idx") {{parameter}}
@@ -28,18 +28,24 @@ const props = defineProps({
    flatIndex: {
       required: true,
    },
-   activeTooltip: {
+   activeCard: {
+      type: Number,
       required: true,
+      default: -1,
    },
 });
 
-const emit = defineEmits(["openTooltipParams", "closeTooltipParams"]);
+const isActiveCard = ref(props.activeCard);
 
-const openTooltip = (i) => {
-   emit("openTooltipParams", i);
+const emit = defineEmits(["openDropdown", "closeDropdown"]);
+
+const openDropdown = (i) => {
+   // props.activeCard = i;
+   emit("openDropdown", i);
 };
-const closeTooltip = (i) => {
-   emit("closeTooltipParams", i);
+const closeDropdown = (i) => {
+   isActiveCard.value = -1;
+   emit("closeDropdown", i);
 };
 
 const parametersLength = computed(() => {
@@ -78,6 +84,13 @@ onMounted(() => {
 .flat-card {
    padding: 24px;
    background-color: var(--bg-white);
+   transition: box-shadow $time;
+   border-radius: 10px;
+   @media (any-hover: hover) {
+      &:hover {
+         box-shadow: 0 0 15px 0 rgba(43, 47, 59, 0.1);
+      }
+   }
    @media screen and (max-width: $md) {
       padding: 16px;
    }

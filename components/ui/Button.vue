@@ -45,6 +45,11 @@ const buttonClick = () => {
    &:disabled {
       pointer-events: none;
    }
+   @media screen and (max-width: $xl) {
+      min-height: 46px;
+      font-size: 14px;
+      line-height: 17px;
+   }
 }
 .btn-green {
    background-color: var(--text-avocado);

@@ -2,8 +2,8 @@
 	.flats-scheme__floors
 		.flats-scheme__floor(v-for="(item, index) in reverseFloors" :key="index")
 			.flats-scheme__number {{item}}
-			ul.flats-scheme__inner
-				li.flats-scheme__room(
+			.flats-scheme__inner
+				nuxt-link(to="/apartments/1").flats-scheme__room(
 					v-for="(room, idx) in corpus.floors.floorFlats"
 					:key="idx" :data-status="room.status"
 					:data-price="room.price"
@@ -13,7 +13,8 @@
 					@mouseleave="hideDetailRoom") 100
 			a(:href="`/images/flat-scheme/plan.png`" :data-fancybox="`plan-${item}`").flats-scheme__link План этажа
 		.flats-scheme__bottom
-			.flats-scheme__caption Нежилые помещения
+			.flats-scheme__bottom-top
+				.flats-scheme__caption Нежилые помещения
 			.flats-scheme__floor.empty
 				.flats-scheme__number 1-5
 				ul.flats-scheme__inner
@@ -72,10 +73,28 @@ onMounted(() => {
       font-weight: 600;
       line-height: 22px;
       color: var(--text-gray);
-      margin-left: 47px;
    }
    &__bottom {
+      display: flex;
+      flex-direction: column;
       margin-top: 41px;
+      @media screen and (max-width: $md) {
+         margin-top: 24px;
+      }
+   }
+   &__bottom-top {
+      width: 220px;
+      position: sticky;
+      top: 0;
+      left: 35px;
+      margin-left: 59px;
+      @media screen and (max-width: $xxl) {
+         margin-left: 45px;
+      }
+      @media screen and (max-width: $md) {
+         margin-left: 0;
+         left: 40px;
+      }
    }
    &__floor {
       display: flex;
@@ -85,6 +104,7 @@ onMounted(() => {
             & .flats-scheme__link,
             & .flats-scheme__inner::after {
                opacity: 1;
+               pointer-events: all;
             }
             & .flats-scheme__inner::before {
                opacity: 0;
@@ -114,7 +134,15 @@ onMounted(() => {
       font-weight: 600;
       line-height: 22px;
       white-space: nowrap;
-      margin-right: 24px;
+      margin-right: 12px;
+      padding-right: 12px;
+      align-self: stretch;
+      align-items: center;
+      display: flex;
+      background-color: var(--bg-white);
+      @media screen and (max-width: $md) {
+         margin-right: 0;
+      }
    }
    &__link {
       font-weight: 600;
@@ -127,6 +155,10 @@ onMounted(() => {
       transition: opacity $time;
       position: relative;
       z-index: 2;
+      pointer-events: none;
+      @media screen and (max-width: $md) {
+         padding: 0 0 0 16px;
+      }
    }
    &__inner {
       @include reset-list;
@@ -151,6 +183,9 @@ onMounted(() => {
          height: 1px;
          width: 100%;
          transition: opacity $time;
+         @media screen and (max-width: $md) {
+            width: calc(100% + 106px);
+         }
       }
       &::after {
          content: "";
@@ -167,6 +202,14 @@ onMounted(() => {
          transition: opacity $time;
          opacity: 0;
          width: calc(100% + 177px);
+         pointer-events: none;
+         @media screen and (max-width: $md) {
+            width: calc(100% + 106px);
+         }
+      }
+      @media screen and (max-width: $md) {
+         padding: 8px 0;
+         padding-left: 5px;
       }
    }
    &__room {
@@ -199,6 +242,32 @@ onMounted(() => {
          }
          &.booked:hover {
             color: var(--text-white);
+         }
+      }
+      @media screen and (max-width: $md) {
+         width: 30px;
+         height: 30px;
+         font-size: 12px;
+         line-height: 17px;
+      }
+   }
+}
+.flats-scheme {
+   &__places {
+      &.simplebar-scrollable-x {
+         & .flats-scheme__number {
+            position: sticky;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            width: 35px;
+         }
+         & .flats-scheme__link {
+            opacity: 1;
+            pointer-events: all;
+         }
+         & .simplebar-track {
+            position: sticky;
          }
       }
    }

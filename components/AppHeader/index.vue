@@ -31,7 +31,7 @@ const openMenu = () => {
    position: sticky;
    top: 0;
    width: 100%;
-   z-index: 20;
+   z-index: 30;
    &::before {
       content: "";
       position: absolute;

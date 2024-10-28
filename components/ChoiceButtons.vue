@@ -9,6 +9,12 @@
    display: flex;
    align-items: center;
    gap: 8px;
+   @media screen and (max-width: $md) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      width: 100%;
+   }
 }
 .btn-choice {
    border-radius: 5px;
@@ -19,11 +25,15 @@
    color: var(--text-midnight-100);
    display: flex;
    align-items: center;
+   justify-content: center;
    gap: 6px;
    &.active,
    &.router-link-exact-active {
       background: var(--main-color);
       color: var(--text-white);
+      @media screen and (max-width: $md) {
+         border-color: transparent;
+      }
    }
    &::before {
       content: "";
@@ -45,6 +55,11 @@
       &::before {
          mask-image: url("/images/icons/scheme-icon.svg");
       }
+   }
+   @media screen and (max-width: $md) {
+      min-height: 43px;
+      padding: 10px 10px;
+      border: 1px solid var(--text-midnight-100);
    }
 }
 </style>
