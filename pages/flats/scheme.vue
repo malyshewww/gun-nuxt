@@ -382,7 +382,7 @@ onMounted(() => {
       background-image: url("/images/icons/handle.svg");
       background-repeat: no-repeat;
       background-position: center;
-      animation: moveHand 3s infinite ease 0s;
+      animation: moveHand 2s infinite ease-out 0s;
    }
 }
 @keyframes moveHand {

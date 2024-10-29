@@ -43,6 +43,10 @@ const openPopupNews = () => {
          }
       }
    }
+   @media screen and (max-width: $xxxl) {
+      max-width: 485px;
+      min-height: 288px;
+   }
    &__body {
       display: flex;
       flex-direction: column;

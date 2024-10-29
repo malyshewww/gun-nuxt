@@ -15,6 +15,9 @@ const menu = inject("menu");
    padding: 32px 0;
    border-top: 1px solid var(--border-white);
    border-bottom: 1px solid var(--border-white);
+   @media screen and (max-width: $md) {
+      padding: 20px 0;
+   }
    &__body {
    }
    &__list {
@@ -22,9 +25,28 @@ const menu = inject("menu");
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-wrap: wrap;
       gap: 28px;
+      @media screen and (max-width: $xl) {
+         display: block;
+         column-count: 2;
+         column-gap: 93px;
+         max-width: 500px;
+      }
+      @media screen and (max-width: $md) {
+         flex-direction: column;
+         display: flex;
+         gap: 20px;
+         max-width: 100%;
+      }
    }
    &__item {
+      @media screen and (max-width: $xl) {
+         margin-bottom: 20px;
+      }
+      @media screen and (max-width: $md) {
+         margin-bottom: 0;
+      }
    }
    &__link {
       font-weight: 600;
@@ -35,6 +57,10 @@ const menu = inject("menu");
          &:hover {
             color: var(--text-avocado);
          }
+      }
+      @media screen and (max-width: $xl) {
+         font-size: 14px;
+         line-height: 20px;
       }
    }
 }

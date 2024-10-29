@@ -15,11 +15,23 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 12px;
+      @media screen and (max-width: $xl) {
+         gap: 8px 0px;
+      }
    }
    &__item {
       &:not(:last-child) {
          padding-right: 12px;
          border-right: 1px solid var(--border-white);
+      }
+      @media screen and (max-width: $xl) {
+         &:not(:last-child) {
+            margin-right: 12px;
+         }
+      }
+      @media screen and (max-width: $xl) {
+         font-size: 14px;
+         line-height: 20px;
       }
    }
 }

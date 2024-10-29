@@ -7,7 +7,7 @@
 						SectionHeading(title="Преимущества")
 						.section-top__content
 							h2.section-top__title.custom-title
-								| Всё #[span.text-transparent-current важное —] Есть
+								| Всё #[span.text-transparent-current важное&nbsp;—] Есть
 					.main-advantages__decor
 						img(:src="`/images/main-advantages/decor.png`" alt="декор")
 				ul.main-advantages__list
@@ -65,14 +65,26 @@ const advantages = [
       grid-template-columns: repeat(2, 1fr);
       gap: 40px;
       align-items: start;
+      @media screen and (max-width: 1600px) {
+         grid-template-columns: 1fr 1.4fr;
+      }
+      @media screen and (max-width: $xxxl) {
+         grid-template-columns: 100%;
+         max-width: 835px;
+         gap: 64px 0px;
+      }
    }
    &__aside {
       max-width: 688px;
       display: flex;
       flex-direction: column;
-      gap: 305px;
+      gap: 305px 0px;
       position: sticky;
-      top: 20px;
+      top: 85px;
+      @media screen and (max-width: 1600px) {
+         gap: 50px 0px;
+         position: static;
+      }
    }
    &__list {
       @include reset-list;
@@ -80,6 +92,11 @@ const advantages = [
       grid-template-columns: repeat(2, 1fr);
       gap: 40px;
       align-items: start;
+   }
+   &__decor {
+      @media screen and (max-width: $xxxl) {
+         display: none;
+      }
    }
 }
 </style>

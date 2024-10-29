@@ -24,6 +24,9 @@
       display: grid;
       grid-template-columns: 100%;
       gap: 100px;
+      @media screen and (max-width: $xxxl) {
+         gap: 80px;
+      }
    }
    &__body {
       display: flex;

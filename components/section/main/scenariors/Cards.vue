@@ -32,6 +32,11 @@ const scenariorCards = [
       counter-reset: num;
       position: relative;
       margin-top: 80px;
+      @media screen and (max-width: $xxxl) {
+         margin-top: 64px;
+         max-width: 1042px;
+         height: 583px;
+      }
    }
 }
 </style>

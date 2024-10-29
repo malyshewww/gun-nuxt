@@ -17,6 +17,7 @@ onMounted(() => {
    const buttonUp = document.querySelector(".button-up");
    ScrollTrigger.defaults({ scroller: scroller.value });
    window.addEventListener("scroll", (e) => {
+      ScrollTrigger.update();
       const scrollY = window.scrollY;
       //   mainHeroWrapper.style.backgroundPositionY = scrollY * 0.7 + "px";
       document.documentElement.style.setProperty(

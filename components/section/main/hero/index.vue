@@ -6,9 +6,13 @@
 				img(:src="`/images/main-hero/bg.jpg`" alt="фоновое изображение")
 			.main-hero__body
 				.main-hero__title.hero-title(:class="{active: isShowTitle}")
-					| Апарт-комплекс 
-					.hero-title__image
-						img(:src="`/images/main-hero/title.svg`" alt="заголовок")
+					picture
+						source(:srcset="`/images/main-hero/hero-text.svg`" media="(min-width: 1400px)")
+						source(:srcset="`/images/main-hero/hero-text-min-pc.svg`" media="(min-width: 1024px)")
+						source(:srcset="`/images/main-hero/hero-text-tablet.svg`" media="(min-width: 767.98px)")
+						img(:src="`/images/main-hero/hero-text.svg`" alt="логотип")
+				.main-hero__title-mobile
+					| Апарт-комплекс пушка
 				SectionMainHeroCards
 </template>
 
@@ -22,7 +26,7 @@ nuxtApp.hook("page:start", () => {
    console.log("start");
 });
 nuxtApp.hook("page:finish", () => {
-   showTitle();
+   // showTitle();
 });
 
 const showTitle = () => {
@@ -54,32 +58,36 @@ const animationHero = () => {
          opacity: 1,
          yPercent: 0,
       },
-      ">-0.5"
+      ">-0.1"
    );
    const cards = document.querySelectorAll(".main-hero__card-wrap");
    cards.forEach((card, index) => {
       gsap.fromTo(
          card,
          {
-            yPercent: index == 1 ? 10 : 50, // начальная позиция (низ)
+            yPercent: index == 1 ? 50 : 50, // начальная позиция (низ)
             opacity: 1, // начальная прозрачность
          },
          {
             scrollTrigger: {
-               trigger: card,
+               // trigger: card,
                start: "top 90%", // начинает анимацию, когда верх карточки достигает 90% видимости
                end: () => "top 30%", // заканчивает анимацию, когда верх карточки достигает 30% видимости
-               scrub: 1,
+               scrub: 2,
             },
-            yPercent: -50 - index * 20, // конечная позиция (выше на 30px + дополнительный сдвиг в зависимости от индекса)
+            yPercent: -70 - index * 20, // конечная позиция (выше на 30px + дополнительный сдвиг в зависимости от индекса)
             opacity: 1, // конечная прозрачность
-            duration: 1, // длительность анимации
+            duration: 2, // длительность анимации
          }
       );
    });
 };
 onMounted(() => {
-   animationHero();
+   console.log("mount hero");
+   setTimeout(() => {
+      animationHero();
+   }, 500);
+   showTitle();
 });
 </script>
 
@@ -119,6 +127,9 @@ onMounted(() => {
    }
    & .container {
       height: 100%;
+      @media screen and (max-width: $xxxl) {
+         padding: 0 100px;
+      }
    }
    &__body {
       position: relative;
@@ -137,12 +148,15 @@ onMounted(() => {
       text-align: center;
       color: var(--text-white);
       opacity: 0;
-      transition: opacity $time * 2 ease-in-out 0.5s;
-      transform: translate3d(0, calc(var(--scrollTopDecrement) * 0.3), 0);
+      transition: opacity $time * 2 ease-out 0.5s;
+      // transform: translate3d(0, calc(var(--scrollTopDecrement) * 0.3), 0);
       will-change: transform;
       &.active {
          opacity: 1;
       }
+   }
+   &__title-mobile {
+      display: none;
    }
    &__image {
       position: absolute;

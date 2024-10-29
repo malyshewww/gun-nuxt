@@ -47,6 +47,12 @@ watch(
          z-index: 2;
          background-color: var(--text-white);
          pointer-events: none;
+         @media screen and (max-width: $xxxl) {
+            width: 62.85%;
+         }
+      }
+      @media screen and (max-width: $xxxl) {
+         padding: 0 0 134px;
       }
    }
    &__button {
@@ -80,6 +86,9 @@ watch(
          mask-size: 40px 40px;
          background-color: currentColor;
          align-self: flex-end;
+      }
+      @media screen and (max-width: $xxxl) {
+         left: 32px;
       }
    }
 }

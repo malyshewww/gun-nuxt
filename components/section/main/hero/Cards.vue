@@ -40,6 +40,10 @@ const data = reactive({
       //       transform: translate3d(0, 0, 0);
       //    }
       // }
+      @media screen and (max-width: 1600px) {
+         gap: 105px;
+         bottom: -226px;
+      }
    }
    &__card-wrap {
       @for $i from 1 through 3 {

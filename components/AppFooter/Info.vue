@@ -1,6 +1,6 @@
 <template lang="pug">
     .main-footer__info.info-footer
-        nuxt-link(to="/").info-footer__link Информация о проекте и проектная документация
+        nuxt-link(to="/").info-footer__link #[span Информация о проекте и проектная документация]
         .info-footer__company.company-footer
             .company-footer__label Создание сайта
             a(href="#").company-footer__logo
@@ -14,14 +14,24 @@
    justify-content: space-between;
    align-items: center;
    flex-wrap: wrap;
-   gap: 10px;
+   gap: 24px 10px;
    padding: 18px 0;
    font-size: 14px;
    line-height: 18px;
    min-height: 60px;
    color: var(--text-gray);
-   &__link {
+   &__link span {
       border-bottom: 1px solid currentColor;
+   }
+   @media screen and (max-width: $xxxl) {
+      margin-top: 20px;
+   }
+   @media screen and (max-width: $xl) {
+      min-height: auto;
+      padding: 0;
+      margin: 0;
+      font-size: 13px;
+      line-height: 20px;
    }
 }
 .company-footer {

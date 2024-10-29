@@ -1,13 +1,28 @@
 <template lang="pug">
 	.wrapper
 		UiTrailer
-		AppHeader(:is-white="false")
+		AppHeader(:is-white="false" :is-visible="isHeaderVisible")
 		.page
 			slot
-		//- AppFooter
+		AppFooter
 </template>
 
-<script setup></script>
+<script setup>
+const isHeaderVisible = ref(true);
+
+onMounted(() => {
+   let scrollPosition = window.scrollY;
+   window.addEventListener("scroll", () => {
+      let currentScrollPosition = window.scrollY;
+      if (scrollPosition <= currentScrollPosition) {
+         isHeaderVisible.value = false;
+      } else {
+         isHeaderVisible.value = true;
+      }
+      scrollPosition = currentScrollPosition;
+   });
+});
+</script>
 
 <style lang="scss">
 .page {

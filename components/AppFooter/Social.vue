@@ -11,6 +11,12 @@
 .contacts-footer {
    &__social {
       margin-top: auto;
+      @media screen and (max-width: $xxxl) {
+         margin-top: 20px;
+      }
+      @media screen and (max-width: $xl) {
+         display: none;
+      }
    }
 }
 .social {
@@ -31,6 +37,14 @@
       border-radius: 50%;
       display: grid;
       place-items: center;
+      @media screen and (max-width: $xl) {
+         width: 48px;
+         height: 48px;
+         & svg {
+            width: 28px;
+            height: 28px;
+         }
+      }
    }
 }
 </style>

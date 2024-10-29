@@ -17,6 +17,9 @@
       display: grid;
       grid-template-columns: 100%;
       gap: 90px;
+      @media screen and (max-width: $xxxl) {
+         gap: 64px;
+      }
    }
 }
 .section-top {
@@ -28,7 +31,14 @@
    &__title {
       & span {
          margin-left: auto;
+         @media screen and (max-width: $xxxl) {
+            margin-left: 0;
+         }
       }
+   }
+   @media screen and (max-width: $xxxl) {
+      max-width: 100%;
+      margin-left: 0;
    }
 }
 </style>

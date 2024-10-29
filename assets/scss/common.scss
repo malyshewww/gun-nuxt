@@ -15,6 +15,13 @@
   grid-template-rows: auto 1fr auto;
 }
 
+.page--home {
+  & .container {
+    max-width: 1920px;
+    padding: 0 120px;
+  }
+}
+
 h1,
 h2,
 h3,
@@ -346,6 +353,11 @@ picture {
   gap: 0 16px;
   flex-wrap: wrap;
   margin-bottom: 0;
+  @media screen and (max-width: $xxxl) {
+    gap: 0 12px;
+    font-size: 56px;
+    line-height: 73px;
+  }
 }
 .slider-controls {
   display: flex;
@@ -418,10 +430,16 @@ picture {
   display: grid;
   justify-items: start;
   gap: 40px;
+  @media screen and (max-width: $xxxl) {
+    gap: 32px;
+  }
   &__content {
     display: grid;
     justify-items: start;
     gap: 32px;
+    @media screen and (max-width: $xxxl) {
+      gap: 24px;
+    }
   }
   &__description {
     font-weight: 500;
@@ -439,11 +457,6 @@ picture {
     display: grid;
     place-items: center;
     transition: border-color $time;
-    @media (any-hover:hover) {
-      &:hover {
-        border-color: #A6BF6E;
-      }
-    }
     &::before {
       content: "";
       display: block;
@@ -454,7 +467,16 @@ picture {
       mask-size: 32px 32px;
       mask-position: center;
       background-color: var(--text-avocado);
+    }
+    @media (any-hover:hover) {
+      &:hover {
+        border-color: #A6BF6E;
+      }
+    }
 
+    @media screen and (max-width: $xxxl) {
+      width: 64px;
+      height: 64px;
     }
   }
 }

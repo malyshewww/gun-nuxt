@@ -110,6 +110,10 @@ onMounted(() => {
    height: 320px;
    overflow: hidden;
    background: var(--text-midnight-70);
+   @media screen and (max-width: $xxxl) {
+      width: 689px;
+      height: 268px;
+   }
    &__box {
       display: flex;
       height: 100%;
@@ -118,6 +122,9 @@ onMounted(() => {
       position: relative;
       flex: 0 0 320px;
       height: 100%;
+      @media screen and (max-width: $xxxl) {
+         flex: 0 0 269px;
+      }
    }
    &__image {
       position: absolute;
@@ -142,9 +149,14 @@ onMounted(() => {
       justify-content: space-between;
       align-items: start;
       gap: 20px;
+      @media screen and (max-width: $xxxl) {
+         padding: 33px 50px;
+         gap: 17px;
+      }
    }
    &__body {
       max-width: 380px;
+      width: 100%;
    }
    &__wrapper {
    }
@@ -170,12 +182,19 @@ onMounted(() => {
       gap: 12px;
       text-align: right;
       color: var(--text-white);
+      @media screen and (max-width: $xxxl) {
+         gap: 10px;
+      }
    }
    &__caption {
       font-weight: 700;
       font-size: 32px;
       line-height: 40px;
       text-transform: uppercase;
+      @media screen and (max-width: $xxxl) {
+         font-size: 24px;
+         line-height: 34px;
+      }
    }
    &__description {
       line-height: 19px;
@@ -192,12 +211,21 @@ onMounted(() => {
       padding: 5px 15px;
       background: var(--bg-midnight-50);
       font-family: var(--font-family);
+      @media screen and (max-width: $xxxl) {
+         margin-top: 6px;
+         padding: 4px 13px;
+         font-size: 13px;
+         line-height: 18px;
+      }
    }
 }
 
 .slider-controls {
    gap: 28px;
    display: inline-flex;
+   @media screen and (max-width: $xxxl) {
+      gap: 24px;
+   }
 }
 .slider-button {
    width: 24px;
@@ -212,11 +240,20 @@ onMounted(() => {
       mask-repeat: no-repeat;
       mask-position: center;
       background-color: var(--bg-white);
+      @media screen and (max-width: $xxxl) {
+         width: 20px;
+         height: 20px;
+         mask-size: 20px 20px;
+      }
    }
    &.swiper-button-disabled {
       &::before {
          background-color: var(--text-gray);
       }
+   }
+   @media screen and (max-width: $xxxl) {
+      width: 20px;
+      height: 20px;
    }
 }
 </style>

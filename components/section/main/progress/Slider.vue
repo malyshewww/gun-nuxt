@@ -3,6 +3,9 @@
 		.swiper(ref="dynamicSlider")
 			.swiper-wrapper
 				ProgressCard(v-for="(item, index) in dynamic.data" :key="index" @openPopupDynamic="openPopupDynamic($event, item)" :card="item")
+		.slider-controls
+			button(ref="buttonPrev" type="button").slider-button.slider-button-prev
+			button(ref="buttonNext" type="button").slider-button.slider-button-next
 		PopupDynamic(v-if="storePopupDynamic.isOpenPopupDynamic" :is-open.sync="storePopupDynamic.isOpenPopupDynamic" @close-popup="closePopupDynamic" :popup-data="initialState" :initial-slide="initialSlide")
 </template>
 
@@ -60,6 +63,11 @@ const dynamic = reactive({
          caption: "Ноябрь 2024",
          images: ["1", "2", "3", "4"],
       },
+      {
+         img: "4",
+         caption: "Ноябрь 2024",
+         images: ["1", "2", "3", "4"],
+      },
    ],
 });
 
@@ -74,17 +82,30 @@ const initSlider = () => {
          modules: [Navigation],
          slideClass: "item-dynamic",
          speed: 1000,
-         spaceBetween: 40,
          navigation: {
             nextEl: buttonNext.value,
             prevEl: buttonPrev.value,
          },
          breakpoints: {
             300: {
-               slidesPerView: 2,
+               slidesPerView: "auto",
+               spaceBetween: 40,
             },
-            767.98: {
+            1401: {
                slidesPerView: 4,
+               spaceBetween: 40,
+            },
+         },
+         on: {
+            init: function (swiper) {
+               const slides = swiper.slides;
+               const sliderControls =
+                  swiper.navigation.prevEl.parentNode ||
+                  swiper.navigation.nextEl.parentNode;
+               if (slides.length <= swiper.passedParams.slidesPerView) {
+                  swiper.navigation.destroy();
+                  sliderControls.remove();
+               }
             },
          },
       });
@@ -94,3 +115,29 @@ onMounted(() => {
    initSlider();
 });
 </script>
+
+<style lang="scss" scoped>
+.main-progress {
+   &__cards {
+      display: grid;
+      grid-template-columns: 100%;
+      gap: 50px;
+      @media screen and (max-width: $xxxl) {
+         gap: 40px;
+      }
+   }
+   & .swiper {
+      align-self: stretch;
+      width: 100%;
+      @media screen and (max-width: $xxxl) {
+         overflow: visible;
+      }
+   }
+   & .item-dynamic {
+      @media screen and (max-width: $xxxl) {
+         width: 348px;
+         flex-shrink: 0;
+      }
+   }
+}
+</style>

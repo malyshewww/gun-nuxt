@@ -1,18 +1,25 @@
 <template lang="pug">
-	header.header(:class="[{'header-white': isWhite}, {'menu-open': isOpenMenu}]")
+	header.header(:class="[{'header-white': isWhite}, {'menu-open': isOpenMenu}, {'hidden': !isVisible}]")
 		.header__body
 			AppHeaderLogo
 			AppHeaderMenu(:is-open-menu="isOpenMenu")
 			AppHeaderActions
-			AppHeaderMenuTrigger(@openMenu="openMenu" :is-open-menu="isOpenMenu")
+			AppHeaderMenuTrigger(@openMenu="openMenu" :is-open-menu="isOpenMenu" data-da=".wrapper, 1025, 1")
 </template>
 
 <script setup>
+import { useDynamicAdapt } from "~/utils/dynamic-adapt";
+
 const props = defineProps({
    isWhite: {
       type: Boolean,
       required: false,
       default: () => "",
+   },
+   isVisible: {
+      type: Boolean,
+      required: false,
+      default: "",
    },
 });
 provide("isWhiteLogo", props.isWhite);
@@ -22,7 +29,12 @@ const isOpenMenu = ref(false);
 const openMenu = () => {
    isOpenMenu.value = !isOpenMenu.value;
 };
+
+onMounted(() => {
+   useDynamicAdapt();
+});
 </script>
+
 <style lang="scss">
 .header {
    min-height: 80px;
@@ -32,6 +44,7 @@ const openMenu = () => {
    top: 0;
    width: 100%;
    z-index: 30;
+   transition: transform $time, box-shadow $time;
    &::before {
       content: "";
       position: absolute;
@@ -44,6 +57,10 @@ const openMenu = () => {
       opacity: 0;
       pointer-events: none;
       transition: opacity $time;
+   }
+   &.hidden {
+      transform: translateY(-100%);
+      pointer-events: none;
    }
    @media screen and (max-width: $xxxl) {
       padding: 21px 40px;

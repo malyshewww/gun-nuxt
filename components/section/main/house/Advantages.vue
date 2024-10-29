@@ -30,6 +30,9 @@ const advantages = [
       align-items: start;
       grid-template-columns: 100%;
       gap: 52px;
+      @media screen and (max-width: $xxxl) {
+         gap: 32px;
+      }
    }
 }
 </style>

@@ -17,10 +17,14 @@
 <style lang="scss" scoped>
 .main-progress {
    padding: 100px 0 0;
+   overflow: hidden;
    &__wrapper {
       display: grid;
       grid-template-columns: 100%;
       gap: 80px;
+      @media screen and (max-width: $xxxl) {
+         gap: 64px;
+      }
    }
 }
 .section-top .text-transparent-current {
@@ -37,7 +41,14 @@
    &__title {
       & span {
          margin-left: auto;
+         @media screen and (max-width: $xxxl) {
+            margin-left: 0;
+         }
       }
+   }
+   @media screen and (max-width: $xxxl) {
+      max-width: 100%;
+      margin-left: 0;
    }
 }
 </style>

@@ -28,5 +28,18 @@ useHead({
    position: relative;
    z-index: 10;
    background-color: var(--text-white);
+   & section {
+      padding: 110px 0;
+      @media screen and (max-width: $xxxl) {
+         padding: 100px 0;
+      }
+      &.main-about {
+         padding-top: 120px;
+      }
+      &.main-progress {
+         padding-top: 100px;
+         padding-bottom: 0;
+      }
+   }
 }
 </style>

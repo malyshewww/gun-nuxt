@@ -12,32 +12,40 @@
 </template>
 
 <style lang="scss" scoped>
+.main-footer__form {
+   @media screen and (max-width: $xxxl) {
+      max-width: 835px;
+   }
+   @media screen and (max-width: $xl) {
+      display: none;
+   }
+}
 .subscribe-form {
-  &__body {
-    display: grid;
-    gap: 24px;
-  }
-  &__title {
-    line-height: 19px;
-  }
-  &__items {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-  &__bottom {
-    margin-top: 22px;
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    & .btn {
-      width: auto;
-    }
-  }
-  &__text {
-    font-size: 14px;
-    line-height: 18px;
-    color: var(--text-gray);
-  }
+   &__body {
+      display: grid;
+      gap: 24px;
+   }
+   &__title {
+      line-height: 19px;
+   }
+   &__items {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+   }
+   &__bottom {
+      margin-top: 22px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      & .btn {
+         width: auto;
+      }
+   }
+   &__text {
+      font-size: 14px;
+      line-height: 18px;
+      color: var(--text-gray);
+   }
 }
 </style>

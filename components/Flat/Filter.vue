@@ -154,7 +154,7 @@ onMounted(() => {
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "nouislider/dist/nouislider.min.css";
 .flats-filter {
    border-radius: 10px;

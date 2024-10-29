@@ -5,7 +5,7 @@
 				.slider-format__item.swiper-slide(v-for="(slide, index) in 6" :key="index")
 					.slider-format__image.ibg
 						img(:src="`/images/house-format/house-${index+1}.jpg`" alt="house")
-		.slider-controls
+		.slider-controls(ref="sliderControls")
 			button(ref="buttonPrev" type="button").slider-button.slider-button-prev
 			button(ref="buttonNext" type="button").slider-button.slider-button-next
 </template>
@@ -21,6 +21,7 @@ const sliderFormat = ref("");
 const swiperFormat = ref(null);
 const buttonPrev = ref("");
 const buttonNext = ref("");
+const sliderControls = ref("");
 
 const initSlider = () => {
    function updateSlideClasses({ el, slides, activeIndex }) {
@@ -57,6 +58,10 @@ const initSlider = () => {
       //    nextNextSlide.classList.add("swiper-slide-next-next-next");
       // }
    }
+   function calcSpacingControls() {
+      sliderControls.value.style.left = `${slideWidth}px`;
+   }
+   let slideWidth = null;
    if (sliderFormat.value) {
       swiperFormat.value = new Swiper(sliderFormat.value, {
          modules: [Navigation],
@@ -78,11 +83,30 @@ const initSlider = () => {
             prevEl: buttonPrev.value,
          },
          on: {
-            init: function () {
+            init: function (swiper) {
                updateSlideClasses(this);
+               calcSpacingControls();
+               const slides = swiper.slides;
+               const spaceBetween = swiper.passedParams.spaceBetween;
+               [...slides].forEach((slide) => {
+                  if (slide.classList.contains("swiper-slide-active")) {
+                     slideWidth = slide.clientWidth + spaceBetween;
+                  }
+               });
+               calcSpacingControls();
             },
             slideChange: function () {
                updateSlideClasses(this);
+            },
+            resize: function (swiper) {
+               const slides = swiper.slides;
+               const spaceBetween = swiper.passedParams.spaceBetween;
+               [...slides].forEach((slide) => {
+                  if (slide.classList.contains("swiper-slide-active")) {
+                     slideWidth = slide.clientWidth + spaceBetween;
+                  }
+               });
+               calcSpacingControls();
             },
          },
       });
@@ -123,6 +147,10 @@ onMounted(() => {
       height: 770px;
       transition: width 0.5s, max-width 0.5s;
       // width: auto !important;
+      & .slider-format__image {
+         transform: scale(1);
+         height: 61%;
+      }
       &.swiper-slide-active .slider-format__image {
          height: 100%;
          transform: scale(1);
@@ -140,24 +168,18 @@ onMounted(() => {
             transform: scale(1);
             height: 61%;
          }
+         @media screen and (max-width: $xxxl) {
+            max-width: 251px;
+         }
       }
-      // &:nth-child(3),
-      // &:nth-child(4),
-      // &:nth-child(5),
-      // &:nth-child(6) {
-      //    max-width: 390px;
-      //    & .slider-format__image {
-      //       transform: scale(1);
-      //       height: 61%;
-      //    }
-      //    &.swiper-slide-active {
-      //       max-width: 640px;
-      //       & .slider-format__image {
-      //          transform: scale(1);
-      //          height: 100%;
-      //       }
-      //    }
-      // }
+      @media screen and (max-width: $xxxl) {
+         max-width: 398px;
+         height: 477px;
+      }
+      @media screen and (max-width: 1600px) {
+         max-width: 500px;
+         height: 600px;
+      }
    }
    &__image {
       transition: height 0.8s ease 0s, transform 0.8s ease 0s;
@@ -180,12 +202,15 @@ onMounted(() => {
    & .slider-controls {
       position: absolute;
       z-index: 2;
-      right: 26%;
       bottom: 0;
    }
    & .slider-button {
       width: 80px;
       height: 80px;
+      @media screen and (max-width: $xxxl) {
+         height: 64px;
+         width: 64px;
+      }
    }
 }
 </style>

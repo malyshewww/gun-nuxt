@@ -58,6 +58,15 @@ const initSlider = () => {
             nextEl: buttonNext.value,
             prevEl: buttonPrev.value,
          },
+         breakpoints: {
+            300: {},
+            767.98: {
+               slidesPerView: "auto",
+            },
+            1400: {
+               slidesPerView: 3,
+            },
+         },
       });
    }
 };
@@ -94,11 +103,18 @@ onMounted(() => {
    display: grid;
    grid-template-columns: 100%;
    gap: 50px;
+   @media screen and (max-width: $xxxl) {
+      gap: 40px;
+   }
    & .slider-controls {
    }
    & .slider-button {
       width: 80px;
       height: 80px;
+      @media screen and (max-width: $xxxl) {
+         width: 64px;
+         height: 64px;
+      }
    }
 }
 </style>

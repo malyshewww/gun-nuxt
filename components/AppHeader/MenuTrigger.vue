@@ -44,7 +44,7 @@ const openFilter = () => {
    display: none;
    @media screen and (max-width: $xl) {
       position: fixed;
-      z-index: 20;
+      z-index: 40;
       right: 32px;
       bottom: 12px;
       display: flex;

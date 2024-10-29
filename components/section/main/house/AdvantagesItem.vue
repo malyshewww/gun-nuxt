@@ -42,9 +42,7 @@ defineProps({
       grid-column: 2 / -1;
       font-weight: 700;
       font-size: 20px;
-
       line-height: 26px;
-      line-height: 1.28;
       text-transform: uppercase;
       color: var(--text-midnight-100);
    }

@@ -38,6 +38,10 @@ defineProps({
    // align-items: center;
    // opacity: 0; /* Изначально скрыты */
    // transform: scale(0); /* Начальное состояние для анимации */
+   @media screen and (max-width: $xxxl) {
+      height: 446px;
+      width: 402px;
+   }
    &:nth-child(1) {
       background-color: var(--text-avocado);
       z-index: 2;
