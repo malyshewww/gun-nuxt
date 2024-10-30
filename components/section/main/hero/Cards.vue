@@ -2,7 +2,7 @@
 	.main-hero__cards
 		.main-hero__card-wrap(v-for="(card, index) in data.cards" :key="index")
 			.main-hero__card.hero-card
-				.hero-card__title {{card.title}}
+				.hero-card__title(v-html="card.title")
 </template>
 
 <script setup>
@@ -15,7 +15,7 @@ const data = reactive({
          title: "рядом парк Пушкина",
       },
       {
-         title: "3 минуты до улицы Белинского",
+         title: "3 минуты до&nbsp;улицы Белинского",
       },
    ],
 });
@@ -44,6 +44,21 @@ const data = reactive({
          gap: 105px;
          bottom: -226px;
       }
+      @media screen and (max-width: $xxl) {
+         gap: 64px;
+         height: 311px;
+         opacity: 1;
+         bottom: 64px;
+      }
+      @media screen and (max-width: $xl) {
+         position: static;
+      }
+      @media screen and (max-width: $md) {
+         height: auto;
+         gap: 14px;
+         flex-direction: column;
+         align-items: flex-start;
+      }
    }
    &__card-wrap {
       @for $i from 1 through 3 {
@@ -67,6 +82,10 @@ const data = reactive({
             transition-delay: 1.5s;
             background-color: var(--text-avocado);
          }
+         @media screen and (max-width: $md) {
+            align-self: flex-start;
+            order: 1;
+         }
       }
       &:nth-child(3) {
          position: relative;
@@ -75,8 +94,14 @@ const data = reactive({
             transition-delay: 2s;
             &__title {
                max-width: 155px;
+               @media screen and (max-width: $md) {
+                  max-width: 100%;
+               }
             }
             background-color: var(--bg-sand);
+         }
+         @media screen and (max-width: $xxxl) {
+            top: 0;
          }
       }
    }
@@ -95,6 +120,8 @@ const data = reactive({
    flex-direction: column;
    justify-content: space-between;
    align-items: start;
+   box-shadow: 0 0 28px 0 rgba(43, 47, 59, 0.2);
+   gap: 10px;
    //  opacity: 0;
    //  transform: translate3d(0, 30px, 0);
    //  transition: opacity 0.6s ease 0s, transform 0.6s ease 0s;
@@ -107,6 +134,32 @@ const data = reactive({
       place-items: center;
       background-repeat: no-repeat;
       background-position: center;
+      @media screen and (max-width: $xl) {
+         width: 36px;
+         height: 36px;
+         background-size: 30px 30px;
+      }
+      @media screen and (max-width: $md) {
+         content: none;
+      }
+   }
+   @media screen and (max-width: $xxl) {
+      width: 180px;
+      min-height: 180px;
+      padding: 20px 16px;
+      font-size: 14px;
+      line-height: 18px;
+   }
+   @media screen and (max-width: $md) {
+      width: fit-content;
+      min-height: 37px;
+      font-size: 13px;
+      line-height: 17px;
+      padding: 6px 15px;
+      border-radius: 100px;
+      align-items: center;
+      flex-direction: row;
+      justify-content: flex-start;
    }
 }
 </style>

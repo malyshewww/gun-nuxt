@@ -89,9 +89,13 @@ const initSlider = () => {
          breakpoints: {
             300: {
                slidesPerView: "auto",
-               spaceBetween: 40,
+               spaceBetween: 14,
             },
-            1401: {
+            767.98: {
+               spaceBetween: 20,
+               slidesPerView: "auto",
+            },
+            1400: {
                slidesPerView: 4,
                spaceBetween: 40,
             },
@@ -121,9 +125,15 @@ onMounted(() => {
    &__cards {
       display: grid;
       grid-template-columns: 100%;
-      gap: 50px;
+      gap: 50px 0;
       @media screen and (max-width: $xxxl) {
-         gap: 40px;
+         gap: 40px 0;
+      }
+      @media screen and (max-width: $xl) {
+         gap: 32px 0;
+      }
+      @media screen and (max-width: $md) {
+         gap: 20px 0;
       }
    }
    & .swiper {
@@ -135,9 +145,18 @@ onMounted(() => {
    }
    & .item-dynamic {
       @media screen and (max-width: $xxxl) {
-         width: 348px;
+         max-width: 348px;
          flex-shrink: 0;
+         width: 100%;
       }
+      @media screen and (max-width: $xl) {
+         max-width: 256px;
+      }
+   }
+}
+.slider-controls {
+   @media screen and (max-width: $xl) {
+      justify-content: flex-end;
    }
 }
 </style>

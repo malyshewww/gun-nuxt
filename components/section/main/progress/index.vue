@@ -21,16 +21,23 @@
    &__wrapper {
       display: grid;
       grid-template-columns: 100%;
-      gap: 80px;
+      gap: 80px 0;
       @media screen and (max-width: $xxxl) {
-         gap: 64px;
+         gap: 64px 0;
+      }
+      @media screen and (max-width: $md) {
+         gap: 42px 0;
       }
    }
 }
 .section-top .text-transparent-current {
    display: inline-flex;
-   gap: 30px;
+   gap: 6px 30px;
    align-items: center;
+   flex-wrap: wrap;
+   @media screen and (max-width: $xl) {
+      gap: 6px 24px;
+   }
 }
 .section-top {
    margin-left: 214px;

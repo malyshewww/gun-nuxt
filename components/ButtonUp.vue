@@ -1,6 +1,5 @@
 <template lang="pug">
-	.button-up-container
-		button(type="button" @click="scrollTop" :class="{active: isActiveButtonUp}").button-up
+	button(type="button" @click="scrollTop" :class="{active: isActiveButtonUp}").button-up
 </template>
 
 <script setup>
@@ -14,6 +13,7 @@ const isActiveButtonUp = ref(false);
 
 const instanceObserver = () => {
    const mainHero = document.querySelector(".main-hero");
+
    if (mainHero) {
       const options = {
          rootMargin: "0px 0px 0px 0px",
@@ -32,23 +32,16 @@ const instanceObserver = () => {
    }
 };
 onMounted(() => {
-   instanceObserver();
+   // instanceObserver();
 });
 </script>
 
 <style lang="scss" scoped>
-.button-up-container {
-   position: sticky;
-   bottom: 0px;
-   z-index: 10;
-   right: 36px;
-   display: flex;
-   justify-content: flex-end;
-   width: 100%;
-   padding: 0px 36px 80px;
-   visibility: hidden;
-}
 .button-up {
+   position: fixed;
+   z-index: 20;
+   right: 36px;
+   bottom: 80px;
    width: 48px;
    height: 48px;
    flex-shrink: 0;
@@ -60,9 +53,11 @@ onMounted(() => {
    opacity: 0;
    transform: translateY(50px);
    transition: opacity $time * 2, transform $time * 2;
+   pointer-events: none;
    &.active {
       opacity: 1;
       transform: translateY(0px);
+      pointer-events: all;
    }
    &::before {
       content: "";
@@ -80,6 +75,13 @@ onMounted(() => {
       &:hover {
          cursor: pointer;
       }
+   }
+   @media screen and (max-width: $xl) {
+      right: 32px;
+   }
+   @media screen and (max-width: $md) {
+      right: 15px;
+      bottom: 39px;
    }
 }
 </style>

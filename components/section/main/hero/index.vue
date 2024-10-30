@@ -72,7 +72,7 @@ const animationHero = () => {
             scrollTrigger: {
                // trigger: card,
                start: "top 90%", // начинает анимацию, когда верх карточки достигает 90% видимости
-               end: () => "top 30%", // заканчивает анимацию, когда верх карточки достигает 30% видимости
+               end: "top 30%", // заканчивает анимацию, когда верх карточки достигает 30% видимости
                scrub: 2,
             },
             yPercent: -70 - index * 20, // конечная позиция (выше на 30px + дополнительный сдвиг в зависимости от индекса)
@@ -84,10 +84,12 @@ const animationHero = () => {
 };
 onMounted(() => {
    console.log("mount hero");
-   setTimeout(() => {
-      animationHero();
-   }, 500);
-   showTitle();
+   if (window.innerWidth > 1024) {
+      setTimeout(() => {
+         animationHero();
+      }, 500);
+      showTitle();
+   }
 });
 </script>
 
@@ -124,11 +126,30 @@ onMounted(() => {
       background: rgba(43, 47, 59, 0.3);
       opacity: var(--opacity);
       z-index: 2;
+      @media screen and (max-width: $xl) {
+         opacity: 1;
+      }
+   }
+   @media screen and (max-width: $xl) {
+      min-height: 743px;
+      height: auto;
+      padding: 165px 0 64px;
+   }
+   @media screen and (max-width: $md) {
+      min-height: 623px;
+      padding: 112px 0;
+      position: relative;
    }
    & .container {
       height: 100%;
       @media screen and (max-width: $xxxl) {
          padding: 0 100px;
+      }
+      @media screen and (max-width: $xl) {
+         padding: 0 32px;
+      }
+      @media screen and (max-width: $md) {
+         padding: 0 15px;
       }
    }
    &__body {
@@ -138,6 +159,13 @@ onMounted(() => {
       display: flex;
       align-items: center;
       justify-content: center;
+      @media screen and (max-width: $xl) {
+         flex-direction: column;
+         gap: 49px;
+      }
+      @media screen and (max-width: $md) {
+         gap: 56px;
+      }
    }
    &__title {
       font-weight: 700;
@@ -154,9 +182,23 @@ onMounted(() => {
       &.active {
          opacity: 1;
       }
+      @media screen and (max-width: $xl) {
+         opacity: 1;
+      }
+      @media screen and (max-width: $md) {
+         display: none;
+      }
    }
    &__title-mobile {
       display: none;
+      font-weight: 700;
+      font-size: 42px;
+      line-height: 50px;
+      text-transform: uppercase;
+      color: var(--text-white);
+      @media screen and (max-width: $md) {
+         display: block;
+      }
    }
    &__image {
       position: absolute;

@@ -58,7 +58,7 @@ const openFilter = () => {
    }
    @media screen and (max-width: $md) {
       right: 15px;
-      bottom: 16px;
+      bottom: 12px;
    }
    &.active {
       & .menu-trigger__phone {

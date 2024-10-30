@@ -42,12 +42,33 @@ defineProps({
       height: 446px;
       width: 402px;
    }
+   @media screen and (max-width: $xxl) {
+      height: 400px;
+      width: 350px;
+      padding: 30px 20px;
+   }
+   @media screen and (max-width: $xl) {
+      position: static;
+      padding: 20px 28px;
+      width: 100%;
+      height: auto;
+      min-height: 130px;
+      gap: 12px;
+   }
+   @media screen and (max-width: $md) {
+      padding: 16px 20px;
+      gap: 8px;
+      min-height: 176.5px;
+   }
    &:nth-child(1) {
       background-color: var(--text-avocado);
       z-index: 2;
       top: 115px;
       left: 0px;
       transform: rotate(-10deg);
+      @media screen and (max-width: $xl) {
+         transform: none;
+      }
    }
    &:nth-child(2) {
       background-color: var(--text-midnight-70);
@@ -64,6 +85,9 @@ defineProps({
       right: 0;
       top: 115px;
       transform: rotate(10deg);
+      @media screen and (max-width: $xl) {
+         transform: none;
+      }
    }
    &__caption {
       font-weight: 700;
@@ -82,6 +106,18 @@ defineProps({
          font-weight: 500;
          font-size: 20px;
          line-height: 32px;
+         @media screen and (max-width: $xl) {
+            font-size: 16px;
+            line-height: 24px;
+         }
+      }
+      @media screen and (max-width: $xl) {
+         font-size: 18px;
+         line-height: 20px;
+      }
+      @media screen and (max-width: $md) {
+         font-size: 18px;
+         line-height: 22px;
       }
    }
    &__text {
@@ -89,6 +125,14 @@ defineProps({
       font-size: 22px;
       line-height: 27px;
       text-transform: uppercase;
+      @media screen and (max-width: $xl) {
+         font-size: 14px;
+         line-height: 18px;
+      }
+      @media screen and (max-width: $md) {
+         font-size: 16px;
+         line-height: 21px;
+      }
    }
 }
 </style>

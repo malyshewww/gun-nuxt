@@ -30,6 +30,9 @@
             display: none;
          }
       }
+      @media screen and (max-width: $md) {
+         gap: 16px;
+      }
    }
    &__address {
       line-height: 19px;

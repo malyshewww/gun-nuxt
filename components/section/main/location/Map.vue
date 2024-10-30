@@ -106,7 +106,7 @@ onMounted(() => {
       map.value = new YMap(mapElem.value, {
          location: {
             center: coords,
-            zoom: 14,
+            zoom: window.innerWidth > 1024 ? 14 : 13,
          },
          behaviors: [
             "drag",
@@ -249,6 +249,10 @@ onMounted(() => {
    &__map {
       padding-bottom: math.div(760, 1680) * 100%;
       position: relative;
+      min-height: 365px;
+      @media screen and (max-width: $md) {
+         min-height: 444px;
+      }
       & .map {
          position: absolute;
          inset: 0;

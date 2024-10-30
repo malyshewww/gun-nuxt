@@ -24,6 +24,9 @@ const getFullYear = computed(() => {
          font-size: 13px;
          line-height: 18px;
       }
+      @media screen and (max-width: $md) {
+         gap: 14px;
+      }
    }
    &__link span {
       border-bottom: 1px solid currentColor;

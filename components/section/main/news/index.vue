@@ -16,9 +16,12 @@
    &__wrapper {
       display: grid;
       grid-template-columns: 100%;
-      gap: 90px;
+      gap: 90px 0;
       @media screen and (max-width: $xxxl) {
-         gap: 64px;
+         gap: 64px 0;
+      }
+      @media screen and (max-width: $md) {
+         gap: 42px 0;
       }
    }
 }

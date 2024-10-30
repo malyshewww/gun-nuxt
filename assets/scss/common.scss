@@ -19,6 +19,12 @@
   & .container {
     max-width: 1920px;
     padding: 0 120px;
+    @media screen and (max-width: $xl) {
+      padding: 0 32px;
+    }
+    @media screen and (max-width: $md) {
+      padding: 0 15px;
+    }
   }
 }
 
@@ -358,6 +364,19 @@ picture {
     font-size: 56px;
     line-height: 73px;
   }
+  @media screen and (max-width: $xl) {
+    font-size: 36px;
+    line-height: 47px;
+  }
+  @media screen and (max-width: $md) {
+    font-size: 28px;
+    line-height: 36px;
+    gap: 0 8px;
+    text-align: left;
+    justify-content: flex-start;
+  }
+
+
 }
 .slider-controls {
   display: flex;
@@ -433,12 +452,21 @@ picture {
   @media screen and (max-width: $xxxl) {
     gap: 32px;
   }
+  @media screen and (max-width: $xl) {
+    gap: 24px;
+  }
+  @media screen and (max-width: $md) {
+    gap: 20px;
+  }
   &__content {
     display: grid;
     justify-items: start;
     gap: 32px;
     @media screen and (max-width: $xxxl) {
       gap: 24px;
+    }
+    @media screen and (max-width: $md) {
+      gap: 20px;
     }
   }
   &__description {
@@ -447,6 +475,13 @@ picture {
     line-height: 32px;
     font-family: var(--font-family);
     max-width: 860px;
+    @media screen and (max-width: $xxxl) {
+      max-width: 800px;
+    }
+    @media screen and (max-width: $xl) {
+      font-size: 16px;
+      line-height: 24px;
+    }
   }
   &__link {
     border: 2px solid rgba(#A6BF6E, .3);
@@ -467,16 +502,28 @@ picture {
       mask-size: 32px 32px;
       mask-position: center;
       background-color: var(--text-avocado);
+      @media screen and (max-width: $xl) {
+        width: 24px;
+        height: 24px;
+        mask-size: 24px 24px;
+        ;
+      }
     }
     @media (any-hover:hover) {
       &:hover {
         border-color: #A6BF6E;
       }
     }
-
     @media screen and (max-width: $xxxl) {
       width: 64px;
       height: 64px;
+    }
+    @media screen and (max-width: $xl) {
+      width: 48px;
+      height: 48px;
+    }
+    @media screen and (max-width: $md) {
+      margin-left: auto;
     }
   }
 }

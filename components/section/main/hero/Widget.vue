@@ -50,6 +50,9 @@
       width: 154px;
       height: 154px;
    }
+   @media screen and (max-width: $xl) {
+      display: none;
+   }
 }
 @keyframes spin {
    0% {

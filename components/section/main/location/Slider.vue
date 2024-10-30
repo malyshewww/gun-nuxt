@@ -114,6 +114,9 @@ onMounted(() => {
       width: 689px;
       height: 268px;
    }
+   @media screen and (max-width: $xl) {
+      display: none;
+   }
    &__box {
       display: flex;
       height: 100%;

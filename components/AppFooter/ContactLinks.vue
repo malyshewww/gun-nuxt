@@ -33,6 +33,12 @@
             line-height: 18px;
          }
       }
+      @media screen and (max-width: $md) {
+         & .email-link {
+            font-size: 14px;
+            line-height: 21px;
+         }
+      }
    }
 }
 </style>

@@ -23,10 +23,16 @@
       &:not(:last-child) {
          padding-right: 12px;
          border-right: 1px solid var(--border-white);
+         @media screen and (max-width: $md) {
+            padding-right: 8px;
+         }
       }
       @media screen and (max-width: $xl) {
          &:not(:last-child) {
             margin-right: 12px;
+         }
+         @media screen and (max-width: $md) {
+            margin-right: 8px;
          }
       }
       @media screen and (max-width: $xl) {

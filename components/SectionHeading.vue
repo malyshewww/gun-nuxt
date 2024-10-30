@@ -28,5 +28,15 @@ defineProps({
    color: var(--text-gray);
    font-family: var(--font-family);
    width: fit-content;
+   @media screen and (max-width: $xl) {
+      padding: 4px 19px;
+      min-height: 29px;
+      font-size: 12px;
+      line-height: 13px;
+   }
+   @media screen and (max-width: $md) {
+      padding: 4px 17px;
+      min-height: 25px;
+   }
 }
 </style>

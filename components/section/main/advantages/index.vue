@@ -11,10 +11,16 @@
 					.main-advantages__decor
 						img(:src="`/images/main-advantages/decor.png`" alt="декор")
 				ul.main-advantages__list
-					SectionMainAdvantagesCard(v-for="(card, index) in advantages" :key="index" :idx="index" :card="card")
+					SectionMainAdvantagesCard(v-for="(card, index) in advantages" :key="index" :idx="index" :card="card" @show-info="showInfo" :active-index="activeIndex")
 </template>
 
 <script setup>
+const activeIndex = ref(null);
+
+const showInfo = (index) => {
+   activeIndex.value = index;
+};
+
 const advantages = [
    {
       title: "Многоуровневый паркинг с лифтом",
@@ -70,8 +76,15 @@ const advantages = [
       }
       @media screen and (max-width: $xxxl) {
          grid-template-columns: 100%;
-         max-width: 835px;
+         max-width: 834px;
          gap: 64px 0px;
+      }
+      @media screen and (max-width: $xl) {
+         max-width: 100%;
+         gap: 48px 0;
+      }
+      @media screen and (max-width: $md) {
+         gap: 42px 0;
       }
    }
    &__aside {
@@ -92,6 +105,12 @@ const advantages = [
       grid-template-columns: repeat(2, 1fr);
       gap: 40px;
       align-items: start;
+      @media screen and (max-width: $xl) {
+         gap: 20px;
+      }
+      @media screen and (max-width: $md) {
+         grid-template-columns: 100%;
+      }
    }
    &__decor {
       @media screen and (max-width: $xxxl) {

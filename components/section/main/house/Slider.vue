@@ -69,7 +69,6 @@ const initSlider = () => {
          observeParents: true,
          observeSlideChildren: true,
          slidesPerView: "auto",
-         spaceBetween: 40,
          speed: 800,
          loop: true,
          loopedSlidesLimit: false,
@@ -81,6 +80,14 @@ const initSlider = () => {
          navigation: {
             nextEl: buttonNext.value,
             prevEl: buttonPrev.value,
+         },
+         breakpoints: {
+            300: {
+               spaceBetween: 14,
+            },
+            1024: {
+               spaceBetween: 40,
+            },
          },
          on: {
             init: function (swiper) {
@@ -123,9 +130,20 @@ onMounted(() => {
    width: 100%;
    flex: 1 1 auto;
    align-self: flex-start;
+   @media screen and (max-width: $xl) {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+   }
+   @media screen and (max-width: $md) {
+      gap: 20px;
+   }
    &__body {
       overflow: visible;
       position: relative;
+      @media screen and (max-width: $xl) {
+         width: 100%;
+      }
       &::before {
          content: "";
          position: absolute;
@@ -150,6 +168,9 @@ onMounted(() => {
       & .slider-format__image {
          transform: scale(1);
          height: 61%;
+         @media screen and (max-width: $xl) {
+            height: 100%;
+         }
       }
       &.swiper-slide-active .slider-format__image {
          height: 100%;
@@ -159,6 +180,9 @@ onMounted(() => {
          & .slider-format__image {
             transform: scale(1);
             height: 61%;
+            @media screen and (max-width: $xl) {
+               height: 100%;
+            }
          }
       }
       &.swiper-slide-next,
@@ -167,18 +191,28 @@ onMounted(() => {
          & .slider-format__image {
             transform: scale(1);
             height: 61%;
+            @media screen and (max-width: $xl) {
+               height: 100%;
+            }
          }
          @media screen and (max-width: $xxxl) {
             max-width: 251px;
          }
+         @media screen and (max-width: $xl) {
+            max-width: 225px;
+         }
+      }
+      @media screen and (max-width: 1600px) {
+         max-width: 500px;
+         height: 600px;
       }
       @media screen and (max-width: $xxxl) {
          max-width: 398px;
          height: 477px;
       }
-      @media screen and (max-width: 1600px) {
-         max-width: 500px;
-         height: 600px;
+      @media screen and (max-width: $xl) {
+         max-width: 225px;
+         height: 252px;
       }
    }
    &__image {
@@ -203,6 +237,14 @@ onMounted(() => {
       position: absolute;
       z-index: 2;
       bottom: 0;
+      @media screen and (max-width: $xxl) {
+         flex-direction: column;
+      }
+      @media screen and (max-width: $xl) {
+         position: static;
+         flex-direction: row;
+         justify-content: flex-end;
+      }
    }
    & .slider-button {
       width: 80px;
@@ -210,6 +252,10 @@ onMounted(() => {
       @media screen and (max-width: $xxxl) {
          height: 64px;
          width: 64px;
+      }
+      @media screen and (max-width: $xl) {
+         width: 48px;
+         height: 48px;
       }
    }
 }

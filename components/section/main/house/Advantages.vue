@@ -33,6 +33,15 @@ const advantages = [
       @media screen and (max-width: $xxxl) {
          gap: 32px;
       }
+      @media screen and (max-width: $xl) {
+         max-width: 100%;
+         grid-template-columns: repeat(3, 1fr);
+         gap: 14px;
+      }
+      @media screen and (max-width: $md) {
+         grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+         gap: 24px;
+      }
    }
 }
 </style>

@@ -150,6 +150,10 @@
          font-size: 22px;
          line-height: 26px;
       }
+      @media screen and (max-width: $md) {
+         font-size: 18px;
+         line-height: 22px;
+      }
    }
    &__contacts {
       grid-area: address;
@@ -167,7 +171,7 @@
          }
       }
       @media screen and (max-width: $md) {
-         margin-top: 12px;
+         margin-top: 14px;
          & .contacts-footer {
             &__social {
                margin-top: 20px;

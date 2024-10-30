@@ -37,6 +37,16 @@ const scenariorCards = [
          max-width: 1042px;
          height: 583px;
       }
+      @media screen and (max-width: $xl) {
+         margin-top: 0;
+         height: auto;
+         max-width: 100%;
+         flex-direction: column;
+         gap: 20px;
+      }
+      @media screen and (max-width: $md) {
+         gap: 14px;
+      }
    }
 }
 </style>

@@ -6,11 +6,12 @@
 					SectionHeading(title="О проекте")
 					h2.main-about__title.title-about
 						span.title-about__text.title-about__text--left апартаменты нового
-						span.title-about__text уровня для тех, кто хочет
+						span.title-about__text уровня для тех, кто&nbsp;хочет
 						span.title-about__text--right 
-								| жить в центре
+								span  жить в центре
 								span.title-about__labels(data-title="ул. Тимирязева")
 						span.title-about__text по приемлемой стоимости
+					h2.main-about__title.title-about.title-about-mobile апартаменты нового уровня тех, кто&nbsp;хочет жить в центре по приемлемой стоимости
 					.main-about__description Апартаменты «Пушка» будут представлены 12-ти этажным жилым домом с&nbsp;дополнительным парапетом первого этажа. Необычное архитектурное&nbsp;решение здания подчёркивает общий концепт проекта — динамичность, мобильность, современность
 				.main-about__image-container
 					.main-about__image-wrap
@@ -45,7 +46,9 @@ const animation = () => {
 };
 
 onMounted(() => {
-   animation();
+   if (window.innerWidth > 1024) {
+      animation();
+   }
 });
 </script>
 
@@ -57,7 +60,13 @@ onMounted(() => {
       grid-template-columns: 100%;
       gap: 160px;
       @media screen and (max-width: $xxxl) {
-         gap: 140px;
+         gap: 140px 0px;
+      }
+      @media screen and (max-width: $xl) {
+         gap: 101px 0px;
+      }
+      @media screen and (max-width: $md) {
+         gap: 56px 0;
       }
    }
    &__body {
@@ -68,6 +77,15 @@ onMounted(() => {
       gap: 40px;
       @media screen and (max-width: $xxxl) {
          gap: 32px;
+      }
+      @media screen and (max-width: $xl) {
+         gap: 24px;
+      }
+      @media screen and (max-width: $md) {
+         gap: 16px;
+         justify-items: start;
+         align-items: start;
+         text-align: left;
       }
    }
    &__description {
@@ -80,6 +98,13 @@ onMounted(() => {
       font-family: var(--font-family);
       max-width: 850px;
       justify-self: center;
+      @media screen and (max-width: $xl) {
+         font-size: 16px;
+         line-height: 24px;
+      }
+      @media screen and (max-width: $md) {
+         text-align: left;
+      }
    }
    &__image-container {
       width: 100%;
@@ -96,6 +121,9 @@ onMounted(() => {
       transform-origin: 0 0;
       @media screen and (max-width: $xxxl) {
          padding-bottom: 49.66%;
+      }
+      @media screen and (max-width: $xl) {
+         padding-bottom: 51.15%;
       }
    }
    &__image {
@@ -124,12 +152,26 @@ onMounted(() => {
    line-height: 108px;
    text-transform: uppercase;
    margin: 0 0 20px;
+   &-mobile {
+      display: none;
+   }
    @media screen and (max-width: $xxxl) {
-      font-size: 36px;
-      line-height: 47px;
+      font-size: 56px;
+      line-height: 73px;
       margin: 0;
    }
-   &__text {
+   @media screen and (max-width: $xl) {
+      font-size: 36px;
+      line-height: 47px;
+   }
+   @media screen and (max-width: $md) {
+      display: none;
+      font-size: 28px;
+      line-height: 36px;
+      &-mobile {
+         display: block;
+         margin-top: 4px;
+      }
    }
    &__text--left {
       display: inline-flex;
@@ -151,14 +193,29 @@ onMounted(() => {
          background-repeat: no-repeat;
          background-position: center;
          @media screen and (max-width: $xxxl) {
+            width: 267px;
+            height: 69px;
+            padding: 16px;
+            background-size: 172px 34px;
+         }
+         @media screen and (max-width: $xl) {
             width: 176px;
             height: 48px;
             padding: 10px 36px;
             background-size: 105px 21px;
          }
+         @media screen and (max-width: $md) {
+            content: none;
+         }
       }
       @media screen and (max-width: $xxxl) {
+         gap: 0 18px;
+      }
+      @media screen and (max-width: $xl) {
          gap: 0 14px;
+      }
+      @media screen and (max-width: $md) {
+         display: inline-block;
       }
    }
    &__text--right {
@@ -168,7 +225,13 @@ onMounted(() => {
       justify-content: center;
       gap: 0 30px;
       @media screen and (max-width: $xxxl) {
+         gap: 0 18px;
+      }
+      @media screen and (max-width: $xl) {
          gap: 0 14px;
+      }
+      @media screen and (max-width: $md) {
+         display: inline-block;
       }
    }
    &__labels {
@@ -182,6 +245,9 @@ onMounted(() => {
          height: 92px;
          border-radius: 500px;
          @media screen and (max-width: $xxxl) {
+            height: 69px;
+         }
+         @media screen and (max-width: $xl) {
             height: 48px;
          }
       }
@@ -192,6 +258,9 @@ onMounted(() => {
          background-position: center;
          background-size: cover;
          @media screen and (max-width: $xxxl) {
+            width: 180px;
+         }
+         @media screen and (max-width: $xl) {
             width: 106px;
          }
       }
@@ -210,11 +279,19 @@ onMounted(() => {
          width: 315px;
          background: var(--text-midnight-70);
          @media screen and (max-width: $xxxl) {
+            width: 307px;
+            font-size: 22px;
+            line-height: 27px;
+         }
+         @media screen and (max-width: $xl) {
             width: 245px;
             font-size: 18px;
             line-height: 20px;
             padding: 10px;
          }
+      }
+      @media screen and (max-width: $md) {
+         display: none;
       }
    }
 }

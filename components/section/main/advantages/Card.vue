@@ -1,5 +1,5 @@
 <template lang="pug">
-	li.advantages-card
+	li.advantages-card(@click="showInfo(idx)" :class="{active: activeIndex === idx}")
 		.advantages-card__button
 			span.advantages-card__button-icon
 		.advantages-card__image.ibg
@@ -21,7 +21,19 @@ defineProps({
       type: Number,
       required: true,
    },
+   activeIndex: {
+      required: true,
+      default: () => "",
+   },
 });
+
+const emit = defineEmits(["showInfo"]);
+
+const isShowInfo = ref(false);
+
+const showInfo = (idx) => {
+   emit("showInfo", idx);
+};
 </script>
 
 <style lang="scss" scoped>
@@ -46,11 +58,39 @@ defineProps({
          }
       }
    }
+   @media (max-width: $xl) and (min-width: $md) {
+      &.active {
+         & .advantages-card__content {
+            clip-path: circle(70.71068% at 50% 50%);
+         }
+         & .advantages-card__description {
+            transition-duration: 0.8s;
+            transition-delay: 0.1s;
+            transform: translateY(0);
+            opacity: 1;
+         }
+         & .advantages-card__button {
+            opacity: 0;
+         }
+      }
+   }
    &:nth-child(2) {
       margin-top: 80px;
+      @media screen and (max-width: $xxxl) {
+         margin-top: 64px;
+      }
+      @media screen and (max-width: $xl) {
+         margin-top: 0;
+      }
    }
    &:nth-child(2n + 3) {
       margin-top: -80px;
+      @media screen and (max-width: $xxxl) {
+         margin-top: -64px;
+      }
+      @media screen and (max-width: $xl) {
+         margin-top: 0;
+      }
    }
    &__sizer {
       //   padding-top: 100%;
@@ -66,6 +106,15 @@ defineProps({
       text-transform: uppercase;
       color: var(--text-white);
       padding: 32px;
+      @media screen and (max-width: $xl) {
+         font-size: 18px;
+         line-height: 20px;
+      }
+      @media screen and (max-width: $md) {
+         padding: 20px;
+         font-size: 16px;
+         line-height: 21px;
+      }
    }
    &__button {
       position: absolute;
@@ -99,9 +148,18 @@ defineProps({
          mask-position: center;
          background-color: var(--bg-white);
       }
+      @media screen and (max-width: $md) {
+         display: none;
+      }
    }
    &__image {
       padding-bottom: math.div(480, 390) * 100%;
+      @media screen and (max-width: $xl) {
+         padding-bottom: math.div(404, 342) * 100%;
+      }
+      @media screen and (max-width: $md) {
+         padding-bottom: math.div(290, 290) * 100%;
+      }
    }
    &__content {
       position: absolute;
@@ -118,6 +176,10 @@ defineProps({
       clip-path: circle(0 at 50% 50%);
       transition-duration: 0.8s;
       z-index: 1;
+      @media screen and (max-width: $md) {
+         clip-path: circle(70.71068% at 50% 50%);
+         padding: 20px;
+      }
    }
    &__description {
       font-weight: 600;
@@ -134,7 +196,16 @@ defineProps({
       & p {
          &:not(:last-child) {
             margin-bottom: 16px;
+            @media screen and (max-width: $md) {
+               margin-bottom: 8px;
+            }
          }
+      }
+      @media screen and (max-width: $md) {
+         opacity: 1;
+         transform: none;
+         font-size: 14px;
+         line-height: 20px;
       }
    }
 }

@@ -50,7 +50,6 @@ const initSlider = () => {
          observeParents: true,
          slideClass: "news-item",
          slidesPerView: 3,
-         spaceBetween: 40,
          speed: 800,
          loop: false,
          watchOverflow: true,
@@ -59,12 +58,17 @@ const initSlider = () => {
             prevEl: buttonPrev.value,
          },
          breakpoints: {
-            300: {},
+            300: {
+               slidesPerView: 1,
+               spaceBetween: 15,
+            },
             767.98: {
                slidesPerView: "auto",
+               spaceBetween: 20,
             },
             1400: {
                slidesPerView: 3,
+               spaceBetween: 40,
             },
          },
       });
@@ -106,7 +110,11 @@ onMounted(() => {
    @media screen and (max-width: $xxxl) {
       gap: 40px;
    }
-   & .slider-controls {
+   @media screen and (max-width: $xl) {
+      gap: 17px;
+   }
+   @media screen and (max-width: $md) {
+      gap: 20px;
    }
    & .slider-button {
       width: 80px;
@@ -114,6 +122,15 @@ onMounted(() => {
       @media screen and (max-width: $xxxl) {
          width: 64px;
          height: 64px;
+      }
+      @media screen and (max-width: $xl) {
+         width: 48px;
+         height: 48px;
+      }
+   }
+   & .slider-controls {
+      @media screen and (max-width: $xl) {
+         justify-content: flex-end;
       }
    }
 }

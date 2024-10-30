@@ -20,65 +20,6 @@ const timeline = ref(null);
 const animationScenariors = () => {
    const cards = document.querySelectorAll(".scenariors__card");
    const boxCards = document.querySelector(".main-scenariors__cards");
-
-   // // Создаем общий таймлайн для анимации карточек
-   // const tl = gsap.timeline({
-   //    scrollTrigger: {
-   //       trigger: boxCards,
-   //       start: "top top", // Начинаем, когда верх блока box касается верха окна
-   //       end: "+=3000", // Задайте общую длину прокрутки для анимации
-   //       pin: true, // Закрепляем блок box при прокрутке
-   //       scrub: 1, // Делаем анимацию плавной
-   //    },
-   // });
-
-   // // Для каждой карточки добавляем анимацию смещения
-   // cards.forEach((card, index) => {
-   //    tl.to(
-   //       card,
-   //       {
-   //          yPercent: 0, // Смещение вверх на 100%
-   //          duration: 1,
-   //          ease: "none",
-   //       },
-   //       index
-   //    ); // Используем индекс для создания очередности анимации
-   // });
-   // gsap.set(cards, { opacity: 0 }); // Устанавливаем начальную непрозрачность 0
-
-   // ScrollTrigger.create({
-   //    trigger: boxCards,
-   //    start: "top 10%",
-   //    end: "+=2000", // Общее расстояние прокрутки для триггера
-   //    scrub: true,
-   //    pin: true,
-   // });
-   // // const scrollTrigger = {
-   // // };
-
-   // cards.forEach((card, index) => {
-   //    gsap.to(card, {
-   //       scrollTrigger: {
-   //          start: `top+=${index * 10} top`,
-   //          end: `+=2000`,
-   //       },
-   //       opacity: 1,
-   //       y: -50 * index, // Двигаем каждую карточку вверх
-   //    });
-   // });
-   // gsap.from(".scenariors__card:nth-child(1)", {
-   //    scrollTrigger: {
-   //       trigger: ".main-scenariors__cards",
-   //       scrub: true,
-   //       pin: true,
-   //       start: "top top",
-   //       end: "+=100%",
-   //    },
-   //    scaleX: 0,
-   //    transformOrigin: "left center",
-   //    ease: "none",
-   // });
-
    if (cards.length > 0) {
       timeline.value = gsap
          .timeline({
@@ -129,25 +70,40 @@ const animationScenariors = () => {
    }
 };
 onMounted(() => {
-   animationScenariors();
+   if (window.innerWidth > 1024) {
+      animationScenariors();
+   }
 });
 </script>
 
 <style lang="scss" scoped>
 .main-scenariors {
    padding: 110px 0;
-   // &__wrapper {
-   //    display: grid;
-   //    grid-template-columns: 100%;
-   //    gap: 80px;
-   // }
+   &__wrapper {
+      @media screen and (max-width: $xl) {
+         display: grid;
+         grid-template-columns: 100%;
+         gap: 71px 0;
+      }
+      @media screen and (max-width: $md) {
+         gap: 42px 0;
+      }
+   }
 }
 .section-top {
    justify-items: center;
    text-align: center;
+   @media screen and (max-width: $md) {
+      justify-items: start;
+      text-align: left;
+   }
    &__content {
       text-align: center;
       justify-items: center;
+      @media screen and (max-width: $md) {
+         text-align: left;
+         justify-items: start;
+      }
    }
    &__title {
       font-size: 92px;
@@ -155,6 +111,19 @@ onMounted(() => {
       @media screen and (max-width: $xxxl) {
          font-size: 56px;
          line-height: 73px;
+      }
+      @media screen and (max-width: $xl) {
+         font-size: 36px;
+         line-height: 47px;
+      }
+      @media screen and (max-width: $md) {
+         font-size: 28px;
+         line-height: 36px;
+      }
+   }
+   &__description {
+      @media screen and (max-width: $xl) {
+         max-width: 500px;
       }
    }
 }

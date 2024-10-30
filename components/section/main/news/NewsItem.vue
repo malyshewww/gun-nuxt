@@ -47,20 +47,47 @@ const openPopupNews = () => {
       max-width: 485px;
       min-height: 288px;
    }
+   @media screen and (max-width: $xl) {
+      min-height: 246px;
+      padding: 20px 34px;
+      font-size: 14px;
+      line-height: 20px;
+   }
+   @media screen and (max-width: $md) {
+      max-width: 100%;
+      min-height: 229px;
+      font-size: 13px;
+      line-height: 18px;
+      padding: 16px;
+      padding-bottom: 12px;
+   }
    &__body {
       display: flex;
       flex-direction: column;
       gap: 26px;
       height: 100%;
+      @media screen and (max-width: $xxxl) {
+         gap: 24px;
+      }
+      @media screen and (max-width: $md) {
+         gap: 14px;
+      }
    }
    &__title {
       font-weight: 700;
       font-size: 22px;
       line-height: 27px;
       text-transform: uppercase;
+      @media screen and (max-width: $xl) {
+         font-size: 18px;
+         line-height: 20px;
+      }
+      @media screen and (max-width: $md) {
+         font-size: 16px;
+         line-height: 21px;
+      }
    }
    &__text {
-      font-size: 16px;
       line-height: 19px;
       font-family: var(--font-family);
       display: -webkit-box;
@@ -70,10 +97,22 @@ const openPopupNews = () => {
       & p {
          display: inline;
       }
+      @media screen and (max-width: $xl) {
+         line-height: 20px;
+      }
+      @media screen and (max-width: $md) {
+         line-height: 18px;
+      }
    }
    &__date {
       line-height: 22px;
       font-family: var(--font-family);
+      @media screen and (max-width: $xl) {
+         line-height: 20px;
+      }
+      @media screen and (max-width: $md) {
+         line-height: 18px;
+      }
    }
    &__read-more {
       font-weight: 700;
@@ -82,6 +121,10 @@ const openPopupNews = () => {
       opacity: 0;
       transform: translate3d(10px, 0, 0);
       transition: opacity $time, transform $time;
+      @media screen and (max-width: $xl) {
+         opacity: 1;
+         transform: none;
+      }
    }
    &__bottom {
       margin-top: auto;

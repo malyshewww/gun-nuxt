@@ -85,6 +85,10 @@ const openPopupDynamic = () => {
       color: var(--text-white);
       font-family: var(--second-family);
       flex: 1 1 auto;
+      @media screen and (max-width: $xl) {
+         font-size: 22px;
+         line-height: 26px;
+      }
       @media screen and (max-width: $md) {
          font-size: 18px;
          line-height: 22px;

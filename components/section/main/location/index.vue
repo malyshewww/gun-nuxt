@@ -31,7 +31,10 @@ watch(
    &__wrapper {
       display: grid;
       grid-template-columns: 100%;
-      gap: 80px;
+      gap: 80px 0;
+      @media screen and (max-width: $xl) {
+         gap: 53px 0;
+      }
    }
    &__body {
       position: relative;
@@ -50,9 +53,18 @@ watch(
          @media screen and (max-width: $xxxl) {
             width: 62.85%;
          }
+         @media screen and (max-width: $xl) {
+            content: none;
+         }
       }
       @media screen and (max-width: $xxxl) {
          padding: 0 0 134px;
+      }
+      @media screen and (max-width: $xl) {
+         padding: 0;
+      }
+      @media screen and (max-width: $md) {
+         margin: 0 -15px;
       }
    }
    &__button {
@@ -89,6 +101,12 @@ watch(
       }
       @media screen and (max-width: $xxxl) {
          left: 32px;
+         font-weight: 700;
+         font-size: 18px;
+         line-height: 28px;
+      }
+      @media screen and (max-width: $xl) {
+         display: none;
       }
    }
 }

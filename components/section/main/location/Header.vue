@@ -12,6 +12,14 @@
    max-width: 1020px;
    &__description {
       max-width: 970px;
+      @media screen and (max-width: $xxxl) {
+         max-width: 680px;
+      }
+   }
+   &__content {
+      @media screen and (max-width: $xl) {
+         gap: 16px;
+      }
    }
 }
 </style>

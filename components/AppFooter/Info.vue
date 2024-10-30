@@ -31,18 +31,16 @@
       padding: 0;
       margin: 0;
       font-size: 13px;
-      line-height: 20px;
+      line-height: 18px;
    }
 }
 .company-footer {
    display: flex;
    align-items: center;
    gap: 8px;
-   &__label {
-   }
    &__logo {
       flex-shrink: 0;
-      width: 75px;
+      width: 76px;
       display: flex;
       align-items: center;
    }
