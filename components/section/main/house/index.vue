@@ -38,14 +38,16 @@
    &__body {
       display: flex;
       align-items: flex-end;
-      gap: 130px 0;
+      gap: 130px;
+      @media screen and (max-width: $xxxl) {
+         gap: 40px;
+      }
       @media screen and (max-width: $xl) {
          flex-direction: column;
          align-items: flex-start;
-         gap: 40px 0;
       }
       @media screen and (max-width: $md) {
-         gap: 48px 0;
+         gap: 48px;
       }
    }
 }

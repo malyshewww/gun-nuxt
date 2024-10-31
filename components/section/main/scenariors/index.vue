@@ -123,7 +123,9 @@ onMounted(() => {
    }
    &__description {
       @media screen and (max-width: $xl) {
-         max-width: 500px;
+         max-width: 600px;
+         font-size: 20px;
+         line-height: 32px;
       }
    }
 }

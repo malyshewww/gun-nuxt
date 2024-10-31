@@ -31,7 +31,7 @@ const menu = inject("menu");
          display: block;
          column-count: 2;
          column-gap: 93px;
-         max-width: 500px;
+         max-width: 445px;
       }
       @media screen and (max-width: $md) {
          flex-direction: column;

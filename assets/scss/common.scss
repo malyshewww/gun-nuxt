@@ -15,6 +15,10 @@
   grid-template-rows: auto 1fr auto;
 }
 
+body.lock {
+  overflow: hidden;
+}
+
 .page--home {
   & .container {
     max-width: 1920px;
@@ -187,6 +191,15 @@ h5 {
   }
   & .table-wrap {
     margin: 90px 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    &::-webkit-scrollbar,
+    &::-webkit-scrollbar-track,
+    &::-webkit-scrollbar-thumb {
+      width: 0;
+      height: 0;
+      background-color: transparent;
+    }
   }
   table {
     border: 1px solid var(--bg-gray);

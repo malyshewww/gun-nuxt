@@ -113,7 +113,7 @@ defineProps({
       }
       @media screen and (max-width: $xl) {
          font-size: 18px;
-         line-height: 20px;
+         line-height: 24px;
       }
       @media screen and (max-width: $md) {
          font-size: 18px;

@@ -24,6 +24,12 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 
+import { useDynamicAdapt } from "#imports";
+
+import { usePopupMapPlaceStore } from "~/stores/popup/map-place";
+
+const storePlace = usePopupMapPlaceStore();
+
 const slides = [
    {
       caption: "парк пушкина",
@@ -62,6 +68,8 @@ const updateLocationId = (id) => {
    emit("updateLocationId", id);
 };
 
+const locationId = ref(storePlace.locationId);
+
 const initSlider = () => {
    if (locationSlider.value) {
       locationSwiper.value = new Swiper(locationSlider.value, {
@@ -94,10 +102,15 @@ const initSlider = () => {
          },
       });
    }
+   if (window.innerWidth < 1024) {
+      locationSwiper.value.slideTo(locationId.value);
+   }
+   console.log(locationId.value);
 };
 
 onMounted(() => {
    initSlider();
+   useDynamicAdapt();
 });
 </script>
 

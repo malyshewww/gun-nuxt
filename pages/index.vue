@@ -24,11 +24,14 @@ useHead({
 
 <style lang="scss" scoped>
 .main-content {
-   margin-top: 0;
+   margin-top: 100vh;
    position: relative;
    z-index: 10;
    background-color: var(--text-white);
    overflow: clip;
+   @media screen and (max-width: $xl) {
+      margin-top: 0;
+   }
    & section {
       padding: 110px 0;
       @media screen and (max-width: $xxxl) {
@@ -43,7 +46,7 @@ useHead({
       &.main-about {
          padding-top: 120px;
          @media screen and (max-width: $xl) {
-            padding-top: 80px;
+            padding-top: calc(80px + 61px);
          }
          @media screen and (max-width: $md) {
             padding-top: calc(64px + 48px);
@@ -58,6 +61,11 @@ useHead({
          }
          @media screen and (max-width: $md) {
             padding-top: 40px;
+         }
+      }
+      &.house-format {
+         @media screen and (max-width: $xl) {
+            padding-top: 67px;
          }
       }
    }

@@ -1,5 +1,5 @@
 <template lang="pug">
-	section.main-news
+	section.main-news#news
 		.container
 			.main-news__wrapper
 				.section-top
@@ -37,6 +37,9 @@
          @media screen and (max-width: $xxxl) {
             margin-left: 0;
          }
+      }
+      @media screen and (max-width: $xl) {
+         gap: 0 8px;
       }
    }
    @media screen and (max-width: $xxxl) {

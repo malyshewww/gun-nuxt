@@ -201,7 +201,7 @@ onMounted(() => {
          @media screen and (max-width: $xl) {
             width: 176px;
             height: 48px;
-            padding: 10px 36px;
+            padding: 12px 36px 16px;
             background-size: 105px 21px;
          }
          @media screen and (max-width: $md) {

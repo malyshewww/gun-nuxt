@@ -43,6 +43,7 @@ const scenariorCards = [
          max-width: 100%;
          flex-direction: column;
          gap: 20px;
+         width: 100%;
       }
       @media screen and (max-width: $md) {
          gap: 14px;

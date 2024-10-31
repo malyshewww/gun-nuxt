@@ -24,7 +24,7 @@
       line-height: 15px;
       color: var(--text-white);
       border-radius: 100px;
-      padding: 5px 16px;
+      padding: 5px 20px;
       min-height: 31px;
       background: var(--text-avocado);
       display: none;
@@ -34,6 +34,7 @@
       }
       @media screen and (max-width: $md) {
          min-height: 27px;
+         padding: 5px 16px;
       }
    }
 }

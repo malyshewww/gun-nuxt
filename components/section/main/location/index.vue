@@ -5,15 +5,50 @@
 				SectionMainLocationHeader
 				.main-location__body
 					SectionMainLocationMap(:location-id="locationId")
-					button(type="button").main-location__button развернуть карту
+					button(type="button" @click="openPopupMap").main-location__button развернуть карту
 					SectionMainLocationSlider(@updateLocationId="updateLocationId")
+					.main-location__mask.mask-location(:class="{hidden: isHiddenMask}")
+						.mask-location__content
+							.mask-location__icon
+								span.mask-location__lines
+									span
+							.mask-location__text Нажимайте на отметки на карте, чтобы узнать подробности
+							UiButton(text="начать" class-names="btn-green" @button-click="hideMaskLocation")
+		PopupMap(:is-open="store.isOpenPopup" @close-popup="closePopupMap" :location-id="locationId")
+		PopupMapPlace(:is-open="isOpenPopup" @close-popup="closePopupMapPlace")
 </template>
 
 <script setup>
-const locationId = ref(1);
+import { usePopupMapStore } from "~/stores/popup/map";
+import { usePopupMapPlaceStore } from "~/stores/popup/map-place";
 
+const store = usePopupMapStore();
+const closePopupMap = () => {
+   store.closePopup();
+};
+const openPopupMap = () => {
+   store.openPopup();
+};
+
+const storePlace = usePopupMapPlaceStore();
+
+const isOpenPopup = ref(false);
+const placeId = ref(1);
+const openPopupMapPlace = () => {
+   isOpenPopup.value = true;
+};
+const closePopupMapPlace = () => {
+   isOpenPopup.value = false;
+};
+
+const locationId = ref(1);
 const updateLocationId = (id) => {
    locationId.value = id;
+};
+
+const isHiddenMask = ref(false);
+const hideMaskLocation = () => {
+   isHiddenMask.value = !isHiddenMask.value;
 };
 
 watch(
@@ -23,6 +58,23 @@ watch(
    },
    { deep: true }
 );
+
+onMounted(() => {
+   function documentActions(e) {
+      let target = e.target;
+      if (target.closest(".map-marker")) {
+         isOpenPopup.value = !isOpenPopup.value;
+         let id = Number(target.dataset.markerId);
+         placeId.value = Number(id);
+         console.log(placeId.value);
+         storePlace.newLocationId(id);
+         console.log(storePlace.locationId);
+
+         openPopupMapPlace();
+      }
+   }
+   document.addEventListener("click", documentActions);
+});
 </script>
 
 <style lang="scss">
@@ -113,5 +165,124 @@ watch(
 .btn-toggle {
    position: relative;
    z-index: 20;
+}
+
+.mask-location {
+   display: none;
+   position: absolute;
+   inset: 0;
+   width: 100%;
+   height: 100%;
+   backdrop-filter: blur(4px);
+   background: rgba(255, 255, 255, 0.8);
+   place-items: center;
+   transition: opacity $time;
+   &.hidden {
+      opacity: 0;
+      pointer-events: none;
+      & .mask-location__icon::before,
+      & .mask-location__lines {
+         animation-play-state: paused;
+      }
+   }
+   @media screen and (max-width: $xl) {
+      display: grid;
+   }
+   &__content {
+      max-width: 310px;
+      display: grid;
+      grid-template-columns: 100%;
+      justify-items: center;
+      gap: 10px;
+      text-align: center;
+   }
+   &__icon {
+      width: 38px;
+      height: 58px;
+      position: relative;
+      display: flex;
+      &::before {
+         content: "";
+         display: block;
+         position: absolute;
+         top: 10px;
+         width: 38px;
+         height: 42px;
+         background-image: url("/images/icons/handle.svg");
+         background-repeat: no-repeat;
+         background-position: center;
+         animation: animHandleUp 1.5s ease-out infinite 0s;
+      }
+   }
+   &__lines {
+      width: 23px;
+      height: 11px;
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 0 0 5px;
+      animation: animLines 1.5s ease-out infinite 0s;
+      & span,
+      &::before,
+      &::after {
+         position: absolute;
+         width: 3px;
+         height: 8px;
+         background-color: var(--main-color);
+         top: 0;
+         transition: opacity $time;
+      }
+      &::before,
+      &::after {
+         display: block;
+         content: "";
+         top: 5px;
+      }
+      &::before {
+         left: 0;
+         transform: rotate(-40deg);
+      }
+      &::after {
+         right: 0;
+         transform: rotate(40deg);
+      }
+      & span {
+         left: calc(50% - 1.5px);
+      }
+   }
+   &__text {
+      margin-bottom: 30px;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+      font-family: var(--font-family);
+   }
+   & .btn {
+      width: auto;
+   }
+}
+
+@keyframes animHandleUp {
+   0% {
+      transform: translate3d(0, 5px, 0);
+   }
+   50% {
+      transform: translate3d(0, 0px, 0);
+   }
+   100% {
+      transform: translate3d(0, 5px, 0);
+   }
+}
+@keyframes animLines {
+   0% {
+      opacity: 0;
+   }
+   50% {
+      opacity: 1;
+   }
+   100% {
+      opacity: 0;
+   }
 }
 </style>

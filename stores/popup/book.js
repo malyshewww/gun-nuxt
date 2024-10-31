@@ -4,9 +4,11 @@ export const usePopupBookStore = defineStore("popup-book", {
    }),
    actions: {
       openPopup() {
+         document.body.classList.add("lock");
          this.isOpenPopupBook = !this.isOpenPopupBook;
       },
       closePopup() {
+         document.body.classList.remove("lock");
          this.isOpenPopupBook = !this.isOpenPopupBook;
       },
    },

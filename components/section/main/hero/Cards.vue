@@ -1,6 +1,6 @@
 <template lang="pug">
 	.main-hero__cards
-		.main-hero__card-wrap(v-for="(card, index) in data.cards" :key="index")
+		.main-hero__card-wrap(v-for="(card, index) in data.cards" :key="index" :data-card-speed="(index+1) / 4")
 			.main-hero__card.hero-card
 				.hero-card__title(v-html="card.title")
 </template>
@@ -101,7 +101,7 @@ const data = reactive({
             background-color: var(--bg-sand);
          }
          @media screen and (max-width: $xxxl) {
-            top: 0;
+            top: -6px;
          }
       }
    }

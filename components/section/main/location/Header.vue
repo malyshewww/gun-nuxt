@@ -15,6 +15,9 @@
       @media screen and (max-width: $xxxl) {
          max-width: 680px;
       }
+      @media screen and (max-width: $xl) {
+         max-width: 525px;
+      }
    }
    &__content {
       @media screen and (max-width: $xl) {

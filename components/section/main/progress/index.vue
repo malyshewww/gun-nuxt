@@ -36,7 +36,7 @@
    align-items: center;
    flex-wrap: wrap;
    @media screen and (max-width: $xl) {
-      gap: 6px 24px;
+      gap: 6px 16px;
    }
 }
 .section-top {
@@ -51,6 +51,9 @@
          @media screen and (max-width: $xxxl) {
             margin-left: 0;
          }
+      }
+      @media screen and (max-width: $xl) {
+         gap: 0 8px;
       }
    }
    @media screen and (max-width: $xxxl) {

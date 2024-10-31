@@ -21,7 +21,9 @@ const sliderFormat = ref("");
 const swiperFormat = ref(null);
 const buttonPrev = ref("");
 const buttonNext = ref("");
-const sliderControls = ref("");
+const houseSliderControls = ref("");
+
+const slideWidth = ref(0);
 
 const initSlider = () => {
    function updateSlideClasses({ el, slides, activeIndex }) {
@@ -58,10 +60,16 @@ const initSlider = () => {
       //    nextNextSlide.classList.add("swiper-slide-next-next-next");
       // }
    }
+   let slideWidth = 0;
+   let addedSpacing = window.innerWidth > 1024 ? 40 : 14;
    function calcSpacingControls() {
-      sliderControls.value.style.left = `${slideWidth}px`;
+      const sliderControls = document.querySelector(
+         ".slider-format .slider-controls"
+      );
+      if (sliderControls) {
+         sliderControls.style.left = `${slideWidth}px`;
+      }
    }
-   let slideWidth = null;
    if (sliderFormat.value) {
       swiperFormat.value = new Swiper(sliderFormat.value, {
          modules: [Navigation],
@@ -92,12 +100,10 @@ const initSlider = () => {
          on: {
             init: function (swiper) {
                updateSlideClasses(this);
-               calcSpacingControls();
                const slides = swiper.slides;
-               const spaceBetween = swiper.passedParams.spaceBetween;
                [...slides].forEach((slide) => {
                   if (slide.classList.contains("swiper-slide-active")) {
-                     slideWidth = slide.clientWidth + spaceBetween;
+                     slideWidth = slide.clientWidth + addedSpacing;
                   }
                });
                calcSpacingControls();
@@ -107,10 +113,9 @@ const initSlider = () => {
             },
             resize: function (swiper) {
                const slides = swiper.slides;
-               const spaceBetween = swiper.passedParams.spaceBetween;
                [...slides].forEach((slide) => {
                   if (slide.classList.contains("swiper-slide-active")) {
-                     slideWidth = slide.clientWidth + spaceBetween;
+                     slideWidth = slide.clientWidth + addedSpacing;
                   }
                });
                calcSpacingControls();

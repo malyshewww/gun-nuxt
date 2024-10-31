@@ -15,7 +15,7 @@
 						ProgressCard(v-for="(item, index) in dynamic.data" :key="index" @click="openPopupDynamic($event, item)" :card="item")
 					.dynamic__bottom
 						UiButton(text="Показать ещё" class-names="btn-transparent")
-	PopupDynamic(v-if="storePopupDynamic.isOpenPopupDynamic" :is-open.sync="storePopupDynamic.isOpenPopupDynamic" @close-popup="closePopupDynamic" :popup-data="initialState" :initial-slide="initialSlide")
+	PopupDynamic(:is-open.sync="storePopupDynamic.isOpenPopupDynamic" @close-popup="closePopupDynamic" :popup-data="initialState" :initial-slide="initialSlide")
 </template>
 
 <script setup>

@@ -34,13 +34,18 @@ const closePopup = () => {
    overflow-y: auto;
    overflow-x: hidden;
    transition: all 0.3s ease 0s;
-   z-index: 30;
+   z-index: 40;
    pointer-events: none;
    &::-webkit-scrollbar {
       background: none;
+      width: 0;
+      height: 0;
    }
-   &::-webkit-scrollbar-thumb {
+   &::-webkit-scrollbar-thumb,
+   &::-webkit-scrollbar-track {
       background: none;
+      width: 0;
+      height: 0;
    }
    &.open-popup {
       opacity: 1;
@@ -89,6 +94,7 @@ const closePopup = () => {
       width: 24px;
       height: 24px;
       background-color: transparent;
+      z-index: 2;
       &::before {
          content: "";
          display: block;

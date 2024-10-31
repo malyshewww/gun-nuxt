@@ -2,6 +2,8 @@
 	.popup__body
 		.popup__image.ibg(v-if="popupData.isImage")
 			img(:src="`/images/popup/popup-img.jpg`")
+		.popup__image.ibg(v-if="popupData.isImageProject")
+			img(:src="`/images/popup/popup-img-project.jpg`")
 		form.popup__form.form-popup
 			.form-popup__title {{popupData.title}}
 			.form-popup__sub-title(v-html="popupData.subTitle")
@@ -26,10 +28,18 @@ const props = defineProps({
    &__image {
       padding-bottom: math.div(500, 300) * 100%;
       flex: 0 0 300px;
+      @media screen and (max-width: $md) {
+         flex: 1 1 auto;
+         padding-bottom: 28%;
+         min-height: 150px;
+      }
    }
    &__body {
       display: grid;
       grid-template-columns: 300px 1fr;
+      @media screen and (max-width: $md) {
+         grid-template-columns: 100%;
+      }
    }
 }
 .form-popup {
@@ -42,12 +52,21 @@ const props = defineProps({
    color: var(--text-white);
    font-family: var(--font-family);
    flex: 1 1 auto;
+   @media screen and (max-width: $md) {
+      padding: 20px;
+      padding-top: 40px;
+      gap: 20px;
+   }
    &__title {
       font-weight: 700;
       font-size: 28px;
       line-height: 34px;
       text-transform: uppercase;
       font-family: var(--second-family);
+      @media screen and (max-width: $xl) {
+         font-size: 22px;
+         line-height: 26px;
+      }
    }
    &__sub-title {
       font-size: 16px;
@@ -72,6 +91,9 @@ const props = defineProps({
    }
    & .btn {
       width: auto;
+      @media screen and (max-width: $md) {
+         width: 100%;
+      }
    }
 }
 </style>

@@ -31,6 +31,13 @@ const closePopup = () => {
          padding: 0;
          max-width: 910px;
       }
+      &__close {
+         @media screen and (max-width: $md) {
+            &::before {
+               background-color: var(--bg-white);
+            }
+         }
+      }
    }
 }
 </style>

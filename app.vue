@@ -6,34 +6,35 @@
 
 <script setup>
 const menu = [
-  {
-    title: "О проекте",
-    path: "/",
-  },
-  {
-    title: "Апартаменты в продаже",
-    path: "/",
-  },
-  {
-    title: "Динамика строительства",
-    path: "/",
-  },
-  {
-    title: "Новости и акции",
-    path: "/",
-  },
-  {
-    title: "Паркинг",
-    path: "/",
-  },
-  {
-    title: "Ипотека",
-    path: "/",
-  },
-  {
-    title: "Контакты",
-    path: "/",
-  },
+   {
+      title: "О проекте",
+      path: "/",
+   },
+   {
+      title: "Апартаменты в продаже",
+      path: "/apartments/list",
+   },
+   {
+      title: "Динамика строительства",
+      path: "/",
+   },
+   {
+      title: "Новости и акции",
+      path: "/",
+      hash: "#news",
+   },
+   {
+      title: "Паркинг",
+      path: "/parking",
+   },
+   {
+      title: "Ипотека",
+      path: "/page/text",
+   },
+   {
+      title: "Контакты",
+      path: "/contacts",
+   },
 ];
 
 provide("menu", menu);
@@ -45,6 +46,6 @@ provide("menu", menu);
 @import "~/assets/scss/fonts.scss";
 @import "~/assets/scss/common.scss";
 body.page--home {
-  font-family: var(--second-family);
+   font-family: var(--second-family);
 }
 </style>

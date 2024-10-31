@@ -28,6 +28,7 @@
       gap: 12px;
       justify-items: start;
       @media screen and (max-width: $xl) {
+         gap: 14px;
          & .email-link {
             font-size: 14px;
             line-height: 18px;

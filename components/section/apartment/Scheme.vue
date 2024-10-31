@@ -11,8 +11,8 @@
 					a(:href="`/images/apartments/apartment-1.png`" data-fancybox="gallery-1").scheme-apartment__image
 						img(:src="`/images/apartments/apartment-1.png`" alt="Планировка")
 				.scheme-apartment__preview(:class="{active: isSelected == 2}")
-					a(:href="`/images/apartments/apartment-1.png`" data-fancybox="gallery-2").scheme-apartment__image
-						img(:src="`/images/apartments/apartment-1.png`" alt="План этажа")
+					a(:href="`/images/apartments/apartment-2.jpg`" data-fancybox="gallery-2").scheme-apartment__image
+						img(:src="`/images/apartments/apartment-2.jpg`" alt="План этажа")
 				span.mask
 					.mask__icon
 			.scheme-apartment__decor.scheme-apartment__decor--compass 

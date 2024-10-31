@@ -1,10 +1,10 @@
 <template lang="pug">
-    .main-footer__info.info-footer
-        nuxt-link(to="/").info-footer__link #[span Информация о проекте и проектная документация]
-        .info-footer__company.company-footer
-            .company-footer__label Создание сайта
-            a(href="#").company-footer__logo
-                img(:src="`/images/company-logo.svg`" alt="логотип компании")
+	.main-footer__info.info-footer
+		nuxt-link(to="/").info-footer__link #[span Информация о проекте и проектная документация]
+		.info-footer__company.company-footer
+			.company-footer__label Создание сайта
+			a(href="#").company-footer__logo
+					img(:src="`/images/company-logo.svg`" alt="логотип компании")
 </template>
 
 <style lang="scss" scoped>

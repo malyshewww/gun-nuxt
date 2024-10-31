@@ -19,7 +19,7 @@
 						.main-footer__column.main-footer__column--2
 							.main-footer__label Узнайте больше о проекте
 							AppFooterSubscribeForm
-							UiButton(text="узнать больше о проекте" class-names="btn-green")
+							AppFooterSubscribeMobile
 							AppFooterInfo
 					AppFooterMenu
 					AppFooterBottom
@@ -123,19 +123,6 @@
             & .main-footer__label {
                display: none;
             }
-         }
-         & .btn {
-            display: none;
-            @media screen and (max-width: $xl) {
-               display: block;
-               max-width: 261px;
-            }
-            @media screen and (max-width: $md) {
-               max-width: 100%;
-            }
-         }
-         @media screen and (max-width: $md) {
-            gap: 48px;
          }
       }
    }

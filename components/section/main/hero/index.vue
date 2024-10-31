@@ -21,14 +21,6 @@ const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
 
 const isShowTitle = ref(false);
 
-const nuxtApp = useNuxtApp();
-nuxtApp.hook("page:start", () => {
-   console.log("start");
-});
-nuxtApp.hook("page:finish", () => {
-   // showTitle();
-});
-
 const showTitle = () => {
    isShowTitle.value = !isShowTitle.value;
 };
@@ -65,29 +57,26 @@ const animationHero = () => {
       gsap.fromTo(
          card,
          {
-            yPercent: index == 1 ? 50 : 50, // начальная позиция (низ)
+            yPercent: index == 1 ? 20 : 20, // начальная позиция (низ)
             opacity: 1, // начальная прозрачность
          },
          {
             scrollTrigger: {
-               // trigger: card,
+               trigger: card,
                start: "top 90%", // начинает анимацию, когда верх карточки достигает 90% видимости
                end: "top 30%", // заканчивает анимацию, когда верх карточки достигает 30% видимости
                scrub: 2,
             },
-            yPercent: -70 - index * 20, // конечная позиция (выше на 30px + дополнительный сдвиг в зависимости от индекса)
+            yPercent: -80 - index * 20, // конечная позиция (выше на 30px + дополнительный сдвиг в зависимости от индекса)
             opacity: 1, // конечная прозрачность
-            duration: 2, // длительность анимации
+            duration: 1, // длительность анимации
          }
       );
    });
 };
 onMounted(() => {
-   console.log("mount hero");
    if (window.innerWidth > 1024) {
-      setTimeout(() => {
-         animationHero();
-      }, 500);
+      animationHero();
       showTitle();
    }
 });
@@ -99,19 +88,15 @@ onMounted(() => {
    --transition: transform 0.75s cubic-bezier(0.075, 0.5, 0, 0.9);
 }
 .main-hero-wrapper {
+   position: fixed;
    height: 100vh;
-   position: sticky;
-   width: 100%;
-   top: 0;
-   left: 0;
    will-change: transform;
 }
 .main-hero {
    --opacity: 0;
-   height: 100vh;
+   height: 100dvh;
    position: sticky;
    left: 0;
-   overflow: clip;
    width: 100%;
    top: 0;
    left: 0;
@@ -134,6 +119,7 @@ onMounted(() => {
       min-height: 743px;
       height: auto;
       padding: 165px 0 64px;
+      position: relative;
    }
    @media screen and (max-width: $md) {
       min-height: 623px;

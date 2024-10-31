@@ -3,7 +3,7 @@
 		nav.menu__body
 			ul.menu__list 
 				li.menu__item(v-for="(item, index) in menu" :key="index")
-					nuxt-link(:to="item.path").menu__link {{item.title}}
+					nuxt-link(:to="{ path: item.path, hash: `${item.hash ? item.hash : ''}`}").menu__link {{item.title}}
 		nav.menu__dropdown.dropdown-menu(:class="{active: isDropdownMenuActive}")
 			.dropdown-menu__button(@click="openDropdownMenu")
 			.dropdown-menu__list-wrap
