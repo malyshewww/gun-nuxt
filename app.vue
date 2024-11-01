@@ -12,11 +12,11 @@ const menu = [
    },
    {
       title: "Апартаменты в продаже",
-      path: "/apartments/list",
+      path: "/flats/list",
    },
    {
       title: "Динамика строительства",
-      path: "/",
+      path: "/dynamic",
    },
    {
       title: "Новости и акции",

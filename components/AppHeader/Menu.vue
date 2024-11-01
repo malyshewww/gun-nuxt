@@ -8,6 +8,8 @@
 			.dropdown-menu__button(@click="openDropdownMenu")
 			.dropdown-menu__list-wrap
 				ul.dropdown-menu__list
+					li.menu__item(v-for="(item, index) in menu" :key="index")
+						nuxt-link(:to="{ path: item.path, hash: `${item.hash ? item.hash : ''}`}").menu__link {{item.title}}
 </template>
 <script setup>
 const props = defineProps({
@@ -51,23 +53,22 @@ onMounted(() => {
             dropdownMenu.classList.add("hidden");
          }
       }
-      console.log(breaks);
    };
    // updateNav();
    // window.addEventListener("resize", updateNav);
    // window.addEventListener("DOMContentLoaded", updateNav);
 
-   const updateLinks = () => {
-      const menuItems = [...menuVisible.querySelectorAll(".menu__item")];
-      const takeRight = (arr, n = 1) => arr.slice(arr.length - n, arr.length);
-      const lastFourElements = takeRight(menuItems, 4);
-      if (window.innerWidth <= 1400 && window.innerWidth > 1024) {
-         lastFourElements.forEach((item) => {
-            menuHidden.append(item);
-         });
-      }
-   };
-   updateLinks();
+   // const updateLinks = () => {
+   //    const menuItems = [...menuVisible.querySelectorAll(".menu__item")];
+   //    const takeRight = (arr, n = 1) => arr.slice(arr.length - n, arr.length);
+   //    const lastFourElements = takeRight(menuItems, 4);
+   //    if (window.innerWidth <= 1400 && window.innerWidth > 1024) {
+   //       lastFourElements.forEach((item) => {
+   //          menuHidden.append(item);
+   //       });
+   //    }
+   // };
+   // updateLinks();
 });
 </script>
 
@@ -108,8 +109,16 @@ onMounted(() => {
    }
    &__body {
       flex-shrink: 0;
+      @media screen and (max-width: $xxxl) {
+         & .menu__item:nth-child(n + 4) {
+            display: none;
+         }
+      }
       @media screen and (max-width: $xl) {
          flex-shrink: 1;
+         & .menu__item:nth-child(n + 4) {
+            display: block;
+         }
       }
    }
    &__list {
@@ -145,6 +154,9 @@ onMounted(() => {
    display: none;
    @media screen and (max-width: $xxxl) {
       display: block;
+      & .menu__item:nth-child(-n + 3) {
+         display: none;
+      }
    }
    @media screen and (max-width: $xl) {
       display: none;

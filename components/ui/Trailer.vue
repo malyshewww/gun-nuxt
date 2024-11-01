@@ -5,34 +5,19 @@
 				| смотреть
 			.marquee-content(data-content="смотреть")
 				| смотреть
-	//- .trailer
-	//- 	.trailer-marquee
-	//- 		.trailer-marquee-content(data-content="смотреть")
-	//- 			div смотреть
-	//- 			div смотреть
-	//- 			div смотреть
 </template>
 
 <script setup>
 const trailer = ref("");
 
 onMounted(() => {
-   //    const root = document.documentElement;
-   //    const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue(
-   //       "--marquee-elements-displayed"
-   //    );
-   //    const marqueeContent = document.querySelector(".trailer .marquee-content");
-   //    root.style.setProperty("--marquee-elements", marqueeContent.children.length);
-   //    for (let i = 0; i < marqueeElementsDisplayed; i++) {
-   //       marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
-   //    }
    const trailer = document.querySelector(".trailer");
    function animateTrailer(e, interacting) {
       const x = e.clientX - trailer.offsetWidth / 2,
          y = e.clientY - trailer.offsetHeight / 2;
-      //   const keyframes = {
-      //      transform: `translate(${x}px, ${y}px) scale(${interacting ? 1 : 0})`,
-      //   };
+      // const keyframes = {
+      //    transform: `translate(${x}px, ${y}px) scale(${interacting ? 1 : 0})`,
+      // };
       const keyframes = {
          transform: `translate(${x}px, ${y}px)`,
       };
@@ -40,13 +25,15 @@ onMounted(() => {
          ? trailer.classList.add("active")
          : trailer.classList.remove("active");
       trailer.animate(keyframes, {
-         duration: 800,
+         duration: 1000,
          fill: "forwards",
       });
    }
    if (trailer) {
       window.addEventListener("mousemove", (e) => {
-         const interactable = e.target.closest(".item-dynamic"),
+         const interactable =
+               e.target.closest(".item-dynamic") ||
+               e.target.closest(".slider-format__image"),
             interacting = interactable !== null;
          animateTrailer(e, interacting);
          //  trailer.value.dataset.type = interacting

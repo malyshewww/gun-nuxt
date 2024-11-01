@@ -33,6 +33,7 @@ const openPopupNews = () => {
    transition: border-color $time;
    flex-shrink: 0;
    max-width: 530px;
+   position: relative;
    @media (any-hover: hover) {
       &:hover {
          border-color: var(--text-avocado);

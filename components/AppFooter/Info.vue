@@ -1,6 +1,7 @@
 <template lang="pug">
 	.main-footer__info.info-footer
-		nuxt-link(to="/").info-footer__link #[span Информация о проекте и проектная документация]
+		UiLinkGray(is-scope="inner" text="Информация о проекте и проектная документация" path="/page/text")
+		//- nuxt-link(to="/").info-footer__link #[span Информация о проекте и проектная документация]
 		.info-footer__company.company-footer
 			.company-footer__label Создание сайта
 			a(href="#").company-footer__logo

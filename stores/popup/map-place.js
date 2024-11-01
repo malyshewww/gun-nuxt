@@ -1,19 +1,15 @@
 export const usePopupMapPlaceStore = defineStore("popup-map-place", {
    state: () => ({
-      isOpenPopupPlace: false,
-      locationId: 0,
+      isOpenPopup: false,
    }),
    actions: {
       openPopup() {
          document.body.classList.add("lock");
-         this.isOpenPopupPlace = !this.isOpenPopupPlace;
+         this.isOpenPopup = !this.isOpenPopup;
       },
       closePopup() {
          document.body.classList.remove("lock");
-         this.isOpenPopupPlace = !this.isOpenPopupPlace;
-      },
-      newLocationId(num) {
-         this.locationId = num;
+         this.isOpenPopup = !this.isOpenPopup;
       },
    },
 });

@@ -34,7 +34,7 @@ const closePopup = () => {
    overflow-y: auto;
    overflow-x: hidden;
    transition: all 0.3s ease 0s;
-   z-index: 40;
+   z-index: 50;
    pointer-events: none;
    &::-webkit-scrollbar {
       background: none;
@@ -110,7 +110,7 @@ const closePopup = () => {
          &:hover {
             cursor: pointer;
             &::before {
-               background-color: var(--main-color);
+               background-color: var(--system-alert);
             }
          }
       }

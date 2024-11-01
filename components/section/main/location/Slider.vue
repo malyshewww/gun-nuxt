@@ -30,6 +30,15 @@ import { usePopupMapPlaceStore } from "~/stores/popup/map-place";
 
 const storePlace = usePopupMapPlaceStore();
 
+const props = defineProps({
+   placeId: {
+      type: Number,
+      required: true,
+   },
+});
+
+const locationId = ref(props.placeId);
+
 const slides = [
    {
       caption: "парк пушкина",
@@ -68,14 +77,11 @@ const updateLocationId = (id) => {
    emit("updateLocationId", id);
 };
 
-const locationId = ref(storePlace.locationId);
-
 const initSlider = () => {
    if (locationSlider.value) {
       locationSwiper.value = new Swiper(locationSlider.value, {
          modules: [Navigation, EffectFade],
          slidesPerView: 1,
-         speed: 1000,
          spaceBetween: 20,
          effect: "fade", // apply fade effect
          fadeEffect: {
@@ -87,26 +93,46 @@ const initSlider = () => {
          },
          on: {
             slideChange: function (swiper) {
-               const activeIndex = swiper.activeIndex;
-               currentSlideIndex.value = activeIndex;
-               updateLocationId(currentSlideIndex.value + 1);
-               const mapMarkers = document.querySelectorAll(".map-marker");
-               mapMarkers.forEach((marker) => {
-                  if (currentSlideIndex.value + 1 == marker.dataset.markerId) {
-                     marker.classList.add("active");
-                  } else {
-                     marker.classList.remove("active");
-                  }
-               });
+               if (window.innerWidth > 1024) {
+                  const activeIndex = swiper.activeIndex;
+                  currentSlideIndex.value = activeIndex;
+                  updateLocationId(currentSlideIndex.value);
+                  const mapMarkers = document.querySelectorAll(".map-marker");
+                  mapMarkers.forEach((marker) => {
+                     if (
+                        currentSlideIndex.value + 1 ==
+                        marker.dataset.markerId
+                     ) {
+                        marker.classList.add("active");
+                     } else {
+                        marker.classList.remove("active");
+                     }
+                  });
+               }
+            },
+         },
+         breakpoints: {
+            300: {
+               speed: 0,
+            },
+            1024: {
+               speed: 1000,
             },
          },
       });
    }
-   if (window.innerWidth < 1024) {
-      locationSwiper.value.slideTo(locationId.value);
+   if (window.innerWidth < 1024 && locationSwiper.value) {
+      setTimeout(() => {
+         currentSlideIndex.value = locationId.value - 1;
+         locationSwiper.value.slideTo(locationId.value - 1);
+      }, 178);
    }
-   console.log(locationId.value);
 };
+
+// watchEffect(props.placeId, () => {
+//    console.log(props.placeId);
+//    locationSwiper.value.slideTo(locationId.value);
+// });
 
 onMounted(() => {
    initSlider();

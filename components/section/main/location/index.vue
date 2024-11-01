@@ -6,7 +6,7 @@
 				.main-location__body
 					SectionMainLocationMap(:location-id="locationId")
 					button(type="button" @click="openPopupMap").main-location__button развернуть карту
-					SectionMainLocationSlider(@updateLocationId="updateLocationId")
+					SectionMainLocationSlider(v-if="device.isDesktop" @updateLocationId="updateLocationId")
 					.main-location__mask.mask-location(:class="{hidden: isHiddenMask}")
 						.mask-location__content
 							.mask-location__icon
@@ -15,12 +15,14 @@
 							.mask-location__text Нажимайте на отметки на карте, чтобы узнать подробности
 							UiButton(text="начать" class-names="btn-green" @button-click="hideMaskLocation")
 		PopupMap(:is-open="store.isOpenPopup" @close-popup="closePopupMap" :location-id="locationId")
-		PopupMapPlace(:is-open="isOpenPopup" @close-popup="closePopupMapPlace")
+		PopupMapPlace(:is-open="storeMapPlace.isOpenPopup" @close-popup="closePopupMapPlace" :placeId="placeId")
 </template>
 
 <script setup>
 import { usePopupMapStore } from "~/stores/popup/map";
 import { usePopupMapPlaceStore } from "~/stores/popup/map-place";
+
+const device = useDevice();
 
 const store = usePopupMapStore();
 const closePopupMap = () => {
@@ -30,15 +32,14 @@ const openPopupMap = () => {
    store.openPopup();
 };
 
-const storePlace = usePopupMapPlaceStore();
-
-const isOpenPopup = ref(false);
+const storeMapPlace = usePopupMapPlaceStore();
+// const isOpenPopup = ref(false);
 const placeId = ref(1);
 const openPopupMapPlace = () => {
-   isOpenPopup.value = true;
+   storeMapPlace.openPopup();
 };
 const closePopupMapPlace = () => {
-   isOpenPopup.value = false;
+   storeMapPlace.closePopup();
 };
 
 const locationId = ref(1);
@@ -60,19 +61,24 @@ watch(
 );
 
 onMounted(() => {
-   function documentActions(e) {
-      let target = e.target;
-      if (target.closest(".map-marker")) {
-         isOpenPopup.value = !isOpenPopup.value;
-         let id = Number(target.dataset.markerId);
-         placeId.value = Number(id);
-         console.log(placeId.value);
-         storePlace.newLocationId(id);
-         console.log(storePlace.locationId);
-
-         openPopupMapPlace();
+   if (window.innerWidth < 1024) {
+      function documentActions(e) {
+         let target = e.target;
+         if (target.closest(".map-marker")) {
+            // isOpenPopup.value = !isOpenPopup.value;
+            let id = Number(target.dataset.markerId);
+            placeId.value = Number(id);
+            openPopupMapPlace();
+            const markers = document.querySelectorAll(".map-marker");
+            markers.forEach((marker) => marker.classList.remove("active"));
+            target.classList.add("active");
+         }
       }
+      document.addEventListener("click", documentActions);
    }
+});
+
+onBeforeUnmount(() => {
    document.addEventListener("click", documentActions);
 });
 </script>
@@ -125,7 +131,7 @@ onMounted(() => {
       padding: 28px;
       width: 216px;
       height: 220px;
-      background: var(--text-avocado);
+      background-color: var(--text-avocado);
       left: 40px;
       top: 0;
       display: flex;
@@ -138,6 +144,7 @@ onMounted(() => {
       line-height: 27px;
       text-transform: uppercase;
       color: var(--bg-white);
+      transition: background-color $time;
       &::after {
          content: "";
          display: block;
@@ -150,6 +157,17 @@ onMounted(() => {
          mask-size: 40px 40px;
          background-color: currentColor;
          align-self: flex-end;
+      }
+      @media (any-hover: hover) {
+         &:hover {
+            background-color: #88a645;
+         }
+         &:active {
+            background-color: #66783d;
+         }
+      }
+      &:active {
+         background-color: #66783d;
       }
       @media screen and (max-width: $xxxl) {
          left: 32px;

@@ -224,6 +224,11 @@ onMounted(() => {
       transition: height 0.8s ease 0s, transform 0.8s ease 0s;
       width: 100%;
       overflow: hidden;
+      @media (any-hover: hover) {
+         &:hover {
+            cursor: pointer;
+         }
+      }
       & img {
          position: absolute;
          top: 0;

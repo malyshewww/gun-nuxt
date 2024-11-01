@@ -11,17 +11,13 @@
 
 <script setup>
 const { $ScrollTrigger: ScrollTrigger } = useNuxtApp();
-const scroller = ref("");
 onMounted(() => {
    const mainContent = document.querySelector(".main-content");
    const buttonUp = document.querySelector(".button-up");
    buttonUp.classList.remove("active");
 
    const footer = document.querySelector(".footer");
-
-   ScrollTrigger.defaults({ scroller: ".scroller" });
    window.addEventListener("scroll", (e) => {
-      // ScrollTrigger.update();
       // checkFooterPosition();
       const scrollY = window.scrollY;
       //   mainHeroWrapper.style.backgroundPositionY = scrollY * 0.7 + "px";

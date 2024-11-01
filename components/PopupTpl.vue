@@ -8,8 +8,8 @@
 			.form-popup__title {{popupData.title}}
 			.form-popup__sub-title(v-html="popupData.subTitle")
 			.form-popup__items
-				FormField(type="text" placeholder="Имя" name="name")
-				FormField(type="text" placeholder="Телефон" name="name")
+				FormField(type="text" placeholder="Имя" name="name" :isError="formErrors.name" @removeErrorName="removeErrorName")
+				FormField(type="text" placeholder="Телефон" name="phone" :isError="formErrors.phone" @removeErrorPhone="removeErrorPhone")
 			.form-popup__text Отправляя заявку, вы подтверждаете, что ознакомлены и согласны с условиями #[nuxt-link(to="/page/politic").form-popup__link политики обработки персональных данных]
 			UiButton(text="отправить" class-names="btn-green" type="submit")
 </template>
@@ -21,7 +21,38 @@ const props = defineProps({
       required: true,
       default: () => {},
    },
+   // formErrors: {
+   //    type: Object,
+   //    required: false,
+   //    default: () => {},
+   // },
 });
+
+const formErrors = reactive({
+   name: true,
+   phone: true,
+});
+
+const removeErrorName = () => {
+   console.log("name");
+   if (formErrors.name) {
+      formErrors.name = false;
+   }
+};
+const removeErrorPhone = () => {
+   console.log("phone");
+   if (formErrors.phone) {
+      formErrors.phone = false;
+   }
+};
+// const emit = defineEmits(["removeErrorName", "removeErrorPhone"]);
+
+// const removeErrorName = () => {
+//    emit("removeErrorName");
+// };
+// const removeErrorPhone = () => {
+//    emit("removeErrorPhone");
+// };
 </script>
 <style lang="scss" scoped>
 .popup {
@@ -29,9 +60,7 @@ const props = defineProps({
       padding-bottom: math.div(500, 300) * 100%;
       flex: 0 0 300px;
       @media screen and (max-width: $md) {
-         flex: 1 1 auto;
-         padding-bottom: 28%;
-         min-height: 150px;
+         display: none;
       }
    }
    &__body {

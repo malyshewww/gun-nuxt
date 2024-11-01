@@ -273,6 +273,7 @@ onMounted(() => {
          width: 100px;
          height: 100px;
          display: block;
+         visibility: visible;
          //  transform: translate(-50%, -100%);
       }
       //   [class*="--marker"] {
@@ -281,6 +282,9 @@ onMounted(() => {
       //   }
       [class*="--map-copyrights"] {
          display: none;
+      }
+      [class*="--marker"] {
+         visibility: hidden;
       }
       & .my-hint {
          transform: translate(5px, 15px);
@@ -298,6 +302,7 @@ onMounted(() => {
          display: grid;
          place-items: center;
          transform: translate(-50%, -50%);
+         visibility: visible;
          &__image {
             pointer-events: none;
             & svg path {

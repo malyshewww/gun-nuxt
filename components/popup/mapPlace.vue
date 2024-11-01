@@ -1,16 +1,24 @@
 <template lang="pug">
 	Teleport(to="body")
 		Popup(class="popup-map-place" :is-open="isOpen" @close-popup="closePopup")
-			SectionMainLocationSlider
+			//- div(style="color: red;") {{placeId}}
+			SectionMainLocationSlider(v-if="device.isMobile && isOpen" :placeId="placeId")
 </template>
 
 <script setup>
+const device = useDevice();
+
 const props = defineProps({
    isOpen: {
       type: Boolean,
       required: true,
    },
+   placeId: {
+      type: Number,
+      required: true,
+   },
 });
+
 const emit = defineEmits(["closePopup"]);
 // eslint-disable-next-line
 const closePopup = () => {
@@ -22,6 +30,57 @@ const closePopup = () => {
 .popup-map-place {
    & .slider-location {
       display: block;
+      position: static;
+      width: 100%;
+      height: 384px;
+      &__images {
+         flex: 0 0 287px;
+         @media screen and (max-width: $md) {
+            display: none;
+         }
+      }
+      &__outer {
+         align-items: center;
+         justify-content: center;
+         padding: 32px;
+      }
+      &__body {
+         max-width: 100%;
+      }
+      &__content {
+         gap: 12px;
+      }
+      &__caption {
+         font-size: 18px;
+         line-height: 20px;
+      }
+      &__description {
+         font-size: 16px;
+         font-weight: 500;
+         line-height: 24px;
+      }
+      &__distance {
+         min-height: 27px;
+         margin: 0;
+      }
+   }
+   & .slider-controls {
+      display: none;
+   }
+   & .popup {
+      &__wrapper {
+         padding: 0;
+         align-items: flex-end;
+      }
+      &__content {
+         padding: 0;
+         max-width: 100%;
+         border-radius: 0;
+      }
+      &__close {
+         right: 32px;
+         top: 32px;
+      }
    }
 }
 </style>
