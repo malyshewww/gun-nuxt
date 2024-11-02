@@ -2,20 +2,23 @@
 	.house-format__slider.slider-format
 		.slider-format__body.swiper(ref="sliderFormat")
 			.slider-format__wrapper.swiper-wrapper
-				.slider-format__item.swiper-slide(v-for="(slide, index) in 6" :key="index")
+				a(:href="`/images/house-format/house-${index+1}.jpg`" v-for="(slide, index) in 6" :key="index" data-fancybox="house").slider-format__item.swiper-slide
 					.slider-format__image.ibg
 						img(:src="`/images/house-format/house-${index+1}.jpg`" alt="house")
 		.slider-controls(ref="sliderControls")
 			button(ref="buttonPrev" type="button").slider-button.slider-button-prev
 			button(ref="buttonNext" type="button").slider-button.slider-button-next
+		UiTrailer(v-if="device.isDesktop" :is-active="true" text="выбрать")
 </template>
 
 <script setup>
 import gsap from "gsap";
 import Swiper from "swiper";
 import { Navigation } from "swiper/modules";
+import { Fancybox } from "@fancyapps/ui";
 import "swiper/css";
 import "swiper/css/navigation";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
 const sliderFormat = ref("");
 const swiperFormat = ref(null);
@@ -24,6 +27,8 @@ const buttonNext = ref("");
 const houseSliderControls = ref("");
 
 const slideWidth = ref(0);
+
+const device = useDevice();
 
 const initSlider = () => {
    function updateSlideClasses({ el, slides, activeIndex }) {
@@ -39,26 +44,14 @@ const initSlider = () => {
       }
       // Убираем класс у элемента слайдера на два следующих слайда
       const nextNextIndex = activeIndex + 2;
-      // const nextTripleIndex = activeIndex + 3;
       const nextNextSlide = slides[nextNextIndex];
-      // const nextTripleSlide = slides[nextTripleIndex];
       const nextNextSlides = el.querySelectorAll(".swiper-slide-next-next");
-      // const nextTripleSlides = el.querySelectorAll(
-      //    ".swiper-slide-next-next-next"
-      // );
       nextNextSlides.forEach((slide) => {
          slide.classList.remove("swiper-slide-next-next");
       });
-      // nextTripleSlides.forEach((slide) => {
-      //    slide.classList.remove("swiper-slide-next-next-next");
-      // });
-
       if (nextNextSlide) {
          nextNextSlide.classList.add("swiper-slide-next-next");
       }
-      // if (nextTripleSlide) {
-      //    nextNextSlide.classList.add("swiper-slide-next-next-next");
-      // }
    }
    let slideWidth = 0;
    let addedSpacing = window.innerWidth > 1024 ? 40 : 14;
@@ -126,6 +119,10 @@ const initSlider = () => {
 };
 onMounted(() => {
    initSlider();
+   const fancyboxOptions = {
+      Hash: false,
+   };
+   Fancybox.bind(`[data-fancybox="house"]`, fancyboxOptions);
 });
 </script>
 
@@ -142,6 +139,17 @@ onMounted(() => {
    }
    @media screen and (max-width: $md) {
       gap: 20px;
+   }
+   & .trailer {
+      position: absolute;
+      top: 60px;
+      transform: translateX(-50%);
+      @media screen and (max-width: $xxxl) {
+         top: 42px;
+      }
+      @media screen and (max-width: $xl) {
+         display: none;
+      }
    }
    &__body {
       overflow: visible;
@@ -224,6 +232,7 @@ onMounted(() => {
       transition: height 0.8s ease 0s, transform 0.8s ease 0s;
       width: 100%;
       overflow: hidden;
+      display: block;
       @media (any-hover: hover) {
          &:hover {
             cursor: pointer;

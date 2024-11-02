@@ -39,6 +39,7 @@ const closePopup = () => {
    }
    & .popup__content {
       max-width: 768px;
+      padding: 0;
       height: 100vh;
       border-radius: 0;
    }

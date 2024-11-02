@@ -10,7 +10,7 @@
 						.slider-location__item.swiper-slide(v-for="(item, index) in slides")
 							.slider-location__content
 								.slider-location__caption {{item.caption}}
-								.slider-location__description {{item.description}}
+								.slider-location__description(v-if="item.description") {{item.description}}
 								.slider-location__distance {{item.distance}}
 				.slider-controls
 					button(ref="buttonPrev" type="button").slider-button.slider-button-prev
@@ -48,6 +48,7 @@ const slides = [
    },
    {
       caption: "площадь Горького",
+      description: "Одна из центральных площадей города",
       distance: "5 мин пешком",
    },
    {

@@ -1,14 +1,27 @@
 <template lang="pug">
-	.trailer(ref="trailer")
+	.trailer(ref="trailer" :class="{active: isActive}")
 		.marquee
-			.marquee-content(data-content="смотреть")
-				| смотреть
-			.marquee-content(data-content="смотреть")
-				| смотреть
+			.marquee-content(:data-content="text ? text : 'смотреть'")
+				| {{text ? text : 'смотреть'}}
+			.marquee-content(:data-content="text ? text : 'смотреть'")
+				| {{text ? text : 'смотреть'}}
 </template>
 
 <script setup>
 const trailer = ref("");
+
+const props = defineProps({
+   text: {
+      type: String,
+      required: false,
+      default: () => "",
+   },
+   isActive: {
+      type: Boolean,
+      required: false,
+      default: () => false,
+   },
+});
 
 onMounted(() => {
    const trailer = document.querySelector(".trailer");
@@ -31,9 +44,7 @@ onMounted(() => {
    }
    if (trailer) {
       window.addEventListener("mousemove", (e) => {
-         const interactable =
-               e.target.closest(".item-dynamic") ||
-               e.target.closest(".slider-format__image"),
+         const interactable = e.target.closest(".item-dynamic"),
             interacting = interactable !== null;
          animateTrailer(e, interacting);
          //  trailer.value.dataset.type = interacting
@@ -77,6 +88,10 @@ onMounted(() => {
    left: 0;
    transition: opacity $time, transform $time, height $time;
    transform: scale(0);
+   @media screen and (max-width: $xxxl) {
+      width: 100px;
+      height: 100px;
+   }
    &::before,
    &::after {
       content: "";
@@ -100,6 +115,9 @@ onMounted(() => {
       opacity: 1;
       transform: scale(1);
       height: 160px;
+      @media screen and (max-width: $xxxl) {
+         height: 130px;
+      }
       &::before {
          width: 100%;
          height: 100%;
@@ -145,13 +163,8 @@ onMounted(() => {
       display: block;
       white-space: nowrap;
    }
-}
-@keyframes scroll {
-   0% {
-      transform: translate(0, 0);
-   }
-   100% {
-      transform: translate(-90%, 0);
+   @media screen and (max-width: $xxxl) {
+      font-size: 36px;
    }
 }
 </style>

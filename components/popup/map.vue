@@ -51,7 +51,7 @@ const closePopup = () => {
          @media screen and (any-hover: hover) {
             &:hover {
                &::before {
-                  background-color: var(--bg-white);
+                  background-color: var(--system-alert);
                }
             }
          }

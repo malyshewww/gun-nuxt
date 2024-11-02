@@ -17,16 +17,31 @@ const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
 
 const timeline = ref(null);
 
+const route = useRoute();
+
+const checkAnchor = () => {
+   const hash = route.hash;
+   if (hash) {
+      const targetElement = document.querySelector(hash);
+      if (targetElement) {
+         // Плавно прокрутить к элементу без анимации GSAP
+         targetElement.scrollIntoView({ behavior: "smooth" });
+         window.history.pushState(null, "", "#" + targetElement.id);
+      }
+   }
+};
+
 const animationScenariors = () => {
    const cards = document.querySelectorAll(".scenariors__card");
    const boxCards = document.querySelector(".main-scenariors__cards");
+
    if (cards.length > 0) {
       timeline.value = gsap
          .timeline({
             scrollTrigger: {
                trigger: boxCards,
                pin: true,
-               // pinSpacing: true,
+               pinSpacing: true,
                stagger: 0.5,
                start: "top-=100px",
                end: () => "+=" + cards[0].clientHeight * cards.length,
@@ -49,7 +64,7 @@ const animationScenariors = () => {
             {
                yPercent: 0,
             },
-            "-=0.3"
+            "-=0.03"
          )
          .to(".card-scenariors--2", {
             yPercent: 0,
@@ -62,7 +77,7 @@ const animationScenariors = () => {
             {
                yPercent: 0,
             },
-            "-=0.3"
+            "-=0.03"
          )
          .to(".card-scenariors--3", {
             yPercent: 0,
@@ -70,8 +85,10 @@ const animationScenariors = () => {
    }
 };
 onMounted(() => {
-   if (window.innerWidth > 1024 && !window.location.hash) {
+   if (window.innerWidth > 1024) {
       animationScenariors();
+      // Проверить якорь при монтировании компонента
+      checkAnchor();
    }
 });
 </script>

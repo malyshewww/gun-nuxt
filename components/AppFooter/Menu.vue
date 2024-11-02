@@ -3,7 +3,7 @@
 		nav.menu-footer__body
 			ul.menu-footer__list
 				li(v-for="(item, index) in menu").menu-footer__item
-					nuxt-link(:to="`${item.path}`").menu-footer__link {{item.title}}
+					nuxt-link(:to="{ path: item.path, hash: `${item.hash ? item.hash : ''}`}").menu-footer__link {{item.title}}
 </template>
 
 <script setup>

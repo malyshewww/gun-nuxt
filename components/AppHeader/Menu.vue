@@ -84,7 +84,6 @@ onMounted(() => {
       flex-grow: 1;
       justify-content: center;
    }
-
    @media screen and (max-width: $xl) {
       position: fixed;
       z-index: 20;
@@ -97,10 +96,10 @@ onMounted(() => {
       padding: 103px 32px 60px;
       background-color: var(--text-white);
       align-items: flex-start;
-      transform: translateY(-110%);
+      transform: translateX(110%);
       transition: transform 0.6s;
       &.active {
-         transform: translateY(0);
+         transform: translateX(0);
       }
    }
    @media screen and (max-width: $md) {

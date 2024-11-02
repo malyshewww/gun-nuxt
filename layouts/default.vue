@@ -4,6 +4,7 @@
 		AppHeader(:is-white="false" :is-visible="isHeaderVisible")
 		.page
 			slot
+			ButtonUp
 		AppFooter
 </template>
 
@@ -21,12 +22,35 @@ onMounted(() => {
       }
       scrollPosition = currentScrollPosition;
    });
+
+   const footer = document.querySelector(".footer");
+   const header = document.querySelector(".header");
+   const buttonUp = document.querySelector(".button-up");
+   window.addEventListener("scroll", (e) => {
+      const scrollY = window.scrollY;
+      const headerHeight = header.getBoundingClientRect().height;
+      scrollY > headerHeight
+         ? buttonUp.classList.add("active")
+         : buttonUp.classList.remove("active");
+      const footerRect = footer.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      if (footerRect.top <= windowHeight) {
+         buttonUp.style.position = "absolute";
+         // buttonUp.style.bottom = windowHeight - footerRect.top + "px";
+         buttonUp.style.bottom = `${window.innerWidth > 767.98 ? 80 : 60}px`;
+      } else {
+         buttonUp.style.position = "fixed";
+         buttonUp.style.bottom = `${window.innerWidth > 767.98 ? 80 : 60}px`;
+         // buttonUp.style.bottom = `80px`;
+      }
+   });
 });
 </script>
 
 <style lang="scss">
 .page {
    padding: 84px 0 280px;
+   position: relative;
    @media screen and (max-width: $xl) {
       padding: 64px 0 160px;
    }

@@ -19,8 +19,7 @@
 					.schedule-contacts__label 
 						span {{item.label}}
 					.schedule-contacts__value {{item.value}}
-		.info-contacts__actions
-			UiButton(text="заказать звонок" class-names="btn-green")
+		SectionContactsActions
 </template>
 
 <script setup>
@@ -32,7 +31,7 @@ defineProps({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .info-contacts {
    background-color: var(--bg-white);
    border-radius: 10px;
@@ -88,10 +87,6 @@ defineProps({
    &__address {
    }
    &__email {
-   }
-   &__actions {
-      height: 52px;
-      align-self: stretch;
    }
    & .email-link {
       justify-self: start;

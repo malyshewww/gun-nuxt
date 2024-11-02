@@ -33,6 +33,9 @@ const closePopup = () => {
       position: static;
       width: 100%;
       height: 384px;
+      @media screen and (max-width: $md) {
+         height: 280px;
+      }
       &__images {
          flex: 0 0 287px;
          @media screen and (max-width: $md) {
@@ -43,6 +46,10 @@ const closePopup = () => {
          align-items: center;
          justify-content: center;
          padding: 32px;
+         @media screen and (max-width: $md) {
+            padding: 16px;
+            padding-top: 40px;
+         }
       }
       &__body {
          max-width: 100%;
@@ -80,6 +87,10 @@ const closePopup = () => {
       &__close {
          right: 32px;
          top: 32px;
+         @media screen and (max-width: $md) {
+            right: 16px;
+            top: 16px;
+         }
       }
    }
 }

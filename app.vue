@@ -43,6 +43,7 @@ provide("menu", menu);
 <style lang="scss">
 @import "~/assets/scss/nullstyle.scss";
 @import "~/assets/scss/mixins.scss";
+@import "~/assets/scss/keyframes.scss";
 @import "~/assets/scss/fonts.scss";
 @import "~/assets/scss/common.scss";
 body.page--home {

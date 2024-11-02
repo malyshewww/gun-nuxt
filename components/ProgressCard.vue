@@ -26,6 +26,21 @@ const openPopupDynamic = () => {
 .item-dynamic {
    position: relative;
    flex-shrink: 0;
+   overflow: hidden;
+   &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      height: 200px;
+      background: linear-gradient(
+         to top,
+         rgba(43, 47, 59, 0.5),
+         rgba(43, 47, 59, 0)
+      );
+      transition: opacity 0.8s;
+   }
    &::before {
       content: "";
       position: absolute;
@@ -49,6 +64,10 @@ const openPopupDynamic = () => {
          cursor: pointer;
          &::before {
             clip-path: circle(70.71068% at 50% 50%);
+         }
+         &::after {
+            // height: 100%;
+            opacity: 0;
          }
       }
    }

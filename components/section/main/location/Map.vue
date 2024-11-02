@@ -275,6 +275,10 @@ onMounted(() => {
          display: block;
          visibility: visible;
          //  transform: translate(-50%, -100%);
+         @media screen and (max-width: $xl) {
+            width: 80px;
+            height: 80px;
+         }
       }
       //   [class*="--marker"] {
       //      width: 100px;

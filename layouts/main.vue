@@ -17,15 +17,9 @@ onMounted(() => {
    buttonUp.classList.remove("active");
 
    const footer = document.querySelector(".footer");
-   window.addEventListener("scroll", (e) => {
-      // checkFooterPosition();
-      const scrollY = window.scrollY;
-      //   mainHeroWrapper.style.backgroundPositionY = scrollY * 0.7 + "px";
-      document.documentElement.style.setProperty(
-         "--scrollTopDecrement",
-         `${-scrollY}px`
-      );
-      const header = document.querySelector(".header");
+   const header = document.querySelector(".header");
+
+   function checkScroll() {
       const mainContentHeight =
          mainContent.getBoundingClientRect().top + window.scrollY;
       if (scrollY > mainContentHeight) {
@@ -35,6 +29,17 @@ onMounted(() => {
          header.classList.replace("header-black", "header-white");
          buttonUp.classList.remove("active");
       }
+   }
+   checkScroll();
+   window.addEventListener("scroll", (e) => {
+      // checkFooterPosition();
+      const scrollY = window.scrollY;
+      //   mainHeroWrapper.style.backgroundPositionY = scrollY * 0.7 + "px";
+      document.documentElement.style.setProperty(
+         "--scrollTopDecrement",
+         `${-scrollY}px`
+      );
+      checkScroll();
       const footerRect = footer.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       if (footerRect.top <= windowHeight) {

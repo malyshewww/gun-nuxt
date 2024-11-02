@@ -35,30 +35,43 @@ const buttonClick = () => {
 
 <style lang="scss">
 .popup-news {
-   & .popup__wrapper {
-      height: 100%;
+   transition: opacity 0.5s ease 0.4s, visibility 0.5s ease 0s;
+   &.open-popup {
+      & .popup__content {
+         transform: translate(0%, 0%);
+         transition: transform 0.5s ease 0.4s;
+         opacity: 1;
+      }
    }
-   & .popup__content {
-      max-width: 1373px;
-      height: 100%;
-      padding: 94px 120px;
-      padding-right: 0;
-      border-radius: 0;
-      background: var(--text-white);
+   & .popup {
+      &__wrapper {
+         height: 100%;
+         padding: 0;
+      }
+      &__content {
+         max-width: 100%;
+         height: 100%;
+         padding: 94px 120px;
+         border-radius: 0;
+         background: var(--text-white);
+         opacity: 1;
+         transform: translate(100%, 0%);
+         transition: transform 0.5s ease 0s;
+      }
    }
    &__body {
       display: grid;
       grid-template-columns: 100%;
       gap: 36px;
-      padding-right: 120px;
-      max-height: 100%;
+      // padding-right: 120px;
       overflow-y: auto;
       overflow-x: hidden;
+      max-height: 100%;
       &::-webkit-scrollbar,
       &::-webkit-scrollbar-track,
       &::-webkit-scrollbar-thumb {
-         width: 1px;
-         height: 0;
+         width: 0px;
+         height: 0px;
          background: transparent;
          display: none;
       }

@@ -4,7 +4,7 @@
 			.popup-notice__body
 				.popup-notice__title Форма отправлена
 				.popup-notice__sub-title(v-html="popupData.subTitle")
-				UiButton(text="закрыть" class-names="btn-green" @buttonClick="closePopup")
+				UiButton(text="закрыть" class-names="btn-green" @button-click="closePopup")
 </template>
 
 <script setup>
@@ -37,12 +37,18 @@ const closePopup = () => {
          box-shadow: 0 10px 40px 0 rgba(29, 29, 27, 0.1);
          background: var(--text-midnight-100);
          border-radius: 0;
+         @media screen and (max-width: $xl) {
+            padding: 40px 20px;
+         }
       }
    }
    &__body {
       display: grid;
       justify-items: start;
       gap: 28px;
+      @media screen and (max-width: $xl) {
+         gap: 20px;
+      }
    }
    &__title {
       font-weight: 700;
@@ -50,6 +56,10 @@ const closePopup = () => {
       line-height: 34px;
       text-transform: uppercase;
       font-family: var(--second-family);
+      @media screen and (max-width: $xl) {
+         font-size: 22px;
+         line-height: 120%;
+      }
    }
    &__sub-title {
       font-weight: 600;

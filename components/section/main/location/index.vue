@@ -195,6 +195,7 @@ onBeforeUnmount(() => {
    background: rgba(255, 255, 255, 0.8);
    place-items: center;
    transition: opacity $time;
+   padding: 15px;
    &.hidden {
       opacity: 0;
       pointer-events: none;

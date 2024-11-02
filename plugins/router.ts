@@ -9,7 +9,7 @@ export default defineNuxtPlugin(({ $router }) => {
       if (to.hash) {
          return {
             el: to.hash,
-            top: 30,
+            top: 50,
             behaviour: "smooth",
          };
       }

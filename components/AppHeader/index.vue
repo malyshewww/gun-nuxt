@@ -28,6 +28,8 @@ const isOpenMenu = ref(false);
 
 const openMenu = () => {
    isOpenMenu.value = !isOpenMenu.value;
+   document.body.classList.toggle("lock");
+   props.isWhite = false;
 };
 
 onMounted(() => {
@@ -108,11 +110,25 @@ onMounted(() => {
          opacity: 0.5;
          z-index: -1;
       }
+      @media screen and (max-width: $xl) {
+         color: var(--main-color);
+         &.menu-open {
+            & .logo-black {
+               opacity: 1;
+            }
+            & .logo-white {
+               opacity: 0;
+            }
+         }
+      }
    }
    &.header-black {
       color: var(--main-color);
       background-color: var(--text-white);
       box-shadow: 0 0 10px 0 rgba(43, 47, 59, 0.05);
+      &::before {
+         opacity: 1;
+      }
    }
 }
 </style>
