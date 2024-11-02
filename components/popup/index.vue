@@ -110,7 +110,7 @@ const closePopup = () => {
          &:hover {
             cursor: pointer;
             &::before {
-               background-color: var(--system-alert);
+               background-color: var(--main-color);
             }
          }
       }

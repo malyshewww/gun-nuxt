@@ -1,7 +1,6 @@
 <template lang="pug">
 	Teleport(to="body")
 		Popup(class="popup-map-place" :is-open="isOpen" @close-popup="closePopup")
-			//- div(style="color: red;") {{placeId}}
 			SectionMainLocationSlider(v-if="device.isMobile && isOpen" :placeId="placeId")
 </template>
 

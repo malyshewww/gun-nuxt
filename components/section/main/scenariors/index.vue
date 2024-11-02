@@ -19,6 +19,8 @@ const timeline = ref(null);
 
 const route = useRoute();
 
+const router = useRouter();
+
 const checkAnchor = () => {
    const hash = route.hash;
    if (hash) {
@@ -26,7 +28,8 @@ const checkAnchor = () => {
       if (targetElement) {
          // Плавно прокрутить к элементу без анимации GSAP
          targetElement.scrollIntoView({ behavior: "smooth" });
-         window.history.pushState(null, "", "#" + targetElement.id);
+         router.push({ path: "/", hash });
+         // window.history.pushState(null, "", "#" + targetElement.id);
       }
    }
 };
@@ -96,6 +99,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .main-scenariors {
    padding: 110px 0;
+   overflow: clip;
    &__wrapper {
       @media screen and (max-width: $xl) {
          display: grid;

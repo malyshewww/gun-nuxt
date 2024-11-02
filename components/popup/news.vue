@@ -52,16 +52,36 @@ const buttonClick = () => {
          max-width: 100%;
          height: 100%;
          padding: 94px 120px;
+         padding-bottom: 45px;
          border-radius: 0;
          background: var(--text-white);
          opacity: 1;
          transform: translate(100%, 0%);
          transition: transform 0.5s ease 0s;
+         @media screen and (max-width: $xxxl) {
+            padding: 60px;
+            padding-bottom: 30px;
+         }
+         @media screen and (max-width: $md) {
+            padding: 30px;
+         }
+      }
+      &__close {
+         top: 36px;
+         right: 42px;
+         @media screen and (max-width: $xxxl) {
+            top: 30px;
+            right: 30px;
+         }
+         @media screen and (max-width: $md) {
+            top: 8px;
+            right: 8px;
+         }
       }
    }
    &__body {
-      display: grid;
-      grid-template-columns: 100%;
+      display: flex;
+      flex-direction: column;
       gap: 36px;
       // padding-right: 120px;
       overflow-y: auto;
@@ -75,6 +95,10 @@ const buttonClick = () => {
          background: transparent;
          display: none;
       }
+      @media screen and (max-width: $md) {
+         gap: 20px;
+         height: 100%;
+      }
    }
    &__content {
       display: grid;
@@ -82,6 +106,10 @@ const buttonClick = () => {
       justify-items: start;
       gap: 64px;
       font-family: var(--font-family);
+      @media screen and (max-width: $md) {
+         gap: 32px;
+         flex: 1 1 auto;
+      }
    }
    &__heading {
       display: grid;
@@ -93,6 +121,10 @@ const buttonClick = () => {
       font-size: 28px;
       line-height: 34px;
       text-transform: uppercase;
+      @media screen and (max-width: $md) {
+         font-size: 22px;
+         line-height: 26px;
+      }
    }
    &__date {
       border: 1px solid var(--bg-gray);
@@ -107,6 +139,9 @@ const buttonClick = () => {
       color: var(--text-gray);
    }
    &__bottom {
+      @media screen and (max-width: $md) {
+         margin-top: auto;
+      }
    }
 }
 </style>

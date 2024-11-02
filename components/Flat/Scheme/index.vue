@@ -226,14 +226,20 @@ onMounted(() => {
       transition: background-color $time, color $time;
       &.booked {
          background-color: var(--bg-gray);
+         color: var(--text-gray);
       }
       &.in-sell {
          color: var(--text-white);
          background-color: var(--text-avocado);
       }
       &.sold {
+         background-color: transparent;
          pointer-events: none;
          user-select: none;
+      }
+      &.disabled {
+         background-color: #d3dfb7;
+         pointer-events: none;
       }
       @media (any-hover: hover) {
          &:hover {

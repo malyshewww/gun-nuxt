@@ -167,7 +167,7 @@ onMounted(() => {
       width: 100%;
       height: 100dvh;
       background: var(--text-white);
-      z-index: 30;
+      z-index: 40;
       padding: 15px 15px 42px;
       overflow-y: auto;
       overflow-x: hidden;

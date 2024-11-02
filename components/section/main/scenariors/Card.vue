@@ -38,6 +38,9 @@ defineProps({
    // align-items: center;
    // opacity: 0; /* Изначально скрыты */
    // transform: scale(0); /* Начальное состояние для анимации */
+   // @media screen and (max-height: 700px) {
+   //    height: 380px;
+   // }
    @media screen and (max-width: $xxxl) {
       height: 446px;
       width: 402px;
@@ -64,8 +67,11 @@ defineProps({
       background-color: var(--text-avocado);
       z-index: 2;
       top: 115px;
-      left: 0px;
+      left: 40px;
       transform: rotate(-10deg);
+      @media screen and (max-width: $xxl) {
+         left: 0;
+      }
       @media screen and (max-width: $xl) {
          transform: none;
       }
@@ -82,9 +88,12 @@ defineProps({
       background-color: var(--bg-sand);
       // transform: translate(-125px, 115px) rotate(10deg);
       z-index: 3;
-      right: 0;
+      right: 40px;
       top: 115px;
       transform: rotate(10deg);
+      @media screen and (max-width: $xxl) {
+         right: 0;
+      }
       @media screen and (max-width: $xl) {
          transform: none;
       }

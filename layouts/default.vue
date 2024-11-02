@@ -37,7 +37,7 @@ onMounted(() => {
       if (footerRect.top <= windowHeight) {
          buttonUp.style.position = "absolute";
          // buttonUp.style.bottom = windowHeight - footerRect.top + "px";
-         buttonUp.style.bottom = `${window.innerWidth > 767.98 ? 80 : 60}px`;
+         buttonUp.style.bottom = `${window.innerWidth > 767.98 ? 80 : 50}px`;
       } else {
          buttonUp.style.position = "fixed";
          buttonUp.style.bottom = `${window.innerWidth > 767.98 ? 80 : 60}px`;

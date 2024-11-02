@@ -167,6 +167,10 @@ const closeDropdown = (idx) => {
       align-items: start;
       gap: 64px;
       margin-top: 64px;
+      @media screen and (max-width: $xl) {
+         gap: 32px;
+         margin-top: 40px;
+      }
    }
    &__body {
       display: grid;
@@ -185,6 +189,9 @@ const closeDropdown = (idx) => {
    }
    &__bottom {
       justify-self: center;
+      @media screen and (max-width: $xl) {
+         justify-self: stretch;
+      }
    }
 }
 </style>

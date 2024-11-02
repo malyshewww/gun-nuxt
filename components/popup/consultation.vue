@@ -26,12 +26,20 @@ const closePopup = () => {
 
 <style lang="scss">
 .popup-consultation {
+   color: var(--text-white);
    & .popup {
       &__content {
          padding: 0;
          max-width: 910px;
       }
       &__close {
+         @media (any-hover: hover) {
+            &:hover {
+               &::before {
+                  background-color: currentColor;
+               }
+            }
+         }
          @media screen and (max-width: $md) {
             &::before {
                background-color: var(--bg-white);

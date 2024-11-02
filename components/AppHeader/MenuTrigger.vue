@@ -133,6 +133,7 @@ const openFilter = () => {
       align-items: center;
       z-index: 4;
       background: var(--bg-white);
+      margin-left: auto;
       &::before {
          content: "";
          display: block;
@@ -152,6 +153,7 @@ const openFilter = () => {
       font-weight: 600;
       font-size: 14px;
       line-height: 20px;
+      font-family: var(--font-family);
       opacity: 0;
       transition: opacity $time;
    }

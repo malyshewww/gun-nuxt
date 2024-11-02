@@ -29,7 +29,8 @@ import { useDynamicAdapt } from "~/utils/dynamic-adapt";
 defineProps({
    isDescr: {
       type: Boolean,
-      required: true,
+      required: false,
+      default: () => "",
    },
    sliderCaption: {
       type: String,
@@ -37,7 +38,8 @@ defineProps({
    },
    slider: {
       type: Object,
-      required: true,
+      required: false,
+      default: () => null,
    },
 });
 

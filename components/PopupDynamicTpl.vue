@@ -181,6 +181,12 @@ onMounted(() => {
       }
       &.swiper-button-disabled {
          opacity: 0.5;
+         background: var(--text-white);
+      }
+      @media (any-hover: hover) {
+         &:hover {
+            background-color: #e8e7e3;
+         }
       }
       @media screen and (max-width: $xl) {
          width: 48px;

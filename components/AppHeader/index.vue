@@ -1,8 +1,8 @@
 <template lang="pug">
-	header.header(:class="[{'header-white': isWhite}, {'menu-open': isOpenMenu}, {'hidden': !isVisible}]")
+	header.header(ref="header" :class="[{'header-white': isWhite}, {'header-black': !isWhite}, {'menu-open': isOpenMenu}, {'hidden': !isVisible}]")
 		.header__body
 			AppHeaderLogo
-			AppHeaderMenu(:is-open-menu="isOpenMenu")
+			AppHeaderMenu(:is-open-menu="isOpenMenu" @close-menu="closeMenu")
 			AppHeaderActions
 			AppHeaderMenuTrigger(@openMenu="openMenu" :is-open-menu="isOpenMenu" data-da=".wrapper, 1025, 1")
 </template>
@@ -22,14 +22,40 @@ const props = defineProps({
       default: "",
    },
 });
-provide("isWhiteLogo", props.isWhite);
+
+// watch(
+//    () => props.isWhite,
+//    (state, prevState) => {
+//       console.log("с опцией deep ");
+//    },
+//    { deep: true }
+// );
+
+const header = ref("");
+// watchEffect(
+//    props.isWhite,
+//    () => {
+//       header.value.classList.add("header-black");
+//    },
+//    {
+//       flush: "post",
+//    }
+// );
 
 const isOpenMenu = ref(false);
 
 const openMenu = () => {
    isOpenMenu.value = !isOpenMenu.value;
    document.body.classList.toggle("lock");
-   props.isWhite = false;
+};
+
+const closeMenu = (e) => {
+   const target = e.target;
+   if (target.tagName === "A" && target.closest(".menu__link")) {
+      isOpenMenu.value = false;
+      document.body.classList.toggle("lock") &&
+         document.body.classList.remove("lock");
+   }
 };
 
 onMounted(() => {

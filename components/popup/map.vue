@@ -48,10 +48,10 @@ const closePopup = () => {
             height: 36px;
             mask-size: 30px 30px;
          }
-         @media screen and (any-hover: hover) {
+         @media (any-hover: hover) {
             &:hover {
                &::before {
-                  background-color: var(--system-alert);
+                  background-color: var(--text-white);
                }
             }
          }

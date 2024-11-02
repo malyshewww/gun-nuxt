@@ -26,12 +26,31 @@ Fancybox.bind(`[data-fancybox="gallery-static"]`, fancyboxOptions);
       grid-template-columns: repeat(3, 1fr);
       align-items: start;
       gap: 40px;
+      @media screen and (max-width: $xl) {
+         grid-template-columns: repeat(2, 1fr);
+         gap: 20px;
+      }
+      @media screen and (max-width: $md) {
+         grid-template-columns: 100%;
+         gap: 15px;
+      }
    }
 }
 .gallery-item {
+   position: relative;
    &__image {
       display: block;
       padding-bottom: math.div(398, 594) * 100%;
+   }
+   @media (any-hover: hover) {
+      &:hover {
+         & .mask {
+            opacity: 1;
+            &__icon {
+               opacity: 1;
+            }
+         }
+      }
    }
 }
 </style>

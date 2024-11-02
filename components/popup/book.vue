@@ -26,6 +26,7 @@ const closePopup = () => {
 
 <style lang="scss">
 .popup-book {
+   color: var(--text-white);
    & .popup {
       &__content {
          padding: 0;
@@ -36,6 +37,15 @@ const closePopup = () => {
       }
       &__image {
          display: none;
+      }
+      &__close {
+         @media (any-hover: hover) {
+            &:hover {
+               &::before {
+                  background-color: currentColor;
+               }
+            }
+         }
       }
    }
 }

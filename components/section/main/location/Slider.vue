@@ -33,7 +33,8 @@ const storePlace = usePopupMapPlaceStore();
 const props = defineProps({
    placeId: {
       type: Number,
-      required: true,
+      required: false,
+      default: () => "",
    },
 });
 

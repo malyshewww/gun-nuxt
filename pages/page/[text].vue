@@ -42,9 +42,34 @@
 								td 40,3 м²
 								td 40,3 м²
 			.galleries
-				SliderGallery
+				SliderGallery(:slider="slider" slider-caption="Варианты дизайнерской отделки" :isDescr="true")
 				StaticGallery
 </template>
+
+<script setup>
+const slider = [
+   {
+      img: "1",
+      alt: "описание",
+   },
+   {
+      img: "2",
+      alt: "описание",
+   },
+   {
+      img: "3",
+      alt: "описание",
+   },
+   {
+      img: "4",
+      alt: "описание",
+   },
+   {
+      img: "4",
+      alt: "описание",
+   },
+];
+</script>
 
 <style lang="scss" scoped>
 .galleries {

@@ -20,7 +20,6 @@
 
 <script setup>
 const router = useRoute();
-const isWhiteLogo = inject("isWhiteLogo");
 </script>
 
 <style lang="scss" scoped>

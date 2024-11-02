@@ -1,5 +1,5 @@
 <template lang="pug">
-	.header__menu.menu(:class="{active: isOpenMenu}")
+	.header__menu.menu(:class="{active: isOpenMenu}" @click="closeMenu")
 		nav.menu__body
 			ul.menu__list 
 				li.menu__item(v-for="(item, index) in menu" :key="index")
@@ -25,6 +25,22 @@ const isDropdownMenuActive = ref(false);
 const openDropdownMenu = () => {
    isDropdownMenuActive.value = !isDropdownMenuActive.value;
 };
+
+const emit = defineEmits(["closeMenu"]);
+
+const closeMenu = (e) => {
+   emit("closeMenu", e);
+};
+
+// const anchor = (e) => {
+//    const target = e.target;
+//    if (target.closest(".menu__item")) {
+//       const { href } = target;
+//       if (href.includes("#news")) {
+//          router({ path: "/", hash: false });
+//       }
+//    }
+// };
 
 onMounted(() => {
    const menu = document.querySelector(".menu"),
@@ -79,6 +95,8 @@ onMounted(() => {
    gap: 20px;
    max-width: 930px;
    width: 100%;
+   position: relative;
+   z-index: 21;
    @media screen and (max-width: $xxxl) {
       max-width: 100%;
       flex-grow: 1;

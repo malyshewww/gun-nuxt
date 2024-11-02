@@ -13,6 +13,7 @@
   grid-template-columns: 100%;
   align-items: start;
   grid-template-rows: auto 1fr auto;
+  overflow: clip;
 }
 
 body.lock {

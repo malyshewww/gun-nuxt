@@ -1,7 +1,7 @@
 <template lang="pug">
 	.wrapper.scroller(ref="scroller")
 		UiTrailer
-		AppHeader(:is-white="true")
+		AppHeader(:is-white="isWhite")
 		main.main
 			.page
 				slot
@@ -11,41 +11,39 @@
 
 <script setup>
 const { $ScrollTrigger: ScrollTrigger } = useNuxtApp();
+
+const isWhite = ref(true);
+
 onMounted(() => {
    const mainContent = document.querySelector(".main-content");
    const buttonUp = document.querySelector(".button-up");
    buttonUp.classList.remove("active");
-
    const footer = document.querySelector(".footer");
-   const header = document.querySelector(".header");
-
    function checkScroll() {
       const mainContentHeight =
          mainContent.getBoundingClientRect().top + window.scrollY;
       if (scrollY > mainContentHeight) {
-         header.classList.replace("header-white", "header-black");
+         isWhite.value = false;
          buttonUp.classList.add("active");
       } else {
-         header.classList.replace("header-black", "header-white");
+         isWhite.value = true;
          buttonUp.classList.remove("active");
       }
    }
    checkScroll();
    window.addEventListener("scroll", (e) => {
-      // checkFooterPosition();
       const scrollY = window.scrollY;
-      //   mainHeroWrapper.style.backgroundPositionY = scrollY * 0.7 + "px";
-      document.documentElement.style.setProperty(
-         "--scrollTopDecrement",
-         `${-scrollY}px`
-      );
+      // document.documentElement.style.setProperty(
+      //    "--scrollTopDecrement",
+      //    `${-scrollY}px`
+      // );
       checkScroll();
       const footerRect = footer.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       if (footerRect.top <= windowHeight) {
          buttonUp.style.position = "absolute";
          // buttonUp.style.bottom = windowHeight - footerRect.top + "px";
-         buttonUp.style.bottom = `${window.innerWidth > 767.98 ? 80 : 60}px`;
+         buttonUp.style.bottom = `${window.innerWidth > 767.98 ? 80 : 50}px`;
       } else {
          buttonUp.style.position = "fixed";
          buttonUp.style.bottom = `${window.innerWidth > 767.98 ? 80 : 60}px`;
