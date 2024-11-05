@@ -14,7 +14,7 @@ const props = defineProps({
    },
    placeId: {
       type: Number,
-      required: true,
+      required: false,
    },
 });
 

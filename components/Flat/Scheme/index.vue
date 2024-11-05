@@ -39,7 +39,7 @@ const reverseFloors = computed(() => {
 const emit = defineEmits(["openTooltip", "closeTooltip"]);
 
 const showDetailRoom = (event, currentRoom) => {
-   console.log(currentRoom);
+   // console.log(currentRoom);
    if (window.innerWidth >= 1024) {
       emit("openTooltip", event, currentRoom);
    }

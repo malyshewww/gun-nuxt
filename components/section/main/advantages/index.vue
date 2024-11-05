@@ -94,6 +94,9 @@ const advantages = [
       gap: 305px 0px;
       position: sticky;
       top: 85px;
+      @media screen and (max-height: 800px) {
+         gap: 85px 0px;
+      }
       @media screen and (max-width: 1600px) {
          gap: 50px 0px;
          position: static;

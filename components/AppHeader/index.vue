@@ -10,6 +10,10 @@
 <script setup>
 import { useDynamicAdapt } from "~/utils/dynamic-adapt";
 
+import { useMenuStore } from "~/stores/menu";
+
+const storeMenu = useMenuStore();
+
 const props = defineProps({
    isWhite: {
       type: Boolean,
@@ -32,21 +36,13 @@ const props = defineProps({
 // );
 
 const header = ref("");
-// watchEffect(
-//    props.isWhite,
-//    () => {
-//       header.value.classList.add("header-black");
-//    },
-//    {
-//       flush: "post",
-//    }
-// );
 
 const isOpenMenu = ref(false);
 
 const openMenu = () => {
    isOpenMenu.value = !isOpenMenu.value;
    document.body.classList.toggle("lock");
+   storeMenu.toggleMenu();
 };
 
 const closeMenu = (e) => {
@@ -56,6 +52,7 @@ const closeMenu = (e) => {
       document.body.classList.toggle("lock") &&
          document.body.classList.remove("lock");
    }
+   storeMenu.toggleMenu();
 };
 
 onMounted(() => {

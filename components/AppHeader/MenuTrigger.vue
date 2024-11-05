@@ -76,7 +76,9 @@ const openFilter = () => {
          }
          &__close {
             transform: scale(1);
-            transition-delay: 0.2s;
+            opacity: 1;
+            transition: transform $time ease-out 0.2s,
+               opacity $time ease-out 0.2s;
          }
       }
    }
@@ -175,8 +177,9 @@ const openFilter = () => {
       top: 0;
       display: grid;
       place-items: center;
-      transform: scale(0);
-      transition: transform $time ease 0s;
+      transform: scale(0.4);
+      opacity: 0;
+      transition: transform 0s ease 0s, opacity 0s ease 0s;
       & svg {
          width: 14px;
          height: 14px;

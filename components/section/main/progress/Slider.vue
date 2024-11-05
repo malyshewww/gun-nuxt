@@ -6,7 +6,7 @@
 		.slider-controls
 			button(ref="buttonPrev" type="button").slider-button.slider-button-prev
 			button(ref="buttonNext" type="button").slider-button.slider-button-next
-		PopupDynamic(v-if="storePopupDynamic.isOpenPopupDynamic" :is-open.sync="storePopupDynamic.isOpenPopupDynamic" @close-popup="closePopupDynamic" :popup-data="initialState" :initial-slide="initialSlide")
+		PopupDynamic(:is-open.sync="storePopupDynamic.isOpenPopupDynamic" @close-popup="closePopupDynamic" :popup-data="initialState" :initial-slide="initialSlide")
 </template>
 
 <script setup>
@@ -30,7 +30,6 @@ const openPopupDynamic = (event, item) => {
    initialState.caption = item.caption;
    initialState.images = item.images;
    storePopupDynamic.openPopupDynamic();
-   console.log(storePopupDynamic.isOpenPopupDynamic);
 };
 const closePopupDynamic = () => {
    storePopupDynamic.closePopupDynamic();
@@ -38,7 +37,6 @@ const closePopupDynamic = () => {
       initialState.caption = null;
       initialState.images = null;
    }, 100);
-   console.log(storePopupDynamic.isOpenPopupDynamic);
 };
 
 const dynamic = reactive({

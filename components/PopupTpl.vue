@@ -8,8 +8,8 @@
 			.form-popup__title {{popupData.title}}
 			.form-popup__sub-title(v-html="popupData.subTitle")
 			.form-popup__items
-				FormField(type="text" placeholder="Имя" name="name" :isError="formErrors.name" @removeErrorName="removeErrorName")
-				FormField(type="text" placeholder="Телефон" name="phone" :isError="formErrors.phone" @removeErrorPhone="removeErrorPhone")
+				FormField(type="text" placeholder="Имя" name="name" :isError="formErrors.name" @remove-error-name="removeErrorName")
+				FormField(type="text" placeholder="Телефон" name="phone" :isError="formErrors.phone" @remove-error-phone="removeErrorPhone")
 			.form-popup__text Отправляя заявку, вы подтверждаете, что ознакомлены и согласны с условиями #[nuxt-link(to="/page/politic").form-popup__link политики обработки персональных данных]
 			UiButton(text="отправить" class-names="btn-green" type="submit")
 </template>
@@ -21,38 +21,20 @@ const props = defineProps({
       required: true,
       default: () => {},
    },
-   // formErrors: {
-   //    type: Object,
-   //    required: false,
-   //    default: () => {},
-   // },
+   formErrors: {
+      required: false,
+      default: () => false,
+   },
 });
 
-const formErrors = reactive({
-   name: true,
-   phone: true,
-});
+const emit = defineEmits(["removeErrorName", "removeErrorPhone"]);
 
 const removeErrorName = () => {
-   console.log("name");
-   if (formErrors.name) {
-      formErrors.name = false;
-   }
+   emit("removeErrorName");
 };
 const removeErrorPhone = () => {
-   console.log("phone");
-   if (formErrors.phone) {
-      formErrors.phone = false;
-   }
+   emit("removeErrorPhone");
 };
-// const emit = defineEmits(["removeErrorName", "removeErrorPhone"]);
-
-// const removeErrorName = () => {
-//    emit("removeErrorName");
-// };
-// const removeErrorPhone = () => {
-//    emit("removeErrorPhone");
-// };
 </script>
 <style lang="scss" scoped>
 .popup {

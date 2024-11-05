@@ -34,7 +34,6 @@ const openPopupNews = (item) => {
    popupNewsData.title = item.title;
    popupNewsData.date = item.date;
    popupNewsData.text = item.text;
-   console.log("open news");
 };
 
 const sliderNews = ref("");

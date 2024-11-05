@@ -32,36 +32,51 @@
 				UiButton(class-names="btn-green" text="применить" @button-click="closeFilter")
 			.filter-group.filter-group--options
 				.filter-options
-					.filter-group__option.filter-option
-						input(type="checkbox" name="additional" id="design")
-						label(for="design") 
-							| Дизайнерская отделка
-							button(type="button").filter-option__delete-btn
-					.filter-group__option.filter-option
-						input(type="checkbox" name="additional" id="room")
-						label(for="room") 
-							| Видовая квартира
-							button(type="button").filter-option__delete-btn
-					.filter-group__option.filter-option
-						input(type="checkbox" name="additional" id="offer")
-						label(for="offer") 
-							| Выгодное предложение
+					.filter-group__option.filter-option(v-for="item, index in checkBoxes")
+						input(type="checkbox" name="additional" :id="item.key" v-bind:value="item" v-model="option")
+						label(:for="item.key")
+							| {{item.title}}
 							button(type="button").filter-option__delete-btn
 			.filter-group.filter-group--last
 				.filter-group__buttons
-					//- UiButton(class-names="btn-green" text="применить")
-					button(type="button").filter-group__reset-btn Сбросить #[span фильтры]
+					button(type="button" @click="resetFilter").filter-group__reset-btn Сбросить фильтры
+					button(type="button" @click="resetFilter").filter-group__reset-btn.filter-group__reset-btn--mobile Сбросить 
 </template>
 
 <script setup>
 import { useFilterStore } from "~/stores/filter-actions";
+import { useMenuStore } from "~/stores/menu";
 import noUiSlider from "nouislider";
 
 const store = useFilterStore();
+const storeMenu = useMenuStore();
 
 const closeFilter = () => {
+   if (storeMenu.isOpenMenu === false) {
+      document.body.classList.remove("lock");
+   }
    store.closeFitler();
 };
+
+const checkBoxes = reactive([
+   {
+      id: 0,
+      title: "Дизайнерская отделка",
+      key: "design",
+   },
+   {
+      id: 1,
+      title: "Видовая квартира",
+      key: "room",
+   },
+   {
+      id: 2,
+      title: "Выгодное предложение",
+      key: "offer",
+   },
+]);
+
+const option = ref([]);
 
 const sliderPrice = ref("");
 const sliderArea = ref("");
@@ -71,22 +86,22 @@ const filter = reactive({
    price: {
       min: 3,
       max: 42.2,
-      minRange: null,
-      maxRange: null,
+      minRange: 3,
+      maxRange: 42.2,
       step: 0.1,
    },
    area: {
       min: 17,
       max: 120,
-      minRange: null,
-      maxRange: null,
+      minRange: 17,
+      maxRange: 120,
       step: 0.1,
    },
    floor: {
       min: 1,
       max: 20,
-      minRange: null,
-      maxRange: null,
+      minRange: 1,
+      maxRange: 20,
       step: 1,
    },
 });
@@ -146,6 +161,21 @@ const initRangeSliders = () => {
    initRange(sliderPrice.value, filter.price);
    initRange(sliderArea.value, filter.area);
    initRange(sliderFloor.value, filter.floor);
+};
+
+const resetRangeSlider = (slider, obj) => {
+   slider.noUiSlider.set([obj.minRange, obj.maxRange]);
+};
+
+const resetRangeSliders = () => {
+   resetRangeSlider(sliderPrice.value, filter.price);
+   resetRangeSlider(sliderArea.value, filter.area);
+   resetRangeSlider(sliderFloor.value, filter.floor);
+};
+
+const resetFilter = () => {
+   option.value = [];
+   resetRangeSliders();
 };
 
 onMounted(() => {
@@ -345,6 +375,15 @@ onMounted(() => {
          font-weight: 400;
          font-size: 14px;
          line-height: 20px;
+      }
+      @media screen and (max-width: $md) {
+         display: none;
+      }
+      &--mobile {
+         display: none;
+         @media screen and (max-width: $md) {
+            display: flex;
+         }
       }
    }
 }

@@ -34,7 +34,7 @@ const closeMenu = (e) => {
 
 // const anchor = (e) => {
 //    const target = e.target;
-//    if (target.closest(".menu__item")) {
+//    if (target.closest(".menu__link")) {
 //       const { href } = target;
 //       if (href.includes("#news")) {
 //          router({ path: "/", hash: false });

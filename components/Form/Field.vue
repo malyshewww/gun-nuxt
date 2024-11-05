@@ -23,7 +23,7 @@ const props = defineProps({
    isError: {
       type: Boolean,
       required: false,
-      default: () => false,
+      default: false,
    },
 });
 
@@ -42,10 +42,18 @@ const emit = defineEmits(["removeErrorName", "removeErrorPhone"]);
 
 const text = ref(null);
 
-const clearField = () => {
-   text.value = "";
+const removeErrorName = () => {
    emit("removeErrorName");
+};
+const removeErrorPhone = () => {
    emit("removeErrorPhone");
+};
+
+const clearField = () => {
+   // console.log("clear");
+   text.value = "";
+   removeErrorName();
+   removeErrorPhone();
    // currentFiledError.value = false;
 };
 </script>

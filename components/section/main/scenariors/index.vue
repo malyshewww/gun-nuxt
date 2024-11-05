@@ -29,6 +29,7 @@ const checkAnchor = () => {
          // Плавно прокрутить к элементу без анимации GSAP
          targetElement.scrollIntoView({ behavior: "smooth" });
          router.push({ path: "/", hash });
+         // history.replaceState(null, null, " ");
          // window.history.pushState(null, "", "#" + targetElement.id);
       }
    }
@@ -88,7 +89,7 @@ const animationScenariors = () => {
    }
 };
 onMounted(() => {
-   if (window.innerWidth > 1024) {
+   if (window.innerWidth > 1024 && !window.location.hash) {
       animationScenariors();
       // Проверить якорь при монтировании компонента
       checkAnchor();

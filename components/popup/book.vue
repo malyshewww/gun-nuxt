@@ -1,10 +1,14 @@
 <template lang="pug">
 	Teleport(to="body")
 		Popup(class="popup-book" :is-open="isOpen" @close-popup="closePopup")
-			PopupTpl(:popup-data="popupData")
+			PopupTpl(:popup-data="popupData" :form-errors="formErrors" @remove-error-name="removeErrorName" @remove-error-phone="removeErrorPhone")
 </template>
 
 <script setup>
+import { usePopupBookStore } from "~/stores/popup/book";
+
+const store = usePopupBookStore();
+
 const props = defineProps({
    isOpen: {
       type: Boolean,
@@ -16,6 +20,21 @@ const props = defineProps({
       default: () => {},
    },
 });
+
+const formErrors = reactive({
+   name: true,
+   phone: false,
+});
+
+const removeErrorName = () => {
+   formErrors.name = false;
+   // store.removeErrorName();
+};
+
+const removeErrorPhone = () => {
+   formErrors.phone = false;
+   // store.removeErrorPhone();
+};
 
 const emit = defineEmits(["closePopup"]);
 // eslint-disable-next-line

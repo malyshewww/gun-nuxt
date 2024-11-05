@@ -10,10 +10,10 @@
 						li.features-card__item(v-for="(feature, idx) in flat.features" :key="idx") {{feature}}
 			.flat-card__parameters.parameters-card(v-if="flat.parameters")
 				.parameters-card__item {{flat.parameters[0]}}
-				.parameters-card__wrapper(@click="openDropdown(flatIndex)" :class="{active: activeCard === flatIndex}")
+				.parameters-card__wrapper(@click="toggleDropdown(flatIndex)" :class="{active: activeCard === flatIndex}")
 					.parameters-card__button(v-if="parametersLength") 
 						| +{{parametersLength}}
-						span.parameters-card__button-icon(@click="closeDropdown")
+						span.parameters-card__button-icon
 					.parameters-card__tooltip(v-if="parametersLength")
 						ul.parameters-card__list
 							li.parameters-card__item(v-for="(parameter, idx) in newParametersList" :key="idx") {{parameter}}
@@ -31,21 +31,16 @@ const props = defineProps({
    activeCard: {
       type: Number,
       required: true,
-      default: -1,
+      default: () => -1,
    },
 });
 
-const isActiveCard = ref(props.activeCard);
+const open = ref(false);
 
-const emit = defineEmits(["openDropdown", "closeDropdown"]);
+const emit = defineEmits(["toggleDropdown"]);
 
-const openDropdown = (i) => {
-   // props.activeCard = i;
-   emit("openDropdown", i);
-};
-const closeDropdown = (i) => {
-   isActiveCard.value = -1;
-   emit("closeDropdown", i);
+const toggleDropdown = (idx) => {
+   emit("toggleDropdown", idx);
 };
 
 const parametersLength = computed(() => {

@@ -57,10 +57,10 @@ const updateMarkers = () => {
    placemarks.map((marker) => {
       if (props.locationId === marker.id) {
          marker.isActive = true;
-         console.log("active");
+         // console.log("active");
       } else {
          marker.isActive = false;
-         console.log("not active");
+         // console.log("not active");
       }
    });
    return {
@@ -71,7 +71,7 @@ const updateMarkers = () => {
 watch(
    () => props.locationId,
    () => {
-      console.log("update");
+      // console.log("update");
       updateMarkers();
    }
 );

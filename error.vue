@@ -28,14 +28,26 @@ const crumbs = [
       path: "/",
    },
 ];
-const error = useError();
+// const error = useError();
+
+const props = defineProps({
+   error: Object,
+});
 
 const router = useRouter();
 
-const goToIndexPage = () => {
-   // navigateTo("/");
-   router.push({ path: "/" });
-};
+// Print types of variables
+// console.log(typeof props.error.statusCode, typeof "404");
+
+// Does work number === number
+// console.log(props.error.statusCode === 404);
+
+onMounted(() => {
+   if (props.error.statusCode === 404) {
+      console.log("Error", props.error);
+      clearError({ redirect: "/" });
+   }
+});
 </script>
 
 <style lang="scss" scoped>

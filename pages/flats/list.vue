@@ -10,10 +10,9 @@
 						FlatCard(
                      v-for="(item, index) in apartments" 
                      :key="index" :flat="item" 
-                     :flat-index="index" 
-                     :active-card.sync="activeCard"
-                     @open-dropdown="openDropdown" 
-                     @close-dropdown="closeDropdown")
+                     :flat-index="index"
+                     :active-card="activeCard"
+                     @toggle-dropdown="toggleDropdown")
 					.flats__bottom
 						UiButton(text="показать ещё" class-names="btn-transparent")
 </template>
@@ -138,20 +137,28 @@ const apartments = reactive([
 ]);
 
 const activeCard = ref(-1);
-const isActive = ref(false);
 
-const openDropdown = (idx) => {
-   activeCard.value = idx;
-};
-const closeDropdown = (idx) => {
-   console.log(activeCard.value);
-   console.log("sda");
-   console.log(idx);
-   if (activeCard.value === idx) {
-      activeCard.value = null;
-      console.log(idx);
+const toggleDropdown = (index) => {
+   // Если открыта та же карточка, закрываем ее
+   if (activeCard.value === index) {
+      activeCard.value = -1;
+   } else {
+      // Открываем новую карточку и закрываем остальные
+      activeCard.value = index;
    }
 };
+const closeAllDropdowns = (e) => {
+   const target = e.target;
+   if (!target.closest(".parameters-card__wrapper")) {
+      activeCard.value = -1;
+   }
+};
+onUnmounted(() => {
+   document.removeEventListener("click", closeAllDropdowns);
+});
+onMounted(() => {
+   document.addEventListener("click", closeAllDropdowns);
+});
 </script>
 
 <style lang="scss" scoped>

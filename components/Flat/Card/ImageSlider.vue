@@ -38,25 +38,6 @@ const imageSwiper = ref("");
 const imagePagination = ref("");
 
 onMounted(() => {
-   // const sliders = document.querySelectorAll(".flat-card__slider");
-   // let swiperImage = null;
-   // [...sliders].forEach((slider) => {
-   //    console.log(slider);
-   //    const outer = slider.querySelector(".flat-slider__images");
-   //    swiperImage = new Swiper(outer, {
-   //       modules: [Pagination],
-   //        wrapperClass: slider.querySelector(".image-switch"),
-   //       slideClass: slider.querySelector(".image-switch__item"),
-   //       spaceBetween: 10,
-   //       slidesPerView: 1,
-   //       speed: 800,
-   //       pagination: {
-   //          el: slider.parentNode.querySelector(".image-pagination"),
-   //          type: "bullets",
-   //          clickable: true,
-   //       },
-   //    });
-   // });
    function initializeSwiper() {
       imageSwiper.value = new Swiper(imageSlider.value, {
          modules: [Pagination],
@@ -97,6 +78,10 @@ onMounted(() => {
    }
    checkScreenWidth();
    window.addEventListener("resize", checkScreenWidth);
+});
+
+onUnmounted(() => {
+   imageSwiper.value = null;
 });
 </script>
 

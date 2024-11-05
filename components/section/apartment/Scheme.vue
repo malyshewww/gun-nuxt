@@ -1,10 +1,6 @@
 <template lang="pug">
-	.apartment-card__scheme.scheme-apartment
-		.scheme-apartment__switch.switch-scheme
-			.switch-scheme__buttons(ref="switchParent" @click="switchButtons")
-				button(type="button" data-id="1").switch-scheme__button.active Планировка
-				button(type="button" data-id="2").switch-scheme__button План этажа
-				.switch-scheme__bg#pill(ref="pill")
+	.apartment-card__scheme.scheme-apartment(ref="schemeApartment")
+		SectionApartmentSwitchButtons(@switch-buttons="switchButtons")
 		.scheme-apartment__body
 			.scheme-apartment__schemes
 				.scheme-apartment__preview(:class="{active: isSelected == 1}")
@@ -26,19 +22,22 @@ import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
 const isSelected = ref(1);
-const pill = ref("");
-const switchParent = ref("");
+const schemeApartment = ref("");
 
 const switchButtons = (e) => {
    const target = e.target;
+   const pill = schemeApartment.value.querySelector("#pill");
+   const switchParent = schemeApartment.value.querySelector(
+      ".switch-scheme__buttons"
+   );
    if (target.closest(".switch-scheme__button")) {
       const id = target.dataset.id;
       isSelected.value = id;
       const dimensions = target.getBoundingClientRect();
-      pill.value.style.width = `${dimensions.width}px`;
-      pill.value.style.height = `${dimensions.height}px`;
-      pill.value.style.left = `${
-         dimensions.left - switchParent.value.getBoundingClientRect().left
+      pill.style.width = `${dimensions.width}px`;
+      pill.style.height = `${dimensions.height}px`;
+      pill.style.left = `${
+         dimensions.left - switchParent.getBoundingClientRect().left
       }px`;
    }
 };
@@ -51,7 +50,7 @@ onMounted(() => {
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .scheme-apartment {
    border-radius: 10px;
    padding: 10px;
@@ -65,8 +64,6 @@ onMounted(() => {
    }
    @media screen and (max-width: $xl) {
       gap: 30px;
-   }
-   &__switch {
    }
    &__body {
       width: 100%;
@@ -147,40 +144,6 @@ onMounted(() => {
       @media screen and (max-width: $xxxl) {
          display: none;
       }
-   }
-}
-.switch-scheme {
-   border-radius: 40px;
-   padding: 6px;
-   height: 46px;
-   background: var(--bg-white-dirt);
-   &__buttons {
-      position: relative;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0 6px;
-   }
-   &__button {
-      border-radius: 40px;
-      padding: 8px 16px;
-      height: 34px;
-      font-size: 14px;
-      line-height: 18px;
-      color: var(--text-midnight-100);
-      position: relative;
-      z-index: 2;
-   }
-   &__bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 100%;
-      box-shadow: 0 0 5px 0 rgba(43, 47, 59, 0.1);
-      background: var(--bg-white);
-      border-radius: 40px;
-      transition: left $time * 1.5 ease-in-out 0s,
-         width $time * 1.5 ease-in-out 0s, height $time * 1.5 ease-in-out 0s;
    }
 }
 </style>

@@ -35,7 +35,7 @@ const buttonClick = () => {
 
 <style lang="scss">
 .popup-news {
-   transition: opacity 0.5s ease 0.4s, visibility 0.5s ease 0s;
+   transition: opacity 0.5s ease-out 0.4s, visibility 0.5s ease-out 0s;
    &.open-popup {
       & .popup__content {
          transform: translate(0%, 0%);

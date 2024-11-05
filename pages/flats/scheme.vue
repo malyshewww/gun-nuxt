@@ -79,7 +79,6 @@ const isScrollScheme = ref(false);
 const showMaskScheme = ref(true);
 
 const openTooltip = (event, room) => {
-   console.log("open tooltip");
    data.tooltip.number = `${room.number}`;
    data.tooltip.img = room.plan;
    data.tooltip.square = `${room.square} м²`;
@@ -101,7 +100,6 @@ const openTooltip = (event, room) => {
    data.tooltip.isActive = !data.tooltip.isActive;
 };
 const closeTooltip = () => {
-   console.log("close tooltip");
    data.tooltip.isActive = !data.tooltip.isActive;
 };
 
@@ -112,10 +110,6 @@ const moveScheme = () => {
 onMounted(() => {
    const simpleBar = new SimpleBar(scheme.value, { autoHide: false });
    window.ResizeObserver = ResizeObserver;
-   // const scrollContent = simpleBar.getContentElement();
-   simpleBar.getScrollElement().addEventListener("scroll", function (e) {
-      console.log(e);
-   });
    const checkScrollingScheme = () => {
       if (scheme.value.classList.contains("simplebar-scrollable-x")) {
          isScrollScheme.value = true;

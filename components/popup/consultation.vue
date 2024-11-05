@@ -1,7 +1,7 @@
 <template lang="pug">
 	Teleport(to="body")
 		Popup(class="popup-consultation" :is-open="isOpen" @close-popup="closePopup")
-			PopupTpl(:popup-data="popupData")
+			PopupTpl(:popup-data="popupData" :form-errors="formErrors" @remove-error-name="removeErrorName" @remove-error-phone="removeErrorPhone")
 </template>
 
 <script setup>
@@ -21,6 +21,19 @@ const emit = defineEmits(["closePopup"]);
 // eslint-disable-next-line
 const closePopup = () => {
    emit("closePopup");
+};
+
+const formErrors = reactive({
+   name: false,
+   phone: true,
+});
+
+const removeErrorName = () => {
+   formErrors.name = false;
+};
+
+const removeErrorPhone = () => {
+   formErrors.phone = false;
 };
 </script>
 
