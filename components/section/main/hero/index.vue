@@ -1,5 +1,7 @@
 <template lang="pug">
 	.main-hero(ref="mainHero")
+		.main-hero__content-left
+			.main-hero__scroll-down листайте вниз
 		SectionMainHeroWidget
 		.container
 			.main-hero__image
@@ -201,6 +203,44 @@ onMounted(() => {
          left: 0;
          width: 100%;
          height: 100%;
+      }
+   }
+   &__content-left {
+      position: absolute;
+      z-index: 2;
+      bottom: 36px;
+      left: 40px;
+      transform: rotate(-90deg);
+      transform-origin: left;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: opacity 0.5s;
+      font-size: 16px;
+      line-height: 20px;
+      font-weight: 700;
+      font-family: var(--second-family);
+      color: var(--text-white);
+      @media screen and (max-width: $xxxl) {
+         bottom: 32px;
+         left: 32px;
+      }
+      @media screen and (max-width: $xl) {
+         display: none;
+      }
+   }
+   &__scroll-down {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      &::after {
+         content: "";
+         flex-shrink: 0;
+         display: block;
+         width: 80px;
+         height: 2px;
+         background-color: currentColor;
+         transform: rotate(180deg);
       }
    }
    & .header {

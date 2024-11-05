@@ -8,7 +8,7 @@
 						.not-found__image
 							img(:src="`/images/not-found/404.svg`" alt="404")
 						.not-found__text Кажется, такой страницы не существует...
-						UiButton(text="на главную" class-names="btn-green" @button-click="goToIndexPage")
+						UiButton(text="на главную" class-names="btn-green")
 </template>
 
 <script setup>
