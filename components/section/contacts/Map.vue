@@ -14,7 +14,7 @@ onMounted(() => {
    const mapElem = document.getElementById("mapElem");
    function loadMap() {
       const script = document.createElement("script");
-      script.src = `https://api-maps.yandex.ru/v3/?apikey=${runtimeConfig.public.apiKey}&lang=ru_RU`;
+      script.src = `https://api-maps.yandex.ru/v3/?apikey=557cbb59-9789-4d04-8c1b-761ddcf44fc6&lang=ru_RU`;
       document.body.appendChild(script);
       isLoaded = true;
       script.onload = function () {

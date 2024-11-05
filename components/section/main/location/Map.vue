@@ -84,7 +84,7 @@ onMounted(() => {
    let isLoaded = false;
    function loadMap() {
       const script = document.createElement("script");
-      script.src = `https://api-maps.yandex.ru/v3/?apikey=${runtimeConfig.public.apiKey}&lang=ru_RU`;
+      script.src = `https://api-maps.yandex.ru/v3/?apikey=557cbb59-9789-4d04-8c1b-761ddcf44fc6&lang=ru_RU`;
       document.body.appendChild(script);
       isLoaded = true;
       script.onload = function () {
@@ -321,13 +321,63 @@ onMounted(() => {
                }
             }
          }
+         @media screen and (max-width: $xl) {
+            &[data-marker-id="1"] {
+               animation-delay: 0.4s;
+               animation: smoothbounce 1s alternate infinite;
+            }
+            &[data-marker-id="2"] {
+               animation-delay: 0.6s;
+               animation: smoothbounce2 1.4s alternate infinite;
+            }
+            &[data-marker-id="3"] {
+               animation-delay: 0.8s;
+               animation: smoothbounce3 1.8s alternate infinite;
+            }
+            &[data-marker-id="4"] {
+               animation-delay: 1s;
+               animation: smoothbounce4 2.2s alternate infinite;
+            }
+         }
       }
-
       & .ymaps3x0--marker {
          &:hover {
             z-index: 1 !important;
          }
       }
+   }
+}
+
+@keyframes smoothbounce {
+   from {
+      transform: translate3d(0, 0, 0);
+   }
+   to {
+      transform: translate3d(0, 10px, 0);
+   }
+}
+@keyframes smoothbounce2 {
+   from {
+      transform: translate3d(0, 0, 0);
+   }
+   to {
+      transform: translate3d(0, 10px, 0);
+   }
+}
+@keyframes smoothbounce3 {
+   from {
+      transform: translate3d(0, 0, 0);
+   }
+   to {
+      transform: translate3d(0, 10px, 0);
+   }
+}
+@keyframes smoothbounce4 {
+   from {
+      transform: translate3d(0, 0, 0);
+   }
+   to {
+      transform: translate3d(0, 10px, 0);
    }
 }
 </style>

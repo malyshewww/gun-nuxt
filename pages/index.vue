@@ -44,7 +44,10 @@ useHead({
          padding: 40px 0;
       }
       &.main-about {
-         padding-top: 120px;
+         padding-top: 200px;
+         @media screen and (max-width: $xxxl) {
+            padding-top: 180px;
+         }
          @media screen and (max-width: $xl) {
             padding-top: calc(80px + 61px);
          }
@@ -66,6 +69,9 @@ useHead({
       &.house-format {
          @media screen and (max-width: $xl) {
             padding-top: 67px;
+         }
+         @media screen and (max-width: $md) {
+            padding-top: 40px;
          }
       }
    }
