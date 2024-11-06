@@ -26,11 +26,25 @@ const closePopup = () => {
 
 <style lang="scss">
 .popup-project {
+   @media screen and (max-width: $md) {
+      transition: opacity 0.3s ease 0.2s, visibility 0.5s ease-out 0s;
+   }
    & .form-popup {
       padding: 52px 48px;
       @media screen and (max-width: $md) {
          padding: 20px;
          padding-top: 40px;
+      }
+   }
+   &.open-popup {
+      & .popup {
+         &__content {
+            @media screen and (max-width: $md) {
+               transform: translate(0%, 0%);
+               transition: transform 0.5s ease 0.2s;
+               opacity: 1;
+            }
+         }
       }
    }
    & .popup__wrapper {
@@ -42,6 +56,11 @@ const closePopup = () => {
       padding: 0;
       height: 100vh;
       border-radius: 0;
+      @media screen and (max-width: $md) {
+         opacity: 1;
+         transform: translate(100%, 0%);
+         transition: transform 0.5s ease 0s;
+      }
    }
    & .popup__body {
       height: 100%;

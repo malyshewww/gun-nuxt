@@ -19,6 +19,8 @@
 </template>
 
 <script setup>
+import Rellax from "rellax";
+
 const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
 
 const isShowTitle = ref(false);
@@ -34,7 +36,7 @@ const animationHero = () => {
       scrollTrigger: {
          trigger: mainHero.value,
          start: "top 0%",
-         end: "40%",
+         end: "30%",
          scrub: 1,
          pin: false,
       },
@@ -42,39 +44,32 @@ const animationHero = () => {
    tl.to(mainHero.value, {
       "--opacity": 1,
    });
-   tl.fromTo(
-      ".main-hero__cards",
-      {
-         opacity: 0,
-         yPercent: 20,
-      },
-      {
-         opacity: 1,
-         yPercent: 0,
-      },
-      ">-0.1"
-   );
-   const cards = document.querySelectorAll(".main-hero__card-wrap");
-   cards.forEach((card, index) => {
-      gsap.fromTo(
-         card,
-         {
-            yPercent: index == 1 ? 20 : 20, // начальная позиция (низ)
-            opacity: 1, // начальная прозрачность
-         },
-         {
-            scrollTrigger: {
-               trigger: card,
-               start: "top 90%", // начинает анимацию, когда верх карточки достигает 90% видимости
-               end: "top 30%", // заканчивает анимацию, когда верх карточки достигает 30% видимости
-               scrub: 2,
-            },
-            yPercent: -80 - index * 20, // конечная позиция (выше на 30px + дополнительный сдвиг в зависимости от индекса)
-            opacity: 1, // конечная прозрачность
-            duration: 1, // длительность анимации
-         }
-      );
+   tl.to(".main-hero__cards", {
+      opacity: 1,
+      duration: 1,
    });
+   tl.to(".main-hero__cards", {
+      yPercent: -20,
+   });
+   // const cards = document.querySelectorAll(".main-hero__card-wrap");
+   // cards.forEach((card, index) => {
+   //    const duration = 0.5 + index * 0.2; // Увеличение длительности анимации для каждой карточки
+   //    const yOffset = 30 + index * 10; // Увеличение смещения по оси Y для каждой карточки
+
+   //    gsap.from(card, {
+   //       y: yOffset, // Начальное смещение
+   //       opacity: 0, // Начальная непрозрачность
+   //       duration: duration, // Длительность анимации
+   //       scrollTrigger: {
+   //          trigger: card,
+   //          start: "top 80%", // Запуск анимации, когда верх карточки достигает 80% высоты окна
+   //          end: "top -30%", // Конец анимации, по достижении 30%
+   //          toggleActions: "play none none reverse", // Поведение при прокрутке
+   //          once: true, // Анимация сработает один раз
+   //       },
+   //    });
+   // });
+   const rellax = new Rellax(".rellax");
 };
 onMounted(() => {
    if (window.innerWidth > 1024) {

@@ -104,7 +104,7 @@ onMounted(() => {
    }
    @media screen and (max-width: $xl) {
       position: fixed;
-      z-index: 20;
+      z-index: 30;
       top: 0;
       left: 0;
       width: 100%;

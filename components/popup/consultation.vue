@@ -41,9 +41,26 @@ const removeErrorPhone = () => {
 .popup-consultation {
    color: var(--text-white);
    & .popup {
+      &__wrapper {
+         @media screen and (max-width: $md) {
+            height: 100%;
+            padding: 0;
+         }
+      }
       &__content {
          padding: 0;
          max-width: 910px;
+         @media screen and (max-width: $md) {
+            max-width: 100%;
+            padding: 0;
+            height: 100vh;
+            border-radius: 0;
+         }
+      }
+      &__body {
+         @media screen and (max-width: $md) {
+            height: 100%;
+         }
       }
       &__close {
          @media (any-hover: hover) {

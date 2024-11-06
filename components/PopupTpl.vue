@@ -53,7 +53,7 @@ onMounted(() => {
       display: grid;
       grid-template-columns: 300px 1fr;
       @media screen and (max-width: $md) {
-         grid-template-columns: 100%;
+         display: flex;
       }
    }
 }
@@ -67,10 +67,18 @@ onMounted(() => {
    color: var(--text-white);
    font-family: var(--font-family);
    flex: 1 1 auto;
+   @media screen and (max-width: $xl) {
+      gap: 20px;
+      justify-items: stretch;
+   }
    @media screen and (max-width: $md) {
       padding: 20px;
       padding-top: 40px;
       gap: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
    }
    &__title {
       font-weight: 700;
@@ -81,6 +89,11 @@ onMounted(() => {
       @media screen and (max-width: $xl) {
          font-size: 22px;
          line-height: 26px;
+         margin-bottom: 16px;
+         width: 100%;
+      }
+      @media screen and (max-width: $md) {
+         margin: 0;
       }
    }
    &__sub-title {
@@ -97,6 +110,13 @@ onMounted(() => {
       font-size: 14px;
       line-height: 18px;
       color: var(--text-gray);
+      @media screen and (max-width: $xl) {
+         order: 1;
+         margin-top: 12px;
+      }
+      @media screen and (max-width: $md) {
+         margin-top: 0;
+      }
    }
    &__link {
       color: currentColor;
@@ -106,8 +126,12 @@ onMounted(() => {
    }
    & .btn {
       width: auto;
+      @media screen and (max-width: $xl) {
+         margin-top: 12px;
+      }
       @media screen and (max-width: $md) {
          width: 100%;
+         margin: 0;
       }
    }
 }

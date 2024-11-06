@@ -1,6 +1,6 @@
 <template lang="pug">
 	.main-hero__cards
-		.main-hero__card-wrap(v-for="(card, index) in data.cards" :key="index" :data-card-speed="(index+1) / 4")
+		.main-hero__card-wrap.rellax(v-for="(card, index) in data.cards" :key="index" :data-rellax-speed="card.speed")
 			.main-hero__card.hero-card
 				.hero-card__title(v-html="card.title")
 </template>
@@ -10,12 +10,15 @@ const data = reactive({
    cards: [
       {
          title: "нижегородский район",
+         speed: 3,
       },
       {
          title: "рядом парк Пушкина",
+         speed: 4,
       },
       {
          title: "3 минуты до&nbsp;улицы Белинского",
+         speed: 5,
       },
    ],
 });
@@ -34,6 +37,7 @@ const data = reactive({
       bottom: -64px;
       height: 610px;
       opacity: 0;
+      transform: translateY(20%);
       // &.active {
       //    & .hero-card {
       //       opacity: 1;
@@ -52,6 +56,7 @@ const data = reactive({
       }
       @media screen and (max-width: $xl) {
          position: static;
+         transform: none;
       }
       @media screen and (max-width: $md) {
          height: auto;

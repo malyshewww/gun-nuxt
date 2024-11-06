@@ -47,12 +47,28 @@ const closePopup = () => {
 .popup-book {
    color: var(--text-white);
    & .popup {
+      &__wrapper {
+         @media screen and (max-width: $md) {
+            height: 100%;
+            padding: 0;
+         }
+      }
       &__content {
          padding: 0;
          max-width: 600px;
+         @media screen and (max-width: $md) {
+            max-width: 100%;
+            padding: 0;
+            height: 100vh;
+            border-radius: 0;
+         }
       }
       &__body {
          display: block;
+         @media screen and (max-width: $md) {
+            display: flex;
+            height: 100%;
+         }
       }
       &__image {
          display: none;
