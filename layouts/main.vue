@@ -19,10 +19,12 @@ onMounted(() => {
    const buttonUp = document.querySelector(".button-up");
    buttonUp.classList.remove("active");
    const footer = document.querySelector(".footer");
+   const footerRect = footer.getBoundingClientRect();
+   const windowHeight = window.innerHeight;
    function checkScroll() {
       const mainContentHeight =
          mainContent.getBoundingClientRect().top + window.scrollY;
-      if (scrollY > mainContentHeight) {
+      if (window.scrollY > mainContentHeight) {
          isWhite.value = false;
          buttonUp.classList.add("active");
       } else {
@@ -31,15 +33,8 @@ onMounted(() => {
       }
    }
    checkScroll();
-   window.addEventListener("scroll", (e) => {
-      const scrollY = window.scrollY;
-      // document.documentElement.style.setProperty(
-      //    "--scrollTopDecrement",
-      //    `${-scrollY}px`
-      // );
-      checkScroll();
-      const footerRect = footer.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
+
+   function activeButtonUp() {
       if (footerRect.top <= windowHeight) {
          buttonUp.style.position = "absolute";
          // buttonUp.style.bottom = windowHeight - footerRect.top + "px";
@@ -49,8 +44,17 @@ onMounted(() => {
          buttonUp.style.bottom = `${window.innerWidth > 767.98 ? 80 : 60}px`;
          // buttonUp.style.bottom = `80px`;
       }
+   }
+   activeButtonUp();
+   window.addEventListener("scroll", (e) => {
+      const scrollY = window.scrollY;
+      // document.documentElement.style.setProperty(
+      //    "--scrollTopDecrement",
+      //    `${-scrollY}px`
+      // );
+      checkScroll();
+      activeButtonUp();
    });
-
    const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
          if (entry.isIntersecting) {

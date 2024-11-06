@@ -324,19 +324,19 @@ onMounted(() => {
          @media screen and (max-width: $xl) {
             &[data-marker-id="1"] {
                animation-delay: 0.4s;
-               animation: smoothbounce 1s alternate infinite;
+               animation: smoothbounce 1.2s infinite alternate;
             }
             &[data-marker-id="2"] {
-               animation-delay: 0.6s;
-               animation: smoothbounce2 1.4s alternate infinite;
+               animation-delay: -0.6s;
+               animation: smoothbounce 1.4s infinite alternate;
             }
             &[data-marker-id="3"] {
-               animation-delay: 0.8s;
-               animation: smoothbounce3 1.8s alternate infinite;
+               animation-delay: -0.8s;
+               animation: smoothbounce 1.8s infinite alternate;
             }
             &[data-marker-id="4"] {
-               animation-delay: 1s;
-               animation: smoothbounce4 2.2s alternate infinite;
+               animation-delay: -1s;
+               animation: smoothbounce 2s infinite alternate;
             }
          }
       }
@@ -350,34 +350,10 @@ onMounted(() => {
 
 @keyframes smoothbounce {
    from {
-      transform: translate3d(0, 0, 0);
+      transform: translate3d(-50%, calc(-50% - 5px), 0);
    }
    to {
-      transform: translate3d(0, 10px, 0);
-   }
-}
-@keyframes smoothbounce2 {
-   from {
-      transform: translate3d(0, 0, 0);
-   }
-   to {
-      transform: translate3d(0, 10px, 0);
-   }
-}
-@keyframes smoothbounce3 {
-   from {
-      transform: translate3d(0, 0, 0);
-   }
-   to {
-      transform: translate3d(0, 10px, 0);
-   }
-}
-@keyframes smoothbounce4 {
-   from {
-      transform: translate3d(0, 0, 0);
-   }
-   to {
-      transform: translate3d(0, 10px, 0);
+      transform: translate3d(-50%, calc(-50% + 5px), 0);
    }
 }
 </style>

@@ -9,11 +9,12 @@
 				svg(width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg")
 					path(fill-rule="evenodd" clip-rule="evenodd" d="M9.03044 2.03044L9.56077 1.50011L8.50011 0.439453L7.96978 0.969783L5.00011 3.93945L2.03044 0.969783L1.50011 0.439453L0.439453 1.50011L0.969783 2.03044L3.93945 5.00011L0.969783 7.96978L0.439453 8.50011L1.50011 9.56077L2.03044 9.03044L5.00011 6.06077L7.96978 9.03044L8.50011 9.56077L9.56077 8.50011L9.03044 7.96978L6.06077 5.00011L9.03044 2.03044Z" fill="#2B2F3B")
 			.burger__inner
-				span.burger__icon
-					svg(width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg")
-						path(d="M4 3.5H12" stroke="#FCFBF7" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round")
-						path(d="M4 7H12" stroke="#FCFBF7" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round")
-						path(d="M4 10.5H12" stroke="#FCFBF7" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round")
+				span.burger__icon-wrap
+					span.burger__icon
+					//- svg(width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg")
+					//- 	path(d="M4 3.5H12" stroke="#FCFBF7" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round")
+					//- 	path(d="M4 7H12" stroke="#FCFBF7" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round")
+					//- 	path(d="M4 10.5H12" stroke="#FCFBF7" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round")
 				span.burger__text Меню
 </template>
 
@@ -52,7 +53,7 @@ const openFilter = () => {
       gap: 4px;
       border-radius: 40px;
       padding: 6px;
-      height: 44px;
+      height: 46px;
       backdrop-filter: blur(4px);
       background: var(--border-white);
    }
@@ -163,8 +164,8 @@ const openFilter = () => {
 .burger {
    border-radius: 40px;
    padding: 4px;
-   width: 90px;
-   height: 32px;
+   width: 108px;
+   height: 34px;
    flex-shrink: 0;
    background: var(--text-avocado);
    transition: width $time, border-radius $time;
@@ -201,18 +202,55 @@ const openFilter = () => {
       transform-origin: center center;
       transition: transform $time, opacity $time;
    }
+   &__icon-wrap {
+      width: 20px;
+      height: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
    &__icon {
-      width: 16px;
-      height: 14px;
-      display: grid;
-      place-items: center;
+      width: 8px;
+      height: 2px;
+      display: block;
       position: relative;
+      color: var(--text-white);
+      background: currentColor;
+      animation: animloader 0.3s 0.3s linear infinite alternate;
+      &::after,
+      &::before {
+         content: "";
+         box-sizing: border-box;
+         width: 8px;
+         height: 2px;
+         border-radius: 4px;
+         background: currentColor;
+         position: absolute;
+         left: 50%;
+         transform: translateX(-50%);
+         top: 6px;
+         animation: animloader 0.3s 0.45s linear infinite alternate;
+      }
+      &::after {
+         top: -6px;
+         animation-delay: 0s;
+      }
    }
    &__text {
-      font-family: var(--font-family);
+      font-family: var(--second-family);
       font-weight: 700;
-      font-size: 10px;
       color: var(--text-white);
+      font-size: 14px;
+      line-height: 17px;
+      text-transform: lowercase;
+   }
+}
+@keyframes animloader {
+   0% {
+      width: 4px;
+   }
+   100% {
+      width: 12px;
    }
 }
 </style>

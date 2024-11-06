@@ -70,6 +70,7 @@ onMounted(() => {
       mask-size: 20px 20px;
       background-color: var(--text-gray);
       transform: rotate(90deg);
+      animation: action 1s infinite alternate;
    }
    @media (any-hover: hover) {
       &:hover {
@@ -82,6 +83,14 @@ onMounted(() => {
    @media screen and (max-width: $md) {
       right: 15px;
       bottom: 39px;
+   }
+}
+@keyframes action {
+   0% {
+      transform: translateY(3px) rotate(90deg);
+   }
+   100% {
+      transform: translateY(-3px) rotate(90deg);
    }
 }
 </style>

@@ -5,6 +5,7 @@
 			.container
 				.main__heading.heading-main
 					h1.heading-main__title Парковки
+				//- button(type="button" @click="goTo") go to news
 </template>
 
 <script setup>
