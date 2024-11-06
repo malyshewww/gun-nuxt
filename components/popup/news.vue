@@ -47,9 +47,10 @@ const buttonClick = () => {
       &__wrapper {
          height: 100%;
          padding: 0;
+         justify-content: flex-end;
       }
       &__content {
-         max-width: 100%;
+         max-width: 1373px;
          height: 100%;
          padding: 94px 120px;
          padding-bottom: 45px;

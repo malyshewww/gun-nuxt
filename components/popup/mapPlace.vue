@@ -1,7 +1,7 @@
 <template lang="pug">
 	Teleport(to="body")
 		Popup(class="popup-map-place" :is-open="isOpen" @close-popup="closePopup")
-			SectionMainLocationSlider(v-if="device.isMobile && isOpen" :placeId="placeId")
+			SectionMainLocationSlider(v-if="device.isMobile" :placeId="placeId")
 </template>
 
 <script setup>

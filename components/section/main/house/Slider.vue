@@ -8,7 +8,7 @@
 		.slider-controls(ref="sliderControls")
 			button(ref="buttonPrev" type="button").slider-button.slider-button-prev
 			button(ref="buttonNext" type="button").slider-button.slider-button-next
-		UiTrailer(v-if="device.isDesktop" :is-active="true" text="выбрать")
+		UiTrailer(v-if="device.isDesktop" :is-active="true" text="выбрать" @action="changeRoute")
 </template>
 
 <script setup>
@@ -29,6 +29,12 @@ const houseSliderControls = ref("");
 const slideWidth = ref(0);
 
 const device = useDevice();
+
+const router = useRouter();
+
+const changeRoute = () => {
+   navigateTo("/flats/list");
+};
 
 const initSlider = () => {
    function updateSlideClasses({ el, slides, activeIndex }) {
@@ -141,9 +147,28 @@ onMounted(() => {
       gap: 20px;
    }
    & .trailer {
+      pointer-events: all;
       position: absolute;
       top: 60px;
       transform: translateX(-50%);
+      z-index: 5;
+      &::after {
+         content: none;
+      }
+      &::before {
+         opacity: 1;
+      }
+      @media (any-hover: hover) {
+         &:hover {
+            cursor: pointer;
+            &::before {
+               background: #88a645;
+            }
+         }
+         &:active::before {
+            background: #66783d;
+         }
+      }
       @media screen and (max-width: $xxxl) {
          top: 42px;
       }

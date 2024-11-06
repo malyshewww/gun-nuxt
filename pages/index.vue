@@ -44,15 +44,19 @@ useHead({
          padding: 40px 0;
       }
       &.main-about {
-         padding-top: 200px;
+         // padding-top: 200px;
+         padding-top: 120px;
          @media screen and (max-width: $xxxl) {
-            padding-top: 180px;
+            padding-top: 100px;
+            // padding-top: 180px;
          }
          @media screen and (max-width: $xl) {
-            padding-top: calc(80px + 61px);
+            padding-top: 80px;
+            // padding-top: calc(80px + 61px);
          }
          @media screen and (max-width: $md) {
-            padding-top: calc(64px + 48px);
+            // padding-top: calc(64px + 48px);
+            padding-top: 64px;
          }
       }
       &.main-progress {

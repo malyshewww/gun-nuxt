@@ -39,7 +39,7 @@ defineProps({
    @media screen and (max-width: $xl) {
       margin-top: 0;
       padding: 20px;
-      gap: 24px;
+      gap: 46px;
    }
    &__header {
       display: grid;

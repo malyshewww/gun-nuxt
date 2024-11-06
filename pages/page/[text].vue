@@ -1,5 +1,6 @@
 <template lang="pug">
 	.text-page
+		BreadCrumbs(:list="crumbs")
 		.container
 			.content
 				h1 Заголовок H1
@@ -47,6 +48,16 @@
 </template>
 
 <script setup>
+const crumbs = [
+   {
+      title: "Главная",
+      path: "/",
+   },
+   {
+      title: "Текстовая страница",
+      path: "/",
+   },
+];
 const slider = [
    {
       img: "1",

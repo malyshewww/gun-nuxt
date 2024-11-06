@@ -11,7 +11,7 @@
 								span  жить в центре
 								span.title-about__labels(data-title="ул. Тимирязева")
 						span.title-about__text по приемлемой стоимости
-					h2.main-about__title.title-about.title-about-mobile апартаменты нового уровня тех, кто&nbsp;хочет жить в центре по приемлемой стоимости
+					h2.main-about__title.title-about.title-about-mobile апартаменты нового уровня для тех, кто&nbsp;хочет жить в центре по приемлемой стоимости
 					.main-about__description Апартаменты «Пушка» будут представлены 12-ти этажным жилым домом с&nbsp;дополнительным парапетом первого этажа. Необычное архитектурное&nbsp;решение здания подчёркивает общий концепт проекта — динамичность, мобильность, современность
 				.main-about__image-container
 					.main-about__image-wrap

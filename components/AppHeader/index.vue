@@ -1,10 +1,10 @@
 <template lang="pug">
-	header.header(ref="header" :class="[{'header-white': isWhite}, {'header-black': !isWhite}, {'menu-open': isOpenMenu}, {'hidden': !isVisible}]")
+	header.header(ref="header" :class="[{'header-white': isWhite}, {'header-black': !isWhite}, {'menu-open': isOpenMenu}, {'hidden': !isVisible && !isOpenMenu}]")
 		.header__body
 			AppHeaderLogo
-			AppHeaderMenu(:is-open-menu="isOpenMenu" @close-menu="closeMenu")
+			AppHeaderMenu(:is-open-menu="isOpenMenu" @close-menu="closeMenu" data-da=".wrapper, 1024, 1")
 			AppHeaderActions
-			AppHeaderMenuTrigger(@openMenu="openMenu" :is-open-menu="isOpenMenu" data-da=".wrapper, 1025, 1")
+			AppHeaderMenuTrigger(@openMenu="openMenu" :is-open-menu="isOpenMenu" data-da=".wrapper, 1024, 1")
 </template>
 
 <script setup>
@@ -94,8 +94,12 @@ onMounted(() => {
       padding: 15px 32px;
       min-height: 61px;
       &.menu-open {
+         box-shadow: 0 0 0 0 transparent;
          &::before {
             opacity: 1;
+         }
+         &::after {
+            opacity: 0;
          }
       }
    }

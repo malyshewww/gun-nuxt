@@ -54,6 +54,9 @@ onMounted(() => {
    transform: translateY(50px);
    transition: opacity $time * 2, transform $time * 2;
    pointer-events: none;
+   @media screen and (max-width: $xl) {
+      display: none;
+   }
    &.active {
       opacity: 1;
       transform: translateY(0px);

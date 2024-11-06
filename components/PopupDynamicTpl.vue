@@ -1,5 +1,6 @@
 <template lang="pug">
 	.popup-slider
+		.popup-slider__date {{popupData.caption}}
 		.popup-slider__body.swiper(ref="dynamicSlider")
 			.popup-slider__wrapper.swiper-wrapper
 				.popup-slider__item.swiper-slide(v-for="image, index in popupData.images" :key="index")
@@ -10,7 +11,6 @@
 			.slider-buttons
 				button(ref="buttonPrev" type="button" class="slider-button slider-button-prev")
 				button(ref="buttonNext" type="button" class="slider-button slider-button-next")
-		.popup-slider__date {{popupData.caption}}
 </template>
 
 <script setup>
@@ -69,13 +69,9 @@ const initDynamicSlider = () => {
             type: "custom",
             renderCustom: function (swiper, current, total) {
                return `
-                  <span class="slider-pagiantion-current">${addZero(
-                     current
-                  )}</span> 
-                  <span>/</span>
-                  <span class="slider-pagiantion-total">${addZero(
-                     total
-                  )}</span>`;
+						<span class="slider-pagiantion-current">${addZero(current)}</span> 
+						<span>/</span>
+						<span class="slider-pagiantion-total">${addZero(total)}</span>`;
             },
          },
       });
@@ -93,10 +89,17 @@ onMounted(() => {
    height: 100%;
    position: relative;
    font-family: var(--font-family);
+   @media screen and (max-width: $md) {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+   }
    &__body {
       border-radius: 10px;
       @media screen and (max-width: $md) {
          border-radius: 0;
+         width: 100%;
       }
    }
    &__image {
@@ -120,6 +123,7 @@ onMounted(() => {
       pointer-events: none;
       @media screen and (max-width: $md) {
          left: 20px;
+         position: static;
       }
    }
    & .slider-controls {
@@ -132,6 +136,8 @@ onMounted(() => {
       justify-content: space-between;
       @media screen and (max-width: $md) {
          padding: 20px;
+         position: static;
+         padding: 0;
       }
    }
    & .slider-buttons {

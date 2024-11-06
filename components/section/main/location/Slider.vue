@@ -93,6 +93,14 @@ const initSlider = () => {
             prevEl: buttonPrev.value,
             nextEl: buttonNext.value,
          },
+         breakpoints: {
+            300: {
+               speed: 0,
+            },
+            1024: {
+               speed: 1000,
+            },
+         },
          on: {
             slideChange: function (swiper) {
                if (window.innerWidth > 1024) {
@@ -111,14 +119,6 @@ const initSlider = () => {
                      }
                   });
                }
-            },
-         },
-         breakpoints: {
-            300: {
-               speed: 0,
-            },
-            1024: {
-               speed: 1000,
             },
          },
       });
@@ -183,6 +183,9 @@ onMounted(() => {
       & img {
          @extend .slider-location__images;
       }
+      // @media screen and (max-width: $xl) {
+      //    transition: none;
+      // }
    }
    &__outer {
       flex: 1 1 auto;
@@ -203,6 +206,9 @@ onMounted(() => {
       width: 100%;
    }
    &__wrapper {
+      @media screen and (max-width: $xl) {
+         // transition: none !important;
+      }
    }
    &__item {
       &:nth-child(2) {

@@ -67,6 +67,7 @@ defineProps({
          grid-column: 1 / -1;
          font-size: 14px;
          line-height: 18px;
+         max-width: 200px;
       }
    }
    &__text {

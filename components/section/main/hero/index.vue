@@ -115,6 +115,7 @@ onMounted(() => {
       z-index: 2;
       @media screen and (max-width: $xl) {
          opacity: 1;
+         background: rgba(43, 47, 59, 0.4);
       }
    }
    @media screen and (max-width: $xl) {

@@ -38,6 +38,7 @@ const closePopup = () => {
       background: var(--text-white);
       @media screen and (max-width: $md) {
          padding: 0;
+         background: transparent;
       }
    }
    & .popup__close {

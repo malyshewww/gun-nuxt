@@ -1,5 +1,5 @@
 <template lang="pug">
-	.trailer(ref="trailer" :class="{active: isActive}")
+	.trailer(ref="trailer" :class="{active: isActive}" @click="action")
 		.marquee
 			.marquee-content(:data-content="text ? text : 'смотреть'")
 				| {{text ? text : 'смотреть'}}
@@ -22,6 +22,12 @@ const props = defineProps({
       default: () => false,
    },
 });
+
+const emit = defineEmits(["action"]);
+
+const action = () => {
+   emit("action");
+};
 
 onMounted(() => {
    const trailer = document.querySelector(".trailer");
@@ -92,6 +98,9 @@ onMounted(() => {
       width: 100px;
       height: 100px;
    }
+   @media screen and (max-width: $xl) {
+      display: none;
+   }
    &::before,
    &::after {
       content: "";
@@ -146,6 +155,11 @@ onMounted(() => {
    gap: 10px;
    animation: scroll 8s infinite linear;
    animation-play-state: paused;
+}
+.slider-format {
+   & .marquee {
+      animation: scroll 16s infinite linear;
+   }
 }
 .marquee-content {
    height: 100%;

@@ -85,7 +85,7 @@ const crumbs = [
    },
    {
       title: "Апартаменты в продаже",
-      path: "/",
+      path: "/flats/list",
    },
    {
       title: "Апартаменты 31,2 м²",

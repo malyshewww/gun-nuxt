@@ -141,4 +141,10 @@ onMounted(() => {
    margin-top: 20px;
    justify-content: flex-end;
 }
+.apartment-card .slider-controls {
+   margin: 0;
+   @media screen and (max-width: $md) {
+      margin-top: 20px;
+   }
+}
 </style>

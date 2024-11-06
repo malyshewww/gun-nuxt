@@ -138,6 +138,8 @@ onMounted(() => {
    width: 100%;
    height: 100%;
    position: relative;
+   border-radius: 10px;
+   overflow: hidden;
    @media screen and (max-width: $xl) {
       height: 500px;
       order: 1;

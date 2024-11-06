@@ -85,8 +85,8 @@ const openFilter = () => {
    }
    &__filter {
       border-radius: 50%;
-      width: 32px;
-      height: 32px;
+      width: 36px;
+      height: 36px;
       background: var(--bg-white);
       place-items: center;
       flex-shrink: 0;
@@ -100,12 +100,12 @@ const openFilter = () => {
       &::before {
          content: "";
          display: block;
-         width: 16px;
-         height: 16px;
+         width: 20px;
+         height: 20px;
          mask-image: url("/images/icons/filter.svg");
          mask-repeat: no-repeat;
          mask-position: center;
-         mask-size: 16px 16px;
+         mask-size: 20px 20px;
          background-color: var(--main-color);
       }
    }
@@ -113,8 +113,8 @@ const openFilter = () => {
       display: flex;
       align-items: center;
       gap: 4px;
-      width: 32px;
-      height: 32px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       overflow: hidden;
       transition: max-width $time, width $time;
@@ -129,8 +129,8 @@ const openFilter = () => {
       position: absolute;
       right: 0;
       top: 0;
-      width: 32px;
-      height: 32px;
+      width: 36px;
+      height: 36px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -141,12 +141,12 @@ const openFilter = () => {
          content: "";
          display: block;
          flex-shrink: 0;
-         width: 16px;
-         height: 16px;
+         width: 18px;
+         height: 18px;
          mask-image: url("/images/icons/phone.svg");
          mask-repeat: no-repeat;
          mask-position: center;
-         mask-size: 16px 16px;
+         mask-size: 18px 18px;
          background: var(--main-color);
       }
    }

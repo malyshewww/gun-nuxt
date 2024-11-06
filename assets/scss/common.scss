@@ -215,6 +215,8 @@ h5 {
     & td {
       min-height: 46px;
       padding: 10px 24px;
+      display: flex;
+      align-items: center;
       &:not(:last-child) {
         border-right: 1px solid var(--bg-gray);
       }
@@ -246,6 +248,12 @@ h5 {
   gap: 20px;
   align-items: center;
   margin-bottom: 56px;
+  .apartment-card & {
+    gap: 20px 72px;
+    @media screen and (max-width:$md) {
+      gap: 20px;
+    }
+  }
   @media screen and (max-width: $xl) {
     margin-bottom: 40px;
   }
@@ -253,6 +261,9 @@ h5 {
     display: grid;
     gap: 24px;
     max-width: 743px;
+    @media screen and (max-width: $xl) {
+      gap: 12px;
+    }
   }
   .gallery & {
     margin-bottom: 64px;
