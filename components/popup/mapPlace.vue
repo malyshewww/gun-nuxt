@@ -4,8 +4,8 @@
 			.slider-location
 				.slider-location__box
 					.slider-location__images
-						.slider-location__image(:class="{active: placeId === popupData.id}")
-							img(:src="`/images/main-location/slide-${placeId}.jpg`" alt="image")
+						.slider-location__image(v-if="isOpen")
+							img(:src="`/images/main-location/slide-${popupData.id}.jpg`" alt="image")
 					.slider-location__outer
 						.slider-location__content
 							.slider-location__caption {{popupData.caption}}
@@ -63,6 +63,7 @@ const closePopup = () => {
          }
       }
       &__image {
+         opacity: 1;
       }
       &__outer {
          align-items: center;
