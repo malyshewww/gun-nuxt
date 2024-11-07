@@ -1,5 +1,5 @@
 <template lang="pug">
-	section.main-about
+	section.main-about#about
 		.container
 			.main-about__wrapper(ref="aboutWrapper")
 				.main-about__body

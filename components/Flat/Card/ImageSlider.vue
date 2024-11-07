@@ -70,7 +70,7 @@ onMounted(() => {
       }
    }
    function checkScreenWidth() {
-      if (window.matchMedia("(max-width: 767.98px)").matches) {
+      if (window.matchMedia("(max-width: 1024px)").matches) {
          initializeSwiper();
       } else {
          destroySwiper();
@@ -92,6 +92,9 @@ onUnmounted(() => {
       flex-direction: column;
       gap: 6px;
       width: 100%;
+      @media screen and (max-width: $xl) {
+         align-items: center;
+      }
       @media screen and (max-width: $md) {
          gap: 12px;
          align-items: center;
@@ -104,7 +107,7 @@ onUnmounted(() => {
       overflow: hidden;
       position: relative;
       height: 232px;
-      @media screen and (max-width: $md) {
+      @media screen and (max-width: $xl) {
          width: 228px;
       }
    }
@@ -117,17 +120,17 @@ onUnmounted(() => {
    left: 0;
    top: 0;
    z-index: 5;
-   @media screen and (max-width: $md) {
+   @media screen and (max-width: $xl) {
       position: static;
    }
    &__item {
       flex-grow: 1;
-      @media screen and (max-width: $md) {
+      @media screen and (max-width: $xl) {
          flex-grow: 0;
          flex-shrink: 0;
          width: 100%;
       }
-      @media screen and (min-width: $md) {
+      @media screen and (min-width: $xl) {
          &.active {
             & .image-switch__picture {
                opacity: 1;
@@ -163,7 +166,7 @@ onUnmounted(() => {
       top: 0;
       transform: translateX(-50%);
       z-index: var(--bg-midnight-100);
-      @media screen and (max-width: $md) {
+      @media screen and (max-width: $xl) {
          opacity: 1;
          position: static;
          transform: none;
@@ -180,7 +183,7 @@ onUnmounted(() => {
       flex-wrap: wrap;
       gap: 6px;
    }
-   @media screen and (max-width: $md) {
+   @media screen and (max-width: $xl) {
       display: none;
    }
    &__item {
@@ -197,7 +200,7 @@ onUnmounted(() => {
             cursor: pointer;
          }
       }
-      @media screen and (max-width: $md) {
+      @media screen and (max-width: $xl) {
          width: 20px;
          height: 2px;
          flex-shrink: 0;
@@ -208,7 +211,7 @@ onUnmounted(() => {
    position: static;
    justify-content: center;
    display: none;
-   @media screen and (max-width: $md) {
+   @media screen and (max-width: $xl) {
       display: flex;
    }
    & .swiper-pagination-bullet {

@@ -46,11 +46,15 @@ const animationHero = () => {
    });
    tl.to(".main-hero__cards", {
       opacity: 1,
-      duration: 1,
    });
    tl.to(".main-hero__cards", {
-      yPercent: -20,
+      yPercent: 0,
+      ease: "power3.inOut",
    });
+   // tl.to(".main-hero__cards", {
+   //    opacity: 1,
+   //    ease: "power3.inOut",
+   // });
    // const cards = document.querySelectorAll(".main-hero__card-wrap");
    // cards.forEach((card, index) => {
    //    const duration = 0.5 + index * 0.2; // Увеличение длительности анимации для каждой карточки

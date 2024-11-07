@@ -9,6 +9,7 @@ const menu = [
    {
       title: "О проекте",
       path: "/",
+      // hash: "#about",
    },
    {
       title: "Апартаменты в продаже",

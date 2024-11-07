@@ -142,7 +142,7 @@ onMounted(() => {
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .slider-location {
    position: absolute;
    bottom: 0;
@@ -177,6 +177,9 @@ onMounted(() => {
       height: 100%;
       opacity: 0;
       transition: opacity 0.5s;
+      @media screen and (max-width: $xl) {
+         transition: opacity 0s;
+      }
       &.active {
          opacity: 1;
       }
@@ -215,6 +218,9 @@ onMounted(() => {
          & .slider-location {
             &__caption {
                max-width: 200px;
+               @media screen and (max-width: $xl) {
+                  max-width: 100%;
+               }
             }
          }
       }
@@ -222,6 +228,9 @@ onMounted(() => {
          & .slider-location {
             &__description {
                max-width: 360px;
+               @media screen and (max-width: $xl) {
+                  max-width: 100%;
+               }
             }
          }
       }

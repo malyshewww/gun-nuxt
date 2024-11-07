@@ -14,11 +14,11 @@ const data = reactive({
       },
       {
          title: "рядом парк Пушкина",
-         speed: 4,
+         speed: 5,
       },
       {
          title: "3 минуты до&nbsp;улицы Белинского",
-         speed: 5,
+         speed: 4,
       },
    ],
 });

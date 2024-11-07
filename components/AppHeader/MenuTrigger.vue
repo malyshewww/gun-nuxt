@@ -216,7 +216,7 @@ const openFilter = () => {
       position: relative;
       color: var(--text-white);
       background: currentColor;
-      animation: animloader 0.3s 0.3s linear infinite alternate;
+      animation: animBurger 0.3s 0.3s linear infinite alternate;
       &::after,
       &::before {
          content: "";
@@ -228,11 +228,11 @@ const openFilter = () => {
          position: absolute;
          left: 50%;
          transform: translateX(-50%);
-         top: 6px;
-         animation: animloader 0.3s 0.45s linear infinite alternate;
+         top: 5px;
+         animation: animBurger 0.3s 0.45s linear infinite alternate;
       }
       &::after {
-         top: -6px;
+         top: -5px;
          animation-delay: 0s;
       }
    }
@@ -245,9 +245,9 @@ const openFilter = () => {
       text-transform: lowercase;
    }
 }
-@keyframes animloader {
+@keyframes animBurger {
    0% {
-      width: 4px;
+      width: 3px;
    }
    100% {
       width: 12px;

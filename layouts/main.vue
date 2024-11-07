@@ -24,7 +24,7 @@ onMounted(() => {
    function checkScroll() {
       const mainContentHeight =
          mainContent.getBoundingClientRect().top + window.scrollY;
-      if (window.scrollY > mainContentHeight) {
+      if (window.scrollY > mainContentHeight - 30) {
          isWhite.value = false;
          buttonUp.classList.add("active");
       } else {

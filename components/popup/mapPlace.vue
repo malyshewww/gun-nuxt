@@ -1,7 +1,16 @@
 <template lang="pug">
 	Teleport(to="body")
 		Popup(class="popup-map-place" :is-open="isOpen" @close-popup="closePopup")
-			SectionMainLocationSlider(v-if="device.isMobile" :placeId="placeId")
+			.slider-location
+				.slider-location__box
+					.slider-location__images
+						.slider-location__image(:class="{active: placeId === popupData.id}")
+							img(:src="`/images/main-location/slide-${placeId}.jpg`" alt="image")
+					.slider-location__outer
+						.slider-location__content
+							.slider-location__caption {{popupData.caption}}
+							.slider-location__description {{popupData.description}}
+							.slider-location__distance {{popupData.distance}}
 </template>
 
 <script setup>
@@ -15,6 +24,11 @@ const props = defineProps({
    placeId: {
       type: Number,
       required: false,
+   },
+   popupData: {
+      type: Object,
+      required: true,
+      default: () => {},
    },
 });
 
@@ -35,11 +49,20 @@ const closePopup = () => {
       @media screen and (max-width: $md) {
          height: 280px;
       }
+      &__box {
+         // display: flex;
+         // align-items: center;
+         // height: 100%;
+      }
       &__images {
          flex: 0 0 287px;
+         height: 100%;
+         position: relative;
          @media screen and (max-width: $md) {
             display: none;
          }
+      }
+      &__image {
       }
       &__outer {
          align-items: center;
@@ -55,6 +78,7 @@ const closePopup = () => {
       }
       &__content {
          gap: 12px;
+         width: 100%;
       }
       &__caption {
          font-size: 18px;

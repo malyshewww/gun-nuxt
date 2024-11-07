@@ -28,6 +28,10 @@ const placemarks = [
       coords: [43.997183, 56.308685],
       transform: "translate(-50%, -50%)",
       isActive: true,
+      caption: "парк пушкина",
+      description:
+         "В обновлённом парке: детский городок, специальная зона для выгула и дрессировки собак, просторная скейт-площадка",
+      distance: "5 мин пешком",
    },
    // площадь Горького
    {
@@ -35,6 +39,9 @@ const placemarks = [
       transform: "translate(-50%, -50%)",
       id: 2,
       isActive: false,
+      caption: "площадь Горького",
+      description: "Одна из центральных площадей города",
+      distance: "5 мин пешком",
    },
    // Средной рынок
    {
@@ -42,6 +49,10 @@ const placemarks = [
       transform: "translate(-50%, -50%)",
       id: 3,
       isActive: false,
+      caption: "Средной рынок",
+      description:
+         "Комфортные и современные торговые ряды с фермерскими продуктами",
+      distance: "5 мин пешком",
    },
    // Улица Белинского
    {
@@ -49,6 +60,10 @@ const placemarks = [
       transform: "translate(-50%, -50%)",
       id: 4,
       isActive: false,
+      caption: "Улица Белинского",
+      description:
+         "Многочисленные скверы и исторические уголки Нижнего Новгорода",
+      distance: "5 мин пешком",
    },
 ];
 
@@ -131,7 +146,10 @@ onMounted(() => {
       pm.forEach((placemark, index) => {
          const markerElement = document.createElement("div");
          markerElement.className = "map-marker";
-         markerElement.setAttribute("data-marker-id", `${index + 1}`);
+         markerElement.setAttribute("data-marker-id", placemark.id);
+         markerElement.setAttribute("data-caption", placemark.caption);
+         markerElement.setAttribute("data-description", placemark.description);
+         markerElement.setAttribute("data-distance", placemark.distance);
          if (placemark.id == newVal.value) {
             markerElement.classList.add("active");
          } else {

@@ -15,7 +15,7 @@
 							.mask-location__text Нажимайте на отметки на карте, чтобы узнать подробности
 							UiButton(text="начать" class-names="btn-green" @button-click="hideMaskLocation")
 		PopupMap(:is-open="store.isOpenPopup" @close-popup="closePopupMap" :location-id="locationId")
-		PopupMapPlace(:is-open="storeMapPlace.isOpenPopup" @close-popup="closePopupMapPlace" :placeId="placeId")
+		PopupMapPlace(:is-open="storeMapPlace.isOpenPopup" @close-popup="closePopupMapPlace" :place-id.sync="placeId" :popup-data="popupMapPlaceData")
 </template>
 
 <script setup>
@@ -40,6 +40,10 @@ const openPopupMapPlace = () => {
 };
 const closePopupMapPlace = () => {
    storeMapPlace.closePopup();
+   popupMapPlaceData.caption = "";
+   popupMapPlaceData.description = "";
+   popupMapPlaceData.distance = "";
+   popupMapPlaceData.id = 1;
 };
 
 const locationId = ref(1);
@@ -55,19 +59,34 @@ const hideMaskLocation = () => {
 watch(
    () => locationId.value,
    (val) => {
+      console.log(locationId.value);
       locationId.value = val;
    },
    { deep: true }
 );
 
+const popupMapPlaceData = reactive({
+   id: "",
+   caption: "",
+   description: "",
+   distance: "",
+});
+
 onMounted(() => {
    if (window.innerWidth < 1024) {
       function documentActions(e) {
-         let target = e.target;
+         const target = e.target;
          if (target.closest(".map-marker")) {
             // isOpenPopup.value = !isOpenPopup.value;
-            let id = Number(target.dataset.markerId);
+            const id = Number(target.dataset.markerId);
+            const caption = target.dataset.caption;
+            const description = target.dataset.description;
+            const distance = target.dataset.distance;
             placeId.value = Number(id);
+            popupMapPlaceData.caption = caption;
+            popupMapPlaceData.description = description;
+            popupMapPlaceData.distance = distance;
+            popupMapPlaceData.id = id;
             openPopupMapPlace();
             const markers = document.querySelectorAll(".map-marker");
             markers.forEach((marker) => marker.classList.remove("active"));
