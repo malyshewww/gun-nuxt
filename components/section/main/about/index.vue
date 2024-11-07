@@ -29,7 +29,7 @@ const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
 const animation = () => {
    gsap.fromTo(
       aboutImage.value,
-      { scale: 0.2, opacity: 0, visibility: "hidden" },
+      { scale: 0.1, opacity: 0, visibility: "hidden" },
       {
          scale: 1,
          visibility: "inherit",
@@ -38,7 +38,7 @@ const animation = () => {
          scrollTrigger: {
             trigger: aboutWrapper.value,
             start: "top 10%", // when the top of the image hits 80% of the viewport height
-            end: "bottom 30%", // when the top of the image hits 30% of the viewport height
+            end: () => "+=95%", // when the top of the image hits 30% of the viewport height
             scrub: true, // enables smooth scrolling
          },
       }
