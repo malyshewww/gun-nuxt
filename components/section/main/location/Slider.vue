@@ -277,42 +277,41 @@ onMounted(() => {
          line-height: 18px;
       }
    }
-}
-
-.slider-controls {
-   gap: 28px;
-   display: inline-flex;
-   @media screen and (max-width: $xxxl) {
-      gap: 24px;
+   .slider-controls {
+      gap: 28px;
+      display: inline-flex;
+      @media screen and (max-width: $xxxl) {
+         gap: 24px;
+      }
    }
-}
-.slider-button {
-   width: 24px;
-   height: 24px;
-   border-radius: 0;
-   border: 0;
-   &::before {
-      content: "";
-      display: block;
+   .slider-button {
       width: 24px;
       height: 24px;
-      mask-repeat: no-repeat;
-      mask-position: center;
-      background-color: var(--bg-white);
+      border-radius: 0;
+      border: 0;
+      &::before {
+         content: "";
+         display: block;
+         width: 24px;
+         height: 24px;
+         mask-repeat: no-repeat;
+         mask-position: center;
+         background-color: var(--bg-white);
+         @media screen and (max-width: $xxxl) {
+            width: 20px;
+            height: 20px;
+            mask-size: 20px 20px;
+         }
+      }
+      &.swiper-button-disabled {
+         &::before {
+            background-color: var(--text-gray);
+         }
+      }
       @media screen and (max-width: $xxxl) {
          width: 20px;
          height: 20px;
-         mask-size: 20px 20px;
       }
-   }
-   &.swiper-button-disabled {
-      &::before {
-         background-color: var(--text-gray);
-      }
-   }
-   @media screen and (max-width: $xxxl) {
-      width: 20px;
-      height: 20px;
    }
 }
 </style>
