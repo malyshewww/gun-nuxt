@@ -5,7 +5,10 @@
 			.popup-slider__wrapper.swiper-wrapper
 				.popup-slider__item.swiper-slide(v-for="image, index in popupData.images" :key="index")
 					.popup-slider__image.ibg
-						img(:src="`/images/dynamic/dynamic-${image}@2x.jpg`")
+						picture
+							source(type="image/webp" :srcset="`/images/dynamic/dynamic-${image}@2x.webp`")
+							source(:srcset="`/images/dynamic/dynamic-${image}@2x.jpg`")
+							img(:src="`/images/dynamic/dynamic-${image}@2x.jpg`" :alt="`Динамика строительства ${popupData.caption}`")
 		.slider-controls
 			.slider-pagination(ref="sliderPagination")
 			.slider-buttons

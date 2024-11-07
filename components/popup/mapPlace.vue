@@ -5,7 +5,10 @@
 				.slider-location__box
 					.slider-location__images
 						.slider-location__image(v-if="isOpen")
-							img(:src="`/images/main-location/slide-${popupData.id}.jpg`" alt="image")
+							picture
+								source(type="image/webp" :srcset="`/images/main-location/slide-${popupData.id}.webp`")
+								source(:srcset="`/images/main-location/slide-${popupData.id}.jpg`" )
+								img(:src="`/images/main-location/slide-${popupData.id}.jpg`" alt="image")
 					.slider-location__outer
 						.slider-location__content
 							.slider-location__caption {{popupData.caption}}

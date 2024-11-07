@@ -48,7 +48,6 @@ const openMenu = () => {
 
 const closeMenu = (e) => {
    const target = e.target;
-   console.log(target);
    if (
       target.closest(".menu__link") ||
       target.closest(".logo-mobile img") ||

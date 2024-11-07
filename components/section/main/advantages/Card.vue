@@ -3,7 +3,10 @@
 		.advantages-card__button
 			span.advantages-card__button-icon
 		.advantages-card__image.ibg
-			img(:src="`/images/main-advantages/card-${idx+1}.jpg`" :alt="card.title")
+			picture
+				source(type="image/webp" :srcset="`/images/main-advantages/card-${idx+1}.webp`")
+				source(:srcset="`/images/main-advantages/card-${idx+1}.jpg`")
+				img(:src="`/images/main-advantages/card-${idx+1}.jpg`" :alt="card.title")
 		.advantages-card__content
 			.advantages-card__description 
 				p(v-for="(p, idx) in card.text" :key="idx") {{p}}

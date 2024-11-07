@@ -3,7 +3,10 @@
 		.slider-location__box
 			.slider-location__images
 				.slider-location__image(v-for="(item, index) in slides" :class="{active: index === currentSlideIndex}")
-					img(:src="`/images/main-location/slide-${index+1}.jpg`" :alt="item.caption")
+					picture
+						source(type="image/webp" :srcset="`/images/main-location/slide-${index+1}.webp`")
+						source(:srcset="`/images/main-location/slide-${index+1}.jpg`" )
+						img(:src="`/images/main-location/slide-${index+1}.jpg`" :alt="item.caption")
 			.slider-location__outer
 				.slider-location__body.swiper(ref="locationSlider")
 					.slider-location__wrapper.swiper-wrapper
@@ -179,6 +182,9 @@ onMounted(() => {
       transition: opacity 0.5s;
       @media screen and (max-width: $xl) {
          transition: opacity 0s;
+      }
+      & picture {
+         height: 100%;
       }
       &.active {
          opacity: 1;

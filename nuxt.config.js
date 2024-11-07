@@ -6,7 +6,7 @@ import postCssSortMediaQueries from "postcss-sort-media-queries";
 export default defineNuxtConfig({
    compatibilityDate: "2024-04-03",
    devtools: { enabled: true },
-   modules: ["@pinia/nuxt", "@nuxtjs/device"],
+   modules: ["@pinia/nuxt", "@nuxtjs/device", "@nuxt/image"],
    runtimeConfig: {
       public: {
          apiBase: process.env.NUXT_PUBLIC_API_BASE_URL,

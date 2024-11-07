@@ -5,10 +5,16 @@
 			.scheme-apartment__schemes
 				.scheme-apartment__preview(:class="{active: isSelected == 1}")
 					a(:href="`/images/apartments/apartment-1.png`" data-fancybox="gallery-1").scheme-apartment__image
-						img(:src="`/images/apartments/apartment-1.png`" alt="Планировка")
+						picture
+							source(type="image/webp" :srcset="`/images/apartments/apartment-1.webp`")
+							source(:srcset="`/images/apartments/apartment-1.png`")
+							img(:src="`/images/apartments/apartment-1.png`" alt="Планировка")
 				.scheme-apartment__preview(:class="{active: isSelected == 2}")
 					a(:href="`/images/apartments/apartment-2.jpg`" data-fancybox="gallery-2").scheme-apartment__image
-						img(:src="`/images/apartments/apartment-2.jpg`" alt="План этажа")
+						picture
+							source(type="image/webp" :srcset="`/images/apartments/apartment-2.webp`")
+							source(:srcset="`/images/apartments/apartment-2.png`")
+							img(:src="`/images/apartments/apartment-2.png`" alt="План этажа")
 				span.mask
 					.mask__icon
 			.scheme-apartment__decor.scheme-apartment__decor--compass 
@@ -118,6 +124,9 @@ onMounted(() => {
          height: 100%;
          width: 100%;
          object-fit: contain;
+      }
+      & picture {
+         height: 100%;
       }
    }
    &__decor {

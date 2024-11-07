@@ -4,7 +4,10 @@
 			.image-switch
 				.image-switch__item(v-for="(image, idx) in images" :key="idx" @mouseenter="switchImages(idx)" @mouseleave="initialState" :class="{active: currentImage === idx}")
 					.image-switch__picture
-						img(:src="`/images/flat-card/flat-${idx+1}.png`" alt="alt")
+						picture
+							source(type="image/webp" :srcset="`/images/flat-card/flat-${idx+1}.webp`")
+							source(:srcset="`/images/flat-card/flat-${idx+1}.png`")
+							img(:src="`/images/flat-card/flat-${idx+1}.png`" alt="alt")
 		.flat-slider__pagination.image-pagination
 			ul.image-pagination__list
 				li.image-pagination__item(v-for="(image, idx) in images" :key="idx" :class="{active: currentImage === idx}" @click="switchImages(idx)")

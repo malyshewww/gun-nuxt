@@ -5,7 +5,10 @@
 		SectionMainHeroWidget
 		.container
 			.main-hero__image
-				img(:src="`/images/main-hero/bg.jpg`" alt="фоновое изображение")
+				picture
+					source(type="image/webp" :srcset="`/images/main-hero/main-bg.webp`" )
+					source(:srcset="`/images/main-hero/main-bg.jpg`")
+					img(:src="`/images/main-hero/main-bg.jpg`" alt="фоновое изображение")
 			.main-hero__body
 				.main-hero__title.hero-title(:class="{active: isShowTitle}")
 					picture

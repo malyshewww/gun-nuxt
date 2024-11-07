@@ -16,7 +16,10 @@
 				.main-about__image-container
 					.main-about__image-wrap
 						.main-about__image.ibg(ref="aboutImage")
-							img(:src="`/images/main-about/about-img.jpg`" alt="alt")
+							picture
+								source(type="image/webp" :srcset="`/images/main-about/about-img.webp`")
+								source(:srcset="`/images/main-about/about-img.jpg`")
+								img(:src="`/images/main-about/about-img.jpg`" alt="фоновое изображение")
 </template>
 
 <script setup>
