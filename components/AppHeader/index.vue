@@ -5,6 +5,7 @@
 			AppHeaderMenu(:is-open-menu="isOpenMenu" @close-menu="closeMenu" data-da=".wrapper, 1024, 1")
 			AppHeaderActions
 			AppHeaderMenuTrigger(@openMenu="openMenu" :is-open-menu="isOpenMenu" data-da=".wrapper, 1024, 1")
+	.menu-overlay(@click="hideOverlay" :class="{active: isOpenMenu}")
 </template>
 
 <script setup>
@@ -55,6 +56,13 @@ const closeMenu = (e) => {
    storeMenu.toggleMenu();
 };
 
+const hideOverlay = () => {
+   isOpenMenu.value = false;
+   document.body.classList.toggle("lock") &&
+      document.body.classList.remove("lock");
+   storeMenu.toggleMenu();
+};
+
 onMounted(() => {
    useDynamicAdapt();
 });
@@ -96,10 +104,17 @@ onMounted(() => {
       &.menu-open {
          box-shadow: 0 0 0 0 transparent;
          &::before {
-            opacity: 1;
+            opacity: 0;
          }
          &::after {
             opacity: 0;
+         }
+      }
+   }
+   @media screen and (max-width: $md) {
+      &.menu-open {
+         &::before {
+            opacity: 1;
          }
       }
    }
@@ -137,7 +152,7 @@ onMounted(() => {
          opacity: 0.5;
          z-index: -1;
       }
-      @media screen and (max-width: $xl) {
+      @media screen and (max-width: $md) {
          color: var(--main-color);
          &.menu-open {
             & .logo-black {
@@ -156,6 +171,26 @@ onMounted(() => {
       &::before {
          opacity: 1;
       }
+   }
+}
+.menu-overlay {
+   position: fixed;
+   z-index: 30;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   backdrop-filter: blur(4px);
+   background: rgba(43, 47, 59, 0.3);
+   opacity: 0;
+   pointer-events: none;
+   transition: opacity 0.5s;
+   &.active {
+      opacity: 1;
+      pointer-events: all;
+   }
+   @media screen and (max-width: $md) {
+      display: none;
    }
 }
 </style>

@@ -12,15 +12,67 @@
 const isHeaderVisible = ref(true);
 
 onMounted(() => {
+   const isMobile = {
+      Android: function () {
+         return navigator.userAgent.match(/Android/i);
+      },
+      BlackBerry: function () {
+         return navigator.userAgent.match(/BlackBerry/i);
+      },
+      iOS: function () {
+         return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+      },
+      Opera: function () {
+         return navigator.userAgent.match(/Opera Mini/i);
+      },
+      Windows: function () {
+         return navigator.userAgent.match(/IEMobile/i);
+      },
+      any: function () {
+         return (
+            isMobile.Android() ||
+            isMobile.BlackBerry() ||
+            isMobile.iOS() ||
+            isMobile.Opera() ||
+            isMobile.Windows()
+         );
+      },
+   };
+   function getBrowserName() {
+      var name = "Unknown";
+      if (navigator.userAgent.indexOf("MSIE") != -1) {
+         name = "MSIE";
+      } else if (navigator.userAgent.indexOf("Firefox") != -1) {
+         name = "Firefox";
+      } else if (navigator.userAgent.indexOf("Opera") != -1) {
+         name = "Opera";
+      } else if (navigator.userAgent.indexOf("Chrome") != -1) {
+         name = "Chrome";
+      } else if (navigator.userAgent.indexOf("Safari") != -1) {
+         name = "Safari";
+      }
+      return name;
+   }
    let scrollPosition = window.scrollY;
    window.addEventListener("scroll", () => {
-      let currentScrollPosition = window.scrollY;
-      if (scrollPosition <= currentScrollPosition) {
-         isHeaderVisible.value = false;
-      } else {
-         isHeaderVisible.value = true;
+      if (!isMobile.any()) {
+         let currentScrollPosition = window.scrollY;
+         if (scrollPosition <= currentScrollPosition) {
+            isHeaderVisible.value = false;
+         } else {
+            isHeaderVisible.value = true;
+         }
+         scrollPosition = currentScrollPosition;
       }
-      scrollPosition = currentScrollPosition;
+      if (isMobile.any() || (isMobile.any() && getBrowserName() == "Safari")) {
+         let currentScrollPosition = window.scrollY;
+         if (scrollPosition <= currentScrollPosition) {
+            isHeaderVisible.value = false;
+         } else {
+            isHeaderVisible.value = true;
+         }
+         scrollPosition = currentScrollPosition;
+      }
    });
 
    const footer = document.querySelector(".footer");

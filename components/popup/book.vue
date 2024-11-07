@@ -46,9 +46,23 @@ const closePopup = () => {
 <style lang="scss">
 .popup-book {
    color: var(--text-white);
+   @media screen and (max-width: $xl) {
+      transition: opacity 0.3s ease 0.2s, visibility 0.5s ease-out 0s;
+   }
+   &.open-popup {
+      & .popup {
+         &__content {
+            @media screen and (max-width: $xl) {
+               transform: translate(0%, 0%);
+               transition: transform 0.5s ease 0.2s;
+               opacity: 1;
+            }
+         }
+      }
+   }
    & .popup {
       &__wrapper {
-         @media screen and (max-width: $md) {
+         @media screen and (max-width: $xl) {
             height: 100%;
             padding: 0;
          }
@@ -56,16 +70,19 @@ const closePopup = () => {
       &__content {
          padding: 0;
          max-width: 600px;
-         @media screen and (max-width: $md) {
+         @media screen and (max-width: $xl) {
             max-width: 100%;
             padding: 0;
             height: 100vh;
             border-radius: 0;
+            opacity: 1;
+            transform: translate(100%, 0%);
+            transition: transform 0.5s ease 0s;
          }
       }
       &__body {
          display: block;
-         @media screen and (max-width: $md) {
+         @media screen and (max-width: $xl) {
             display: flex;
             height: 100%;
          }

@@ -51,12 +51,12 @@ const data = reactive({
       @media screen and (max-width: $xxl) {
          gap: 64px;
          height: 311px;
-         opacity: 1;
          bottom: 64px;
       }
       @media screen and (max-width: $xl) {
          position: static;
          transform: none;
+         opacity: 1;
       }
       @media screen and (max-width: $md) {
          height: auto;

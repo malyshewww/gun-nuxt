@@ -26,7 +26,7 @@ const closePopup = () => {
 
 <style lang="scss">
 .popup-project {
-   @media screen and (max-width: $md) {
+   @media screen and (max-width: $xl) {
       transition: opacity 0.3s ease 0.2s, visibility 0.5s ease-out 0s;
    }
    & .form-popup {
@@ -39,7 +39,7 @@ const closePopup = () => {
    &.open-popup {
       & .popup {
          &__content {
-            @media screen and (max-width: $md) {
+            @media screen and (max-width: $xl) {
                transform: translate(0%, 0%);
                transition: transform 0.5s ease 0.2s;
                opacity: 1;
@@ -52,15 +52,13 @@ const closePopup = () => {
       padding: 0;
    }
    & .popup__content {
-      max-width: 768px;
+      max-width: 100%;
       padding: 0;
       height: 100vh;
       border-radius: 0;
-      @media screen and (max-width: $md) {
-         opacity: 1;
-         transform: translate(100%, 0%);
-         transition: transform 0.5s ease 0s;
-      }
+      opacity: 1;
+      transform: translate(100%, 0%);
+      transition: transform 0.5s ease 0s;
    }
    & .popup__body {
       height: 100%;
@@ -69,7 +67,7 @@ const closePopup = () => {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
    }
    & .form-popup {
       gap: 20px;

@@ -32,9 +32,10 @@ defineProps({
    background-color: var(--bg-white);
    border-radius: 10px;
    padding: 40px;
+   padding-bottom: 46px;
    display: grid;
    gap: 54px;
-   margin-top: 6px;
+   // margin-top: 6px;
    // min-height: 678px;
    @media screen and (max-width: $xl) {
       margin-top: 0;
@@ -124,6 +125,7 @@ defineProps({
       position: relative;
       z-index: 2;
       flex: 1 1 auto;
+      line-height: 22px;
       & span {
          padding-right: 14px;
          background-color: var(--bg-white);
@@ -140,7 +142,7 @@ defineProps({
       }
    }
    &__value {
-      line-height: 19px;
+      line-height: 22px;
       padding-left: 14px;
    }
 }

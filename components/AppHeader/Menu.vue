@@ -1,5 +1,10 @@
 <template lang="pug">
 	.header__menu.menu(:class="{active: isOpenMenu}" @click="closeMenu")
+		nuxt-link(to="/").logo-mobile
+			picture
+				source(:srcset="`/images/logo-black.svg`" media="(min-width: 1024px)")
+				source(:srcset="`/images/logo-black-mobile.svg`" media="(min-width: 300px)")
+				img(src="/images/logo-black.svg")
 		nav.menu__body
 			ul.menu__list 
 				li.menu__item(v-for="(item, index) in menu" :key="index")
@@ -97,6 +102,14 @@ onMounted(() => {
    width: 100%;
    position: relative;
    z-index: 21;
+   & .logo-mobile {
+      position: absolute;
+      top: 22px;
+      left: 32px;
+      @media screen and (max-width: $md) {
+         display: none;
+      }
+   }
    @media screen and (max-width: $xxxl) {
       max-width: 100%;
       flex-grow: 1;
@@ -104,16 +117,17 @@ onMounted(() => {
    }
    @media screen and (max-width: $xl) {
       position: fixed;
-      z-index: 30;
+      z-index: 31;
       top: 0;
-      left: 0;
-      width: 100%;
+      right: 0;
+      width: 384px;
       height: 100dvh;
       overflow-x: hidden;
       overflow-y: auto;
       padding: 103px 32px 60px;
       background-color: var(--text-white);
       align-items: flex-start;
+      justify-content: flex-start;
       transform: translateX(110%);
       transition: transform 0.6s;
       &.active {
@@ -121,8 +135,10 @@ onMounted(() => {
       }
    }
    @media screen and (max-width: $md) {
+      width: 100%;
       justify-content: flex-start;
       padding: 90px 15px 60px;
+      z-index: 30;
    }
    &__body {
       flex-shrink: 0;
@@ -145,6 +161,7 @@ onMounted(() => {
       gap: 20px;
       @media screen and (max-width: $xl) {
          flex-direction: column;
+         align-items: flex-start;
       }
       @media screen and (max-width: $md) {
          align-items: flex-start;

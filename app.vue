@@ -39,6 +39,8 @@ const menu = [
 ];
 
 provide("menu", menu);
+
+onMounted(() => {});
 </script>
 
 <style lang="scss">

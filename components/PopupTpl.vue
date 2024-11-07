@@ -69,16 +69,16 @@ onMounted(() => {
    flex: 1 1 auto;
    @media screen and (max-width: $xl) {
       gap: 20px;
-      justify-items: stretch;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 20px 48px;
    }
    @media screen and (max-width: $md) {
       padding: 20px;
       padding-top: 40px;
       gap: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
    }
    &__title {
       font-weight: 700;
@@ -93,7 +93,7 @@ onMounted(() => {
          width: 100%;
       }
       @media screen and (max-width: $md) {
-         margin: 0;
+         margin-bottom: 8px;
       }
    }
    &__sub-title {
@@ -114,9 +114,6 @@ onMounted(() => {
          order: 1;
          margin-top: 12px;
       }
-      @media screen and (max-width: $md) {
-         margin-top: 0;
-      }
    }
    &__link {
       color: currentColor;
@@ -128,10 +125,7 @@ onMounted(() => {
       width: auto;
       @media screen and (max-width: $xl) {
          margin-top: 12px;
-      }
-      @media screen and (max-width: $md) {
          width: 100%;
-         margin: 0;
       }
    }
 }

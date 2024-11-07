@@ -45,7 +45,8 @@ const closePopup = () => {
       top: 20px;
       right: 20px;
       @media screen and (max-width: $md) {
-         top: 8px;
+         height: 33px;
+         top: 0px;
          right: 8px;
          &::before {
             background-color: var(--bg-white);
