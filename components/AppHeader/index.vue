@@ -48,7 +48,12 @@ const openMenu = () => {
 
 const closeMenu = (e) => {
    const target = e.target;
-   if (target.tagName === "A" && target.closest(".menu__link")) {
+   console.log(target);
+   if (
+      target.closest(".menu__link") ||
+      target.closest(".logo-mobile img") ||
+      target.closest(".actions-header__btn")
+   ) {
       isOpenMenu.value = false;
       document.body.classList.toggle("lock") &&
          document.body.classList.remove("lock");

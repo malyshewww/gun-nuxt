@@ -1,10 +1,12 @@
 <template lang="pug">
 	.header__menu.menu(:class="{active: isOpenMenu}" @click="closeMenu")
-		nuxt-link(to="/").logo-mobile
-			picture
-				source(:srcset="`/images/logo-black.svg`" media="(min-width: 1024px)")
-				source(:srcset="`/images/logo-black-mobile.svg`" media="(min-width: 300px)")
-				img(src="/images/logo-black.svg")
+		.menu__top
+			nuxt-link(to="/").logo-mobile
+				picture
+					source(:srcset="`/images/logo-black.svg`" media="(min-width: 1024px)")
+					source(:srcset="`/images/logo-black-mobile.svg`" media="(min-width: 300px)")
+					img(src="/images/logo-black.svg")
+			AppHeaderActions
 		nav.menu__body
 			ul.menu__list 
 				li.menu__item(v-for="(item, index) in menu" :key="index")
@@ -102,10 +104,18 @@ onMounted(() => {
    width: 100%;
    position: relative;
    z-index: 21;
-   & .logo-mobile {
-      position: absolute;
-      top: 22px;
-      left: 32px;
+   &__top {
+      display: none;
+      @media screen and (max-width: $xl) {
+         position: absolute;
+         top: 0;
+         left: 0;
+         padding: 15px 32px;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         width: 100%;
+      }
       @media screen and (max-width: $md) {
          display: none;
       }
