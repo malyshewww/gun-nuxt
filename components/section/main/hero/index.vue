@@ -39,40 +39,28 @@ const animationHero = () => {
          trigger: mainHero.value,
          start: "top 0%",
          end: "40%",
-         scrub: true,
+         scrub: 2,
          pin: false,
-         onUpdate: function (self) {
-            console.log(self.progress);
-         },
       },
    });
    tl.to(mainHero.value, {
       "--opacity": 1,
    });
-   tl.to(".main-hero__cards", {
+   const tlCards = gsap.timeline({
+      scrollTrigger: {
+         trigger: mainHero.value,
+         start: "top 0%",
+         end: "40%",
+         scrub: 2,
+         pin: false,
+      },
+   });
+   tlCards.to(".main-hero__cards", {
       opacity: 1,
    });
-   tl.to(".main-hero__cards", {
-      y: "70vh",
-   })
-      .to(".main-hero__cards", {
-         y: "60vh",
-      })
-      .to(".main-hero__cards", {
-         y: "50vh",
-      })
-      .to(".main-hero__cards", {
-         y: "40vh",
-      })
-      .to(".main-hero__cards", {
-         y: "30vh",
-      })
-      .to(".main-hero__cards", {
-         y: "20vh",
-      })
-      .to(".main-hero__cards", {
-         y: "0vh",
-      });
+   tlCards.to(".main-hero__cards", {
+      y: "0vh",
+   });
    // const cards = document.querySelectorAll(".main-hero__card-wrap");
    // cards.forEach((card, index) => {
    //    const duration = 0.5 + index * 0.2; // Увеличение длительности анимации для каждой карточки
@@ -128,6 +116,7 @@ onMounted(() => {
       height: 100%;
       background: rgba(43, 47, 59, 0.3);
       opacity: var(--opacity);
+      // transition: opacity $time;
       z-index: 2;
       @media screen and (max-width: $xl) {
          opacity: 1;

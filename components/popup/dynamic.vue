@@ -29,28 +29,36 @@ const closePopup = () => {
 
 <style lang="scss">
 .popup-dynamic {
-   & .popup__content {
-      width: 100%;
-      max-width: 1238px;
-      min-height: auto;
-      border-radius: 0;
-      padding: 64px;
-      background: var(--text-white);
-      @media screen and (max-width: $md) {
-         padding: 0;
-         background-color: var(--bg-white-dirt);
-         // background: transparent;
+   & .popup {
+      &__wrapper {
+         @media screen and (max-width: $md) {
+            padding-left: 0;
+            padding-right: 0;
+         }
       }
-   }
-   & .popup__close {
-      top: 20px;
-      right: 20px;
-      @media screen and (max-width: $md) {
-         height: 33px;
-         top: 0px;
-         right: 8px;
-         &::before {
-            background-color: var(--main-color);
+      &__content {
+         width: 100%;
+         max-width: 1238px;
+         min-height: auto;
+         border-radius: 0;
+         padding: 64px;
+         background: var(--text-white);
+         @media screen and (max-width: $md) {
+            padding: 15px;
+            background-color: var(--bg-white-dirt);
+            // background: transparent;
+         }
+      }
+      &__close {
+         top: 20px;
+         right: 20px;
+         @media screen and (max-width: $md) {
+            height: 33px;
+            top: 15px;
+            right: 8px;
+            &::before {
+               background-color: var(--text-gray);
+            }
          }
       }
    }
