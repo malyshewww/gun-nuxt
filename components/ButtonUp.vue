@@ -1,5 +1,5 @@
 <template lang="pug">
-	button(type="button" @click="scrollTop" :class="{active: isActiveButtonUp}").button-up
+	button(type="button" @click="scrollTop" :class="{active: isActiveButtonUp}").button-up.lock-padding
 </template>
 
 <script setup>
@@ -54,6 +54,10 @@ onMounted(() => {
    transform: translateY(50px);
    transition: opacity $time * 2, transform $time * 2;
    pointer-events: none;
+   .page--home & {
+      left: 36px;
+      right: auto;
+   }
    @media screen and (max-width: $xl) {
       display: none;
    }

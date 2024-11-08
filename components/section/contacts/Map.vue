@@ -29,7 +29,11 @@ onMounted(() => {
          YMapDefaultSchemeLayer,
          YMapDefaultFeaturesLayer,
          YMapMarker,
+         YMapControls,
       } = ymaps3;
+      const { YMapZoomControl } = await ymaps3.import(
+         "@yandex/ymaps3-controls@0.0.1"
+      );
       const map = new YMap(document.getElementById("mapElem"), {
          location: {
             center: coords,
@@ -61,6 +65,11 @@ onMounted(() => {
          content
       );
       map.addChild(marker);
+      map.addChild(
+         new YMapControls({ position: "left" }).addChild(
+            new YMapZoomControl({})
+         )
+      );
       if (window.innerWidth < 1024) {
          map.setBehaviors([
             "multiTouch",

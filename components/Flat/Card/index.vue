@@ -267,7 +267,7 @@ onMounted(() => {
       }
       & .parameters-card__item {
          min-height: 28px;
-         justify-items: start;
+         justify-items: center;
          align-items: center;
          padding: 3px 14px;
          font-size: 13px;

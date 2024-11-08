@@ -42,7 +42,7 @@ const openPopupDynamic = () => {
          rgba(43, 47, 59, 0.5),
          rgba(43, 47, 59, 0)
       );
-      transition: opacity 0.8s;
+      transition: opacity 0.8s cubic-bezier(0.25, 0.74, 0.22, 0.99) 0s;
    }
    &::before {
       content: "";
@@ -55,10 +55,9 @@ const openPopupDynamic = () => {
       // width: calc(100% + 2px);
       // height: calc(100% + 2px);
       background: rgba(43, 47, 59, 0.5);
-      transition-timing-function: cubic-bezier(0.25, 0.74, 0.22, 0.99);
-      transition-property: clip-path;
-      clip-path: circle(0 at 50% 50%);
-      transition-duration: 0.8s;
+      transform-origin: center bottom;
+      opacity: 0;
+      transition: opacity 0.8s cubic-bezier(0.25, 0.74, 0.22, 0.99) 0s;
       pointer-events: none;
       z-index: 1;
    }
@@ -66,7 +65,7 @@ const openPopupDynamic = () => {
       &:hover {
          cursor: pointer;
          &::before {
-            clip-path: circle(70.71068% at 50% 50%);
+            opacity: 1;
          }
          &::after {
             // height: 100%;

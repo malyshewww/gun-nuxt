@@ -14,13 +14,15 @@
 :active {
 	outline: none;
 }
+html {
+	scrollbar-gutter: stable;
+}
+
 html,
 body {
 	height: 100%;
 	min-width: 320px;
 	background-color: var(--text-white);
-	scroll-padding-right: 30px;
-	scrollbar-gutter: stable;
 	scroll-padding-top: 20px;
 }
 body {

@@ -37,7 +37,7 @@ const checkAnchor = () => {
 
 const animationScenariors = () => {
    const cards = document.querySelectorAll(".scenariors__card");
-   const boxCards = document.querySelector(".main-scenariors__cards");
+   const boxCards = document.querySelector(".main-scenariors");
 
    if (cards.length > 0) {
       timeline.value = gsap
@@ -45,14 +45,17 @@ const animationScenariors = () => {
             scrollTrigger: {
                trigger: boxCards,
                pin: true,
-               pinSpacing: true,
+               // pinSpacing: true,
                stagger: 0.5,
-               start: "top-=100px",
+               start: "top",
                end: () => "+=" + cards[0].clientHeight * cards.length,
                scrub: 1,
                duration: 1,
             },
          })
+         // .to(".main-scenariors__cards", {
+         //    marginBottom: "-100px",
+         // })
          .from(".card-scenariors--1", {
             y: "130vh",
          })
@@ -100,7 +103,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .main-scenariors {
    padding: 110px 0;
-   overflow: clip;
+   // overflow: clip;
    &__wrapper {
       @media screen and (max-width: $xl) {
          display: grid;

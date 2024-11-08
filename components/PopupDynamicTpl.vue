@@ -120,7 +120,7 @@ onMounted(() => {
       border-radius: 100px;
       padding: 4px 20px 4px 20px;
       min-height: 33px;
-      background: var(--text-white);
+      background: var(--bg-white);
       text-transform: lowercase;
       line-height: 19px;
       pointer-events: none;
@@ -159,7 +159,7 @@ onMounted(() => {
       border-radius: 5px;
       padding: 4px 5px;
       height: 34px;
-      background: var(--text-white);
+      background: var(--bg-white);
       font-size: 14px;
       line-height: 18px;
       width: 82px;
@@ -167,7 +167,7 @@ onMounted(() => {
    & .slider-button {
       width: 54px;
       height: 54px;
-      background: var(--text-white);
+      background: var(--bg-white);
       border-color: transparent;
       &::before {
          content: "";

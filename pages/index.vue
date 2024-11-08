@@ -24,7 +24,7 @@ useHead({
 
 <style lang="scss" scoped>
 .main-content {
-   margin-top: 100vh;
+   margin-top: 200vh;
    position: relative;
    z-index: 10;
    background-color: var(--text-white);

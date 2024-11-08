@@ -87,7 +87,10 @@ onMounted(() => {
       position: sticky;
       top: 0;
       left: 35px;
-      margin-left: 59px;
+      margin-left: 35px;
+      .simplebar-scrollable-x & {
+         margin-left: 47px;
+      }
       @media screen and (max-width: $xxl) {
          margin-left: 45px;
       }

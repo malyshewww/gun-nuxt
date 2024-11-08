@@ -38,6 +38,17 @@
    @media screen and (max-width: $xl) {
       gap: 6px 16px;
    }
+   @media screen and (max-width: $md) {
+      align-items: flex-start;
+   }
+}
+.section-top {
+   &__title {
+      @media screen and (max-width: $md) {
+         flex-direction: column;
+         align-items: flex-start;
+      }
+   }
 }
 .section-top {
    margin-left: 214px;

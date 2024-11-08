@@ -1,5 +1,5 @@
 <template lang="pug">
-	nuxt-link(to="/flats/list").widget-circle
+	nuxt-link(to="/flats/list").widget-circle.lock-padding
 		.widget-circle__image
 			img(:src="`/images/main-hero/circle-img.png`" alt="изображение жк")
 </template>
@@ -10,8 +10,8 @@
    place-items: center;
    width: 170px;
    height: 170px;
-   position: absolute;
-   z-index: 5;
+   position: fixed;
+   z-index: 30;
    bottom: 24px;
    right: 20px;
    overflow: hidden;

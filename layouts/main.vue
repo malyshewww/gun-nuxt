@@ -1,6 +1,7 @@
 <template lang="pug">
 	.wrapper.scroller(ref="scroller")
 		UiTrailer
+		UiWidget
 		AppHeader(:is-white="isWhite")
 		main.main
 			.page

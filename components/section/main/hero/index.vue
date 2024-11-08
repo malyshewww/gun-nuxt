@@ -2,7 +2,6 @@
 	.main-hero(ref="mainHero")
 		.main-hero__content-left
 			.main-hero__scroll-down листайте вниз
-		SectionMainHeroWidget
 		.container
 			.main-hero__image
 				picture
@@ -39,9 +38,12 @@ const animationHero = () => {
       scrollTrigger: {
          trigger: mainHero.value,
          start: "top 0%",
-         end: "30%",
-         scrub: 1,
+         end: "40%",
+         scrub: true,
          pin: false,
+         onUpdate: function (self) {
+            console.log(self.progress);
+         },
       },
    });
    tl.to(mainHero.value, {
@@ -51,18 +53,30 @@ const animationHero = () => {
       opacity: 1,
    });
    tl.to(".main-hero__cards", {
-      yPercent: 0,
-      ease: "power3.inOut",
-   });
-   // tl.to(".main-hero__cards", {
-   //    opacity: 1,
-   //    ease: "power3.inOut",
-   // });
+      y: "70vh",
+   })
+      .to(".main-hero__cards", {
+         y: "60vh",
+      })
+      .to(".main-hero__cards", {
+         y: "50vh",
+      })
+      .to(".main-hero__cards", {
+         y: "40vh",
+      })
+      .to(".main-hero__cards", {
+         y: "30vh",
+      })
+      .to(".main-hero__cards", {
+         y: "20vh",
+      })
+      .to(".main-hero__cards", {
+         y: "0vh",
+      });
    // const cards = document.querySelectorAll(".main-hero__card-wrap");
    // cards.forEach((card, index) => {
    //    const duration = 0.5 + index * 0.2; // Увеличение длительности анимации для каждой карточки
    //    const yOffset = 30 + index * 10; // Увеличение смещения по оси Y для каждой карточки
-
    //    gsap.from(card, {
    //       y: yOffset, // Начальное смещение
    //       opacity: 0, // Начальная непрозрачность

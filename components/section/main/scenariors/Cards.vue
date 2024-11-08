@@ -18,22 +18,41 @@ const scenariorCards = [
       text: "Жильё на короткий срок для туристов и&nbsp;командировочных",
    },
 ];
+
+const calcPositionCards = () => {
+   const mainScenariors = document.querySelector(".main-scenariors");
+   const mainScenariorsCards = mainScenariors.querySelector(
+      ".main-scenariors__cards"
+   );
+   const sectionTop = mainScenariors.querySelector(".section-top");
+   const sectionTopHeight = sectionTop.getBoundingClientRect().height;
+   if (window.innerWidth > 1024) {
+      mainScenariorsCards.style.marginTop = `-${sectionTopHeight}px`;
+   }
+};
+
+onMounted(() => {
+   calcPositionCards();
+   window.addEventListener("resize", calcPositionCards);
+});
+onUnmounted(() => {
+   window.addEventListener("resize", calcPositionCards);
+});
 </script>
 
 <style lang="scss" scoped>
 .main-scenariors {
    &__cards {
       display: flex;
-      margin-top: 80px;
       max-width: 1115px;
       height: 628px;
       align-items: flex-start;
       margin: 0 auto;
       counter-reset: num;
       position: relative;
-      margin-top: 80px;
+      margin-top: -288px;
       @media screen and (max-width: $xxxl) {
-         margin-top: 64px;
+         margin-top: -238px;
          max-width: 1042px;
          height: 583px;
       }

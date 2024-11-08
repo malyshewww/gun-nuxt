@@ -1,6 +1,6 @@
 <template lang="pug">
 	Teleport(to="body")
-		Popup(class="popup-consultation popup-project" :is-open="isOpen" @close-popup="closePopup")
+		Popup(class="popup-project popup-tpl" :is-open="isOpen" @close-popup="closePopup")
 			PopupTpl(:popup-data="popupData")
 </template>
 
@@ -36,38 +36,7 @@ const closePopup = () => {
          padding-top: 40px;
       }
    }
-   &.open-popup {
-      & .popup {
-         &__content {
-            @media screen and (max-width: $xl) {
-               transform: translate(0%, 0%);
-               transition: transform 0.5s ease 0.2s;
-               opacity: 1;
-            }
-         }
-      }
-   }
-   & .popup__wrapper {
-      height: 100%;
-      padding: 0;
-   }
-   & .popup__content {
-      max-width: 100%;
-      padding: 0;
-      height: 100vh;
-      border-radius: 0;
-      opacity: 1;
-      transform: translate(100%, 0%);
-      transition: transform 0.5s ease 0s;
-   }
-   & .popup__body {
-      height: 100%;
-   }
-   & .popup__form {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
+   & .popup {
    }
    & .form-popup {
       gap: 20px;

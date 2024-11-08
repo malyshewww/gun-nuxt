@@ -1,5 +1,5 @@
 <template lang="pug">
-	header.header(ref="header" :class="[{'header-white': isWhite}, {'header-black': !isWhite}, {'menu-open': isOpenMenu}, {'hidden': !isVisible && !isOpenMenu}]")
+	header.header(ref="header" :class="[{'header-white': isWhite}, {'header-black': !isWhite}, {'menu-open': isOpenMenu}, {'hidden': !isVisible && !isOpenMenu}]").lock-padding
 		.header__body
 			AppHeaderLogo
 			AppHeaderMenu(:is-open-menu="isOpenMenu" @close-menu="closeMenu" data-da=".wrapper, 1024, 1")
@@ -81,7 +81,7 @@ onMounted(() => {
    top: 0;
    width: 100%;
    z-index: 30;
-   transition: transform $time, box-shadow $time;
+   transition: transform $time, box-shadow $time, background-color $time;
    &::before {
       content: "";
       position: absolute;

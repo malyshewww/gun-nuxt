@@ -15,16 +15,16 @@
 							.mask-location__text Нажимайте на отметки на карте, чтобы узнать подробности
 							UiButton(text="начать" class-names="btn-green" @button-click="hideMaskLocation")
 		PopupMap(:is-open="store.isOpenPopup" @close-popup="closePopupMap" :location-id="locationId")
-		PopupMapPlace(:is-open="storeMapPlace.isOpenPopup" @close-popup="closePopupMapPlace" :place-id.sync="placeId" :popup-data="popupMapPlaceData")
+		PopupMapPlace(:is-open="isOpenPopup" @close-popup="closePopupMapPlace" :place-id.sync="placeId" :popup-data="popupMapPlaceData")
 </template>
 
 <script setup>
 import { usePopupMapStore } from "~/stores/popup/map";
-import { usePopupMapPlaceStore } from "~/stores/popup/map-place";
 
 const device = useDevice();
 
 const store = usePopupMapStore();
+
 const closePopupMap = () => {
    store.closePopup();
 };
@@ -32,18 +32,20 @@ const openPopupMap = () => {
    store.openPopup();
 };
 
-const storeMapPlace = usePopupMapPlaceStore();
-// const isOpenPopup = ref(false);
+const isOpenPopup = ref(false);
 const placeId = ref(1);
 const openPopupMapPlace = () => {
-   storeMapPlace.openPopup();
+   isOpenPopup.value = !isOpenPopup.value;
+   document.body.classList.add("lock");
 };
 const closePopupMapPlace = () => {
-   storeMapPlace.closePopup();
    popupMapPlaceData.caption = "";
    popupMapPlaceData.description = "";
    popupMapPlaceData.distance = "";
    popupMapPlaceData.id = 1;
+   isOpenPopup.value = !isOpenPopup.value;
+   document.body.classList.contains("lock") &&
+      document.body.classList.remove("lock");
 };
 
 const locationId = ref(1);
@@ -77,7 +79,6 @@ onMounted(() => {
       function documentActions(e) {
          const target = e.target;
          if (target.closest(".map-marker")) {
-            // isOpenPopup.value = !isOpenPopup.value;
             const id = Number(target.dataset.markerId);
             const caption = target.dataset.caption;
             const description = target.dataset.description;

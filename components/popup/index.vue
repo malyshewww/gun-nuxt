@@ -134,4 +134,58 @@ const closePopup = () => {
       line-height: 28px;
    }
 }
+.popup-tpl {
+   color: var(--text-white);
+   @media screen and (max-width: $xl) {
+      transition: opacity 0.3s ease 0.2s, visibility 0.5s ease-out 0s;
+   }
+   & .open-popup {
+      & .popup {
+         &__content {
+            @media screen and (max-width: $xl) {
+               transform: translate(0%, 0%);
+               transition: transform 0.5s ease 0.2s;
+               opacity: 1;
+            }
+         }
+      }
+   }
+   & .popup {
+      &__wrapper {
+         @media screen and (max-width: $xl) {
+            align-items: stretch;
+            padding: 0;
+         }
+      }
+      &__content {
+         padding: 0;
+         @media screen and (max-width: $xl) {
+            background-color: var(--main-color);
+            max-width: 100%;
+            display: flex;
+            border-radius: 0;
+            opacity: 1;
+            transform: translate(100%, 0%);
+            transition: transform 0.5s ease 0s;
+         }
+         @media screen and (max-width: $md) {
+            align-items: center;
+         }
+      }
+      &__close {
+         @media (any-hover: hover) {
+            &:hover {
+               &::before {
+                  background-color: currentColor;
+               }
+            }
+         }
+         @media screen and (max-width: $md) {
+            &::before {
+               background-color: var(--bg-white);
+            }
+         }
+      }
+   }
+}
 </style>

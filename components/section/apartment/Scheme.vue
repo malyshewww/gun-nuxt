@@ -19,7 +19,7 @@
 					.mask__icon
 			.scheme-apartment__decor.scheme-apartment__decor--compass 
 				img(:src="`/images/icons/compas.svg`" alt="Компас")
-			.scheme-apartment__decor
+			.scheme-apartment__decor.scheme-apartment__decor--location
 				img(:src="`/images/icons/triangle-decor.svg`" alt="Схема")
 </template>
 
@@ -69,13 +69,18 @@ onMounted(() => {
       padding: 20px 20px 44px;
    }
    @media screen and (max-width: $xl) {
-      gap: 30px;
+      gap: 36px;
+      padding: 20px 20px 104px;
+      position: relative;
    }
    &__body {
       width: 100%;
       position: relative;
       display: flex;
       justify-content: center;
+      @media screen and (max-width: $xl) {
+         position: static;
+      }
    }
    &__schemes {
       min-height: 611px;
@@ -94,9 +99,17 @@ onMounted(() => {
       @media screen and (max-width: $xxxl) {
          width: 100%;
          min-height: 500px;
+         max-width: 600px;
+      }
+      @media screen and (max-width: $xxl) {
+         max-width: 500px;
       }
       @media screen and (max-width: $xl) {
          min-height: 350px;
+         max-width: 100%;
+      }
+      @media screen and (max-width: $md) {
+         min-height: 211px;
       }
       & .mask {
          background-color: transparent;
@@ -137,6 +150,12 @@ onMounted(() => {
       display: grid;
       place-items: center;
       right: 26px;
+      @media screen and (max-width: $xl) {
+         bottom: 20px;
+         margin: auto;
+         width: 64px;
+         height: 64px;
+      }
       &--compass {
          right: auto;
          left: 0;
@@ -145,14 +164,19 @@ onMounted(() => {
             width: 70px;
          }
       }
+      &--location {
+         @media screen and (max-width: $xl) {
+            display: none;
+         }
+      }
       @media screen and (max-width: 1600px) {
          right: 10px;
          width: 70px;
          height: 70px;
       }
-      @media screen and (max-width: $xxxl) {
-         display: none;
-      }
+      // @media screen and (max-width: $xxxl) {
+      //    display: none;
+      // }
    }
 }
 </style>

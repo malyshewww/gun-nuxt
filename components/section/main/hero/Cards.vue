@@ -10,11 +10,11 @@ const data = reactive({
    cards: [
       {
          title: "нижегородский район",
-         speed: 3,
+         speed: 5,
       },
       {
          title: "рядом парк Пушкина",
-         speed: 5,
+         speed: 6,
       },
       {
          title: "3 минуты до&nbsp;улицы Белинского",
@@ -37,7 +37,7 @@ const data = reactive({
       bottom: -64px;
       height: 610px;
       opacity: 0;
-      transform: translateY(20%);
+      transform: translateY(80vh);
       // &.active {
       //    & .hero-card {
       //       opacity: 1;
@@ -107,6 +107,9 @@ const data = reactive({
          }
          @media screen and (max-width: $xxxl) {
             top: -6px;
+         }
+         @media screen and (max-width: $xl) {
+            top: 0;
          }
       }
    }

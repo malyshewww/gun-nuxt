@@ -29,10 +29,6 @@ import "swiper/css/effect-fade";
 
 import { useDynamicAdapt } from "#imports";
 
-import { usePopupMapPlaceStore } from "~/stores/popup/map-place";
-
-const storePlace = usePopupMapPlaceStore();
-
 const props = defineProps({
    placeId: {
       type: Number,
@@ -249,6 +245,10 @@ onMounted(() => {
       color: var(--text-white);
       @media screen and (max-width: $xxxl) {
          gap: 10px;
+      }
+      @media screen and (max-width: $md) {
+         justify-items: start;
+         text-align: left;
       }
    }
    &__caption {
