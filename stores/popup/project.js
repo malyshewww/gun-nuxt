@@ -4,12 +4,12 @@ export const usePopupProjectStore = defineStore("popup-project", {
    }),
    actions: {
       openPopup() {
+         body_lock_add();
          this.isOpenPopup = !this.isOpenPopup;
-         document.body.classList.add("lock");
       },
       closePopup() {
+         body_lock_remove();
          this.isOpenPopup = !this.isOpenPopup;
-         document.body.classList.remove("lock");
       },
    },
 });

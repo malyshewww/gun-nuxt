@@ -4,6 +4,7 @@ export const useMenuStore = defineStore("menu", {
    }),
    actions: {
       toggleMenu() {
+         body_lock();
          this.isOpenMenu = !this.isOpenMenu;
       },
    },

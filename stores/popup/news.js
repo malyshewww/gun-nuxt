@@ -4,11 +4,11 @@ export const usePopupNewsStore = defineStore("popup-news", {
    }),
    actions: {
       openPopupNews() {
-         document.body.classList.add("lock");
+         body_lock_add();
          this.isOpenPopupNews = !this.isOpenPopupNews;
       },
       closePopupNews() {
-         document.body.classList.remove("lock");
+         body_lock_remove();
          this.isOpenPopupNews = !this.isOpenPopupNews;
       },
    },

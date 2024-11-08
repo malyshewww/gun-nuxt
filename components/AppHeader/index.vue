@@ -42,7 +42,6 @@ const isOpenMenu = ref(false);
 
 const openMenu = () => {
    isOpenMenu.value = !isOpenMenu.value;
-   document.body.classList.toggle("lock");
    storeMenu.toggleMenu();
 };
 
@@ -54,16 +53,12 @@ const closeMenu = (e) => {
       target.closest(".actions-header__btn")
    ) {
       isOpenMenu.value = false;
-      document.body.classList.toggle("lock") &&
-         document.body.classList.remove("lock");
    }
    storeMenu.toggleMenu();
 };
 
 const hideOverlay = () => {
    isOpenMenu.value = false;
-   document.body.classList.toggle("lock") &&
-      document.body.classList.remove("lock");
    storeMenu.toggleMenu();
 };
 

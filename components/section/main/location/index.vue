@@ -36,7 +36,7 @@ const isOpenPopup = ref(false);
 const placeId = ref(1);
 const openPopupMapPlace = () => {
    isOpenPopup.value = !isOpenPopup.value;
-   document.body.classList.add("lock");
+   body_lock_add();
 };
 const closePopupMapPlace = () => {
    popupMapPlaceData.caption = "";
@@ -44,8 +44,7 @@ const closePopupMapPlace = () => {
    popupMapPlaceData.distance = "";
    popupMapPlaceData.id = 1;
    isOpenPopup.value = !isOpenPopup.value;
-   document.body.classList.contains("lock") &&
-      document.body.classList.remove("lock");
+   document.body.classList.contains("lock") && body_lock_remove();
 };
 
 const locationId = ref(1);

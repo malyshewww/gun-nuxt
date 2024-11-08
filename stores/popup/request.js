@@ -4,11 +4,11 @@ export const usePopupRequestStore = defineStore("popup-request", {
    }),
    actions: {
       openPopup() {
-         document.body.classList.add("lock");
+         body_lock_add();
          this.isOpenPopupRequest = !this.isOpenPopupRequest;
       },
       closePopup() {
-         document.body.classList.remove("lock");
+         body_lock_remove();
          this.isOpenPopupRequest = !this.isOpenPopupRequest;
       },
    },

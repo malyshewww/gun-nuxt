@@ -4,11 +4,11 @@ export const usePopupConsultationStore = defineStore("popup-consultation", {
    }),
    actions: {
       openPopup() {
-         document.body.classList.add("lock");
+         body_lock_add();
          this.isOpenPopupConsultation = !this.isOpenPopupConsultation;
       },
       closePopup() {
-         document.body.classList.remove("lock");
+         body_lock_remove();
          this.isOpenPopupConsultation = !this.isOpenPopupConsultation;
       },
    },

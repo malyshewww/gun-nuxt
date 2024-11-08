@@ -4,11 +4,11 @@ export const usePopupMapStore = defineStore("popup-map", {
    }),
    actions: {
       openPopup() {
-         document.body.classList.add("lock");
+         body_lock_add();
          this.isOpenPopup = !this.isOpenPopup;
       },
       closePopup() {
-         document.body.classList.remove("lock");
+         body_lock_remove();
          this.isOpenPopup = !this.isOpenPopup;
       },
    },

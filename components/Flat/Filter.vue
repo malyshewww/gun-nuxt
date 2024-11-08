@@ -53,7 +53,7 @@ const storeMenu = useMenuStore();
 
 const closeFilter = () => {
    if (storeMenu.isOpenMenu === false) {
-      document.body.classList.remove("lock");
+      body_lock_remove(1000);
    }
    store.closeFitler();
 };

@@ -19,6 +19,12 @@
 body.lock {
   overflow: hidden;
 }
+html.with-fancybox {
+  overflow-y: hidden;
+}
+// .fancybox__container {
+// 	z-index: 3000;
+// }
 
 .page--home {
   & .container {

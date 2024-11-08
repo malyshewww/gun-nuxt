@@ -8,7 +8,7 @@ export function body_lock(delay = 500) {
       body_lock_add(delay);
    }
 }
-export function body_lock_remove(delay) {
+export function body_lock_remove(delay = 500) {
    const body = document.querySelector("body");
    const lockPadding = document.querySelectorAll(".lock-padding");
    setTimeout(function () {
@@ -27,7 +27,7 @@ export function body_lock_remove(delay) {
       unlock = true;
    }, delay);
 }
-export function body_lock_add(delay) {
+export function body_lock_add(delay = 500) {
    const body = document.querySelector("body");
    const lockPaddingValue =
       window.innerWidth - document.querySelector(".wrapper").offsetWidth + "px";
