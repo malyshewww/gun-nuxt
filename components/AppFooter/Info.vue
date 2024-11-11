@@ -5,7 +5,7 @@
 		.info-footer__company.company-footer
 			.company-footer__label Создание сайта
 			a(href="https://webshop.ru/" target="_blank").company-footer__logo
-					img(:src="`/images/company-logo.svg`" alt="логотип компании")
+				img(:src="`/images/company-logo.svg`" alt="логотип компании")
 </template>
 
 <style lang="scss" scoped>

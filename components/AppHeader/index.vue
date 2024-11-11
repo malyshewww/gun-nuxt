@@ -41,20 +41,24 @@ const header = ref("");
 const isOpenMenu = ref(false);
 
 const openMenu = () => {
-   isOpenMenu.value = !isOpenMenu.value;
-   storeMenu.toggleMenu();
+   if (window.innerWidth < 1024) {
+      isOpenMenu.value = !isOpenMenu.value;
+      storeMenu.toggleMenu();
+   }
 };
 
 const closeMenu = (e) => {
    const target = e.target;
-   if (
-      target.closest(".menu__link") ||
-      target.closest(".logo-mobile img") ||
-      target.closest(".actions-header__btn")
-   ) {
-      isOpenMenu.value = false;
+   if (window.innerWidth < 1024) {
+      if (
+         target.closest(".menu__link") ||
+         target.closest(".logo-mobile img") ||
+         target.closest(".actions-header__btn")
+      ) {
+         isOpenMenu.value = false;
+      }
+      storeMenu.toggleMenu();
    }
-   storeMenu.toggleMenu();
 };
 
 const hideOverlay = () => {

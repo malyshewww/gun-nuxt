@@ -21,7 +21,6 @@ export function body_lock_remove(delay = 500) {
       body.style.marginRight = "0px";
       body.classList.remove("lock");
    }, delay);
-
    unlock = false;
    setTimeout(function () {
       unlock = true;
@@ -40,7 +39,6 @@ export function body_lock_add(delay = 500) {
    }
    body.style.marginRight = lockPaddingValue;
    body.classList.add("lock");
-
    unlock = false;
    setTimeout(function () {
       unlock = true;
