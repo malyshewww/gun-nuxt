@@ -1,5 +1,5 @@
 <template lang="pug">
-	.main-location__slider.slider-location
+	.main-location__slider.slider-location(ref="mainLocation")
 		.slider-location__box
 			.slider-location__images
 				.slider-location__image(v-for="(item, index) in slides" :class="{active: index === currentSlideIndex}")
@@ -75,6 +75,8 @@ const updateLocationId = (id) => {
    emit("updateLocationId", id);
 };
 
+const mainLocation = ref("");
+
 const initSlider = () => {
    if (locationSlider.value) {
       locationSwiper.value = new Swiper(locationSlider.value, {
@@ -90,10 +92,11 @@ const initSlider = () => {
             nextEl: buttonNext.value,
          },
          autoplay: {
-            delay: 5000,
+            delay: 2000,
             disableOnInteraction: true,
             pauseOnMouseEnter: true,
          },
+         autoplay: false,
          breakpoints: {
             300: {
                speed: 0,
@@ -124,6 +127,19 @@ const initSlider = () => {
          },
       });
    }
+   const toggleAutoplay = (isVisible, swiper) => {
+      if (isVisible) {
+         swiper.autoplay.start();
+      } else {
+         swiper.autoplay.stop();
+      }
+   };
+   const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+         toggleAutoplay(entry.isIntersecting, locationSwiper.value); // Включаем/выключаем autoplay в зависимости от видимости
+      });
+   });
+   observer.observe(mainLocation.value);
    if (window.innerWidth < 1024 && locationSwiper.value) {
       setTimeout(() => {
          currentSlideIndex.value = locationId.value - 1;
