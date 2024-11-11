@@ -39,6 +39,8 @@ const animationScenariors = () => {
    const cards = document.querySelectorAll(".scenariors__card");
    const boxCards = document.querySelector(".main-scenariors");
 
+   const sectionHeading = boxCards.querySelector(".section-heading");
+   const sectionHeadingHeight = sectionHeading.getBoundingClientRect().height;
    if (cards.length > 0) {
       timeline.value = gsap
          .timeline({
@@ -47,7 +49,7 @@ const animationScenariors = () => {
                pin: true,
                // pinSpacing: true,
                stagger: 0.5,
-               start: "top",
+               start: `top -${window.innerWidth > 1400 ? 120 : 100}`,
                end: () => "+=" + cards[0].clientHeight * cards.length,
                scrub: 1,
                duration: 1,

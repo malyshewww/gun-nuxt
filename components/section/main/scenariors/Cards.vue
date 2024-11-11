@@ -27,7 +27,10 @@ const calcPositionCards = () => {
    const sectionTop = mainScenariors.querySelector(".section-top");
    const sectionTopHeight = sectionTop.getBoundingClientRect().height;
    if (window.innerWidth > 1024) {
-      mainScenariorsCards.style.marginTop = `-${sectionTopHeight}px`;
+      // mainScenariorsCards.style.marginTop = `-${sectionTopHeight}px`;
+      mainScenariorsCards.style.marginTop = `-${
+         window.innerWidth > 1400 ? 120 : 100
+      }px`;
    }
 };
 
