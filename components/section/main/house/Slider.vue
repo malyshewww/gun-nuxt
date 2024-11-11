@@ -4,10 +4,7 @@
 			.slider-format__wrapper.swiper-wrapper
 				a(:href="`/images/house-format/house-${index+1}.jpg`" v-for="(slide, index) in 6" :key="index" data-fancybox="house").slider-format__item.swiper-slide
 					.slider-format__image.ibg
-						picture
-							source(type="image/webp" :srcset="`/images/house-format/house-${index+1}.webp`")
-							source(:srcset="`/images/house-format/house-${index+1}.jpg`")
-							img(:src="`/images/house-format/house-${index+1}.jpg`" alt="house")
+						img(:src="`/images/house-format/house-${index+1}.jpg`" alt="house")
 		.slider-controls(ref="sliderControls")
 			button(ref="buttonPrev" type="button").slider-button.slider-button-prev
 			button(ref="buttonNext" type="button").slider-button.slider-button-next
