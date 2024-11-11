@@ -1,10 +1,7 @@
 <template lang="pug">
 	.dynamic__item.item-dynamic(@click="openPopupDynamic($event, card)")
 		.item-dynamic__image.ibg
-			picture
-				source(type="image/webp" :srcset="`/images/dynamic/dynamic-${card.images[0]}@2x.webp`")
-				source(:srcset="`/images/dynamic/dynamic-${card.images[0]}@2x.jpg`")
-				img(:src="`/images/dynamic/dynamic-${card.images[0]}@2x.jpg`" :alt="`Динамика строительства ${card.caption}`")
+			img(:src="`/images/dynamic/dynamic-${card.images[0]}@2x.jpg`" :alt="`Динамика строительства ${card.caption}`")
 		.item-dynamic__content
 			.item-dynamic__caption {{ card.caption }}
 </template>
