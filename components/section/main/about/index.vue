@@ -15,8 +15,8 @@
 					.main-about__description Апартаменты «Пушка» будут представлены 12-ти этажным жилым домом с&nbsp;дополнительным парапетом первого этажа. Необычное архитектурное&nbsp;решение здания подчёркивает общий концепт проекта — динамичность, мобильность, современность
 				.main-about__image-container
 					.main-about__image-wrap
-						.main-about__image.ibg(ref="aboutImage")
-							picture
+						.main-about__image.ibg
+							picture(ref="aboutImage")
 								source(type="image/webp" :srcset="`/images/main-about/about-img.webp`")
 								source(:srcset="`/images/main-about/about-img.jpg`")
 								img(:src="`/images/main-about/about-img.jpg`" alt="фоновое изображение")
@@ -36,11 +36,12 @@ const animation = () => {
       {
          scale: 1,
          visibility: "inherit",
-         width: "100%",
+         // width: "100%",
+         // height: "100%",
          opacity: 1,
          scrollTrigger: {
             trigger: aboutWrapper.value,
-            start: "top 10%", // when the top of the image hits 80% of the viewport height
+            start: "top 0%", // when the top of the image hits 80% of the viewport height
             end: () => "+=95%", // when the top of the image hits 30% of the viewport height
             scrub: true, // enables smooth scrolling
          },
@@ -135,6 +136,10 @@ onMounted(() => {
       left: 0;
       width: 100%;
       height: 100%;
+      & picture {
+         position: absolute;
+         inset: 0;
+      }
       & img {
          position: absolute;
          top: 0;

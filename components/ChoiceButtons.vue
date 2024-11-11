@@ -27,6 +27,8 @@
    align-items: center;
    justify-content: center;
    gap: 6px;
+   transition: border-color $time;
+   border: 1px solid transparent;
    &.active,
    &.router-link-exact-active {
       background: var(--main-color);
@@ -54,6 +56,11 @@
    &--scheme {
       &::before {
          mask-image: url("/images/icons/scheme-icon.svg");
+      }
+   }
+   @media (any-hover: hover) {
+      &:hover {
+         border-color: var(--main-color);
       }
    }
    @media screen and (max-width: $md) {

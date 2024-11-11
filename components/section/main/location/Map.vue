@@ -327,12 +327,24 @@ onMounted(() => {
          visibility: visible;
          &__image {
             pointer-events: none;
+            transform: scale(0.71);
+            transition: transform $time * 2;
+            & svg {
+               width: 100%;
+               height: 100%;
+            }
             & svg path {
                transition: fill $time * 2;
+            }
+            @media screen and (max-width: $xl) {
+               width: 28px;
+               height: 36px;
+               transform: scale(0.75);
             }
          }
          &.active {
             & .map-marker__image {
+               transform: scale(1);
                & svg path:nth-child(2),
                & svg path:nth-child(3) {
                   fill: var(--main-color);
@@ -340,6 +352,8 @@ onMounted(() => {
             }
          }
          @media screen and (max-width: $xl) {
+            width: 48px;
+            height: 48px;
             &[data-marker-id="1"] {
                animation-delay: 0.4s;
                animation: smoothbounce 1.2s infinite alternate;

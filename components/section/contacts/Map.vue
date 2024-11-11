@@ -173,5 +173,8 @@ onMounted(() => {
    [class*="--map-copyrights"] {
       display: none;
    }
+   [class*="--controls"] {
+      z-index: 1 !important;
+   }
 }
 </style>

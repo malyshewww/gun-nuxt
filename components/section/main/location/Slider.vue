@@ -22,7 +22,7 @@
 
 <script setup>
 import Swiper from "swiper";
-import { Navigation, EffectFade } from "swiper/modules";
+import { Navigation, EffectFade, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
@@ -81,7 +81,7 @@ const updateLocationId = (id) => {
 const initSlider = () => {
    if (locationSlider.value) {
       locationSwiper.value = new Swiper(locationSlider.value, {
-         modules: [Navigation, EffectFade],
+         modules: [Navigation, EffectFade, Autoplay],
          slidesPerView: 1,
          spaceBetween: 20,
          effect: "fade", // apply fade effect
@@ -91,6 +91,11 @@ const initSlider = () => {
          navigation: {
             prevEl: buttonPrev.value,
             nextEl: buttonNext.value,
+         },
+         autoplay: {
+            delay: 5000,
+            disableOnInteraction: true,
+            pauseOnMouseEnter: true,
          },
          breakpoints: {
             300: {

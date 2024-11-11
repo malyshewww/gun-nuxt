@@ -228,6 +228,8 @@ onMounted(() => {
       color: var(--text-gray);
       transition: background-color $time, color $time;
       &.booked {
+         pointer-events: none;
+         user-select: none;
          background-color: var(--bg-gray);
          color: var(--text-gray);
       }
