@@ -32,18 +32,19 @@ const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
 const animation = () => {
    gsap.fromTo(
       aboutImage.value,
-      { scale: 0.1, opacity: 0, visibility: "hidden" },
+      { scale: 0.2, opacity: 0.2, visibility: "hidden" },
       {
          scale: 1,
          visibility: "inherit",
-         // width: "100%",
+         width: "100%",
          // height: "100%",
          opacity: 1,
          scrollTrigger: {
             trigger: aboutWrapper.value,
-            start: "top 0%", // when the top of the image hits 80% of the viewport height
-            end: () => "+=95%", // when the top of the image hits 30% of the viewport height
-            scrub: true, // enables smooth scrolling
+            start: `top`,
+            end: () => "+=90%",
+            scrub: 1,
+            // duration: 0.5,
          },
       }
    );
@@ -117,14 +118,16 @@ onMounted(() => {
    }
    &__image-wrap {
       // height: 860px;
-      padding-bottom: 51.66%;
+      // padding-bottom: 51.66%;
       position: relative;
       width: 100%;
       display: flex;
       justify-content: center;
       transform-origin: 0 0;
+      height: 860px;
       @media screen and (max-width: $xxxl) {
-         padding-bottom: 49.66%;
+         height: 576px;
+         // padding-bottom: 49.66%;
       }
       @media screen and (max-width: $xl) {
          padding-bottom: 51.15%;
