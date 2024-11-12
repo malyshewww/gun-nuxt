@@ -1,7 +1,11 @@
 <template lang="pug">
 	nuxt-link(to="/flats/list").widget-circle.lock-padding
 		.widget-circle__image
-			img(:src="`/images/main-hero/circle-img.png`" alt="изображение жк")
+			//- NuxtImg(:src="`/images/main-hero/circle-img.png`" format="avif" alt="изображение жк")
+			picture
+				source(type="image/webp" :srcset="`/images/main-hero/circle-img.webp`" )
+				source(:srcset="`/images/main-hero/circle-img.png`" )
+				img(:src="`/images/main-hero/circle-img.png`" alt="изображение жк")
 </template>
 
 <style lang="scss" scoped>

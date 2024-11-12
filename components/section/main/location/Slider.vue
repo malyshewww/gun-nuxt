@@ -3,6 +3,7 @@
 		.slider-location__box
 			.slider-location__images
 				.slider-location__image(v-for="(item, index) in slides" :class="{active: index === currentSlideIndex}")
+					//- NuxtImg(:src="`/images/main-location/slide-${index+1}.jpg`" format="avif" :alt="item.caption")
 					img(:src="`/images/main-location/slide-${index+1}.jpg`" :alt="item.caption")
 			.slider-location__outer
 				.slider-location__body.swiper(ref="locationSlider")

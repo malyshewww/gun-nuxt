@@ -1,8 +1,10 @@
 <template lang="pug">
 	.popup__body
 		.popup__image.ibg(v-if="popupData.isImage")
+			//- NuxtImg(:src="`/images/popup/popup-img.jpg`" format="avif" alt="изображение")
 			img(:src="`/images/popup/popup-img.jpg`")
 		.popup__image.ibg(v-if="popupData.isImageProject")
+			//- NuxtImg(:src="`/images/popup/popup-img-project.jpg`" format="avif" alt="изображение")
 			img(:src="`/images/popup/popup-img-project.jpg`")
 		form.popup__form.form-popup
 			.form-popup__title {{popupData.title}}

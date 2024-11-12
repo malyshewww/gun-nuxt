@@ -9,6 +9,7 @@
 							h2.section-top__title.custom-title
 								| Всё #[span.text-transparent-current важное&nbsp;—] Есть
 					.main-advantages__decor
+						//- NuxtImg(:src="`/images/main-advantages/decor.png`" format="avif" alt="image")
 						img(:src="`/images/main-advantages/decor.png`" alt="декор")
 				ul.main-advantages__list
 					SectionMainAdvantagesCard(v-for="(card, index) in advantages" :key="index" :idx="index" :card="card" @show-info="showInfo" :active-index="activeIndex")

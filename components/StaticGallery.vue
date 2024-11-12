@@ -7,6 +7,7 @@
 				span.mask
 					span.mask__icon
 				a(:href="`/images/text-page/gallery-${item}.jpg`" data-fancybox="gallery-static").gallery-item__image.ibg
+					//- NuxtImg(:src="`/images/text-page/gallery-${item}.jpg`" format="avif" alt="изображение")
 					img(:src="`/images/text-page/gallery-${item}.jpg`")
 </template>
 

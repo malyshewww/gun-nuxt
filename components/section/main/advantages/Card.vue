@@ -3,6 +3,7 @@
 		.advantages-card__button
 			span.advantages-card__button-icon
 		.advantages-card__image.ibg
+			//- NuxtImg(:src="`/images/main-advantages/card-${idx+1}.jpg`" format="avif" :alt="card.title")
 			img(:src="`/images/main-advantages/card-${idx+1}.jpg`" :alt="card.title")
 		.advantages-card__content
 			.advantages-card__description 

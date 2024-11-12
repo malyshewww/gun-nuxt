@@ -4,6 +4,7 @@
 			.slider-format__wrapper.swiper-wrapper
 				a(:href="`/images/house-format/house-${index+1}.jpg`" v-for="(slide, index) in 6" :key="index" data-fancybox="house").slider-format__item.swiper-slide
 					.slider-format__image.ibg
+						//- NuxtImg(:src="`/images/house-format/house-${index+1}.jpg`" format="avif")
 						img(:src="`/images/house-format/house-${index+1}.jpg`" alt="house")
 		.slider-controls(ref="sliderControls")
 			button(ref="buttonPrev" type="button").slider-button.slider-button-prev

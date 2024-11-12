@@ -13,6 +13,7 @@
 					span.mask
 						span.mask__icon
 					a(:href="`/images/text-page/${slide.img}@2x.jpg`" data-fancybox="gallery").gallery-item__image.ibg
+						//- NuxtImg(:src="`/images/text-page/${slide.img}@2x.jpg`" format="avif" alt="слайд")
 						img(:src="`/images/text-page/${slide.img}@2x.jpg`", alt="")
 </template>
 

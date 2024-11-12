@@ -43,6 +43,14 @@ const closePopupDynamic = () => {
    }, 100);
 };
 
+// const nuxtApp = useNuxtApp();
+// nuxtApp.hook("page:start", () => {
+//    console.log("start");
+// });
+// nuxtApp.hook("page:finish", () => {
+//    console.log("finish");
+// });
+
 const crumbs = [
    {
       title: "Главная",

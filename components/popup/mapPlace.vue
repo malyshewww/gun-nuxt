@@ -5,6 +5,7 @@
 				.slider-location__box
 					.slider-location__images
 						.slider-location__image(v-if="isOpen")
+							//- NuxtImg(:src="`/images/main-location/slide-${popupData.id}.jpg`" format="avif" :alt="popupData.caption")
 							picture
 								source(type="image/webp" :srcset="`/images/main-location/slide-${popupData.id}.webp`")
 								source(:srcset="`/images/main-location/slide-${popupData.id}.jpg`" )
