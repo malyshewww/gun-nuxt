@@ -27,7 +27,7 @@
    align-items: center;
    justify-content: center;
    gap: 6px;
-   transition: border-color $time;
+   transition: border-color $time * 1.5 cubic-bezier(0.25, 0.74, 0.22, 0.99);
    border: 1px solid transparent;
    &.active,
    &.router-link-exact-active {
