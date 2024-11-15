@@ -131,6 +131,7 @@ onMounted(() => {
          // padding-bottom: 49.66%;
       }
       @media screen and (max-width: $xl) {
+         height: auto;
          padding-bottom: 51.15%;
       }
    }
